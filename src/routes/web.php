@@ -14,4 +14,9 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
-Route::get('/', [CustomerController::class, 'index']);
+Route::controller(CustomerController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::get('/thanks','thanks');
+        Route::get('/menu/guest', 'guestMenu');
+    }
+);

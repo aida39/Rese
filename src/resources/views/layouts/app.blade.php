@@ -14,13 +14,14 @@
 <body>
     <header class="header">
         <div class="header__inner">
-                <a href="/menu/guest">
-                    <img src="images/logo_open.png" alt="logo_open">
-                </a>
-                <h1 class="header__title">
-                    Rese
-                </h1>
+            <a href="/menu/guest">
+                <img src="images/logo_open.png" alt="logo_open">
+            </a>
+            <h1 class="header__title">
+                Rese
+            </h1>
         </div>
+        @yield('search')
     </header>
     <main>
         @yield('content')

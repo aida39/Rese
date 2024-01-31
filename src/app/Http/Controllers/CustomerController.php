@@ -10,4 +10,14 @@ class CustomerController extends Controller
     {
         return view('index');
     }
+
+    public function thanks()
+    {
+        return view('thanks');
+    }
+
+    public function guestMenu()
+    {
+        return view('menu_guest');
+    }
 }
