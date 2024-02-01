@@ -1,0 +1,26 @@
+.shop__content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    /* margin: 0 auto; */
+}
+
+.shop__card {
+    width: 20%;
+    cursor: pointer;
+    border: 1px solid #e9eaea;
+    border-radius: 3px;
+}
+
+.shop__card-img {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.shop__card-img img {
+    width: 100%;
+}
+
+.shop__card-text {
+    padding: 15px;
+}

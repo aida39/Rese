@@ -16,6 +16,7 @@ use App\Http\Controllers\CustomerController;
 
 Route::controller(CustomerController::class)->group(function () {
         Route::get('/', 'index');
+        Route::get('search', 'search');
         Route::get('/thanks','thanks');
         Route::get('/menu/guest', 'guestMenu');
     }
