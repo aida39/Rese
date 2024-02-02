@@ -2,12 +2,10 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    /* margin: 0 auto; */
 }
 
 .shop__card {
     width: 20%;
-    cursor: pointer;
     border: 1px solid #e9eaea;
     border-radius: 3px;
 }
@@ -23,4 +21,12 @@
 
 .shop__card-text {
     padding: 15px;
+}
+
+.shop__card-favorite--red {
+    color: red;
+}
+
+.shop__card-favorite--gray{
+    color: gray;
 }

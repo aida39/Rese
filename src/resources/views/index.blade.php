@@ -66,7 +66,16 @@
             <span>#{{ $shop['shopGenre']['shop_genre'] }}</span>
             <a href="shop/detail">詳しくみる</a>
             @if (Auth::check())
-            <span class="shop__card-favorite">&#x2764;</span>
+            <div class="shop__card-favorite">
+                <form class="" action="{{ url('/favorite/'.$shop['id']) }}" method="post">
+                    @csrf
+                    @method('PATCH')
+                    <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
+                    <button type="submit" class="">
+                        <i class="fa-solid fa-heart {{ $shop->favorite->where('user_id', Auth::id())->count() > 0 ? 'shop__card-favorite--red' : 'shop__card-favorite--gray' }}"></i>
+                    </button>
+                </form>
+            </div>
             @endif
         </div>
     </div>

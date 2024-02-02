@@ -25,6 +25,11 @@ class Shop extends Model
         return $this->belongsTo(ShopGenre::class);
     }
 
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    
     public function scopeAreaSearch($query, $shop_area_id)
     {
         if (!empty($shop_area_id)) {

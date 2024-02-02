@@ -16,7 +16,10 @@ use App\Http\Controllers\CustomerController;
 
 Route::controller(CustomerController::class)->group(function () {
         Route::get('/', 'index');
-        Route::get('search', 'search');
+        Route::get('/search', 'search');
+        Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
+        Route::get('/detail', 'detail');
+
         Route::get('/thanks','thanks');
         Route::get('/menu/guest', 'guestMenu');
     }
