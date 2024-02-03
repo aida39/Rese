@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex: 1;
+}
+
+.left-container {
+    flex: 1;
+}
+.shop-name{
+    display: inline-block;
+}
+.right-container {
+    flex: 1;
+    padding: 10px;
+}
+
+.shop-detail__img {
+    padding: 10px 0;
+}
+
+.shop-detail__img img {
+    width: 100%;
+}

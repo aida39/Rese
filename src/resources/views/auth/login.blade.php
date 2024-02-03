@@ -41,8 +41,5 @@
             <button class="form__button-submit" type="submit">ログイン</button>
         </div>
     </form>
-    <div class="register__link">
-        <a class="register__button-submit" href="/register">会員登録(後で削除)</a>
-    </div>
 </div>
 @endsection

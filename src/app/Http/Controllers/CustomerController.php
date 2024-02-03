@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\ShopArea;
 use App\Models\ShopGenre;
 use App\Models\Favorite;
+use App\Models\Reservation;
 
 class CustomerController extends Controller
 {
@@ -52,22 +53,30 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
-    public function userAttendance(Request $request)
+    public function detail(Request $request)
     {
         $id = $request->input('id');
-        $user = User::findOrFail($id);
-        $page = $request->input('page', 1);
-        $worktimes = Worktime::with('user', 'breaktimes')->where('user_id', $id)->paginate(5, ['*'], 'page', $page)->withQueryString();
-        return view('user_attendance', compact('user', 'worktimes'));
+        $shop = Shop::with('shopArea', 'shopGenre')->findOrFail($id);
+        return view('detail', compact('shop'));
     }
-    
+
+    public function createReservation(Request $request)
+    {
+        $user_id = Auth::id();
+        $reservation_data = $request->only(['shop_id', 'reservation_date', 'reservation_time', 'member_count']);
+        $reservation_data['user_id'] = $user_id;
+
+        Reservation::create($reservation_data);
+        return view('done');
+    }
+
     public function thanks()
     {
         return view('thanks');
     }
 
-    public function guestMenu()
+    public function showMenu()
     {
-        return view('menu_guest');
+        return view('menu');
     }
 }

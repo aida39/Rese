@@ -64,7 +64,7 @@
             <p class="">{{ $shop['shop_name'] }}</p>
             <span>#{{ $shop['shopArea']['shop_area'] }}</span>
             <span>#{{ $shop['shopGenre']['shop_genre'] }}</span>
-            <a href="shop/detail">詳しくみる</a>
+            <a href="shop/detail?id={{$shop['id']}}">詳しくみる</a>
             @if (Auth::check())
             <div class="shop__card-favorite">
                 <form class="" action="{{ url('/favorite/'.$shop['id']) }}" method="post">
@@ -81,13 +81,5 @@
     </div>
     @endforeach
 </div>
-
-@if (Auth::check())
-現在ログイン中です
-<form class="form" action="/logout" method="post">
-    @csrf
-    <button class="header-nav__button">ログアウト</button>
-</form>
-@endif
 
 @endsection

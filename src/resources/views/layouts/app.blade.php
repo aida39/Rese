@@ -15,9 +15,11 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <a href="/menu/guest">
-                <img src="images/logo_open.png" alt="logo_open">
-            </a>
+            <div class="header__logo">
+                <a href="/menu">
+                    <img src="/images/logo_open.png" alt="logo_open">
+                </a>
+            </div>
             <h1 class="header__title">
                 Rese
             </h1>

@@ -14,7 +14,7 @@
     <header class="header">
         <div class="header__inner">
             <a href="javascript:void(0);" onclick="history.go(-1)">
-            <img src="/images/logo_close.png" alt="logo_close">
+                <img src="/images/logo_close.png" alt="logo_close">
             </a>
         </div>
     </header>
@@ -22,6 +22,17 @@
         <div class="menu-content">
             <nav>
                 <ul class="menu-nav">
+                    @if (Auth::check())
+                    <li class="menu-nav__item">
+                        <a class="menu-nav__link" href="/">Home</a>
+                    </li>
+                    <li class="menu-nav__item">
+                        <a class="menu-nav__link" href="/logout">Logout</a>
+                    </li>
+                    <li class="menu-nav__item">
+                        <a class="menu-nav__link" href="/login">Mypage</a>
+                    </li>
+                    @else
                     <li class="menu-nav__item">
                         <a class="menu-nav__link" href="/">Home</a>
                     </li>
@@ -31,6 +42,7 @@
                     <li class="menu-nav__item">
                         <a class="menu-nav__link" href="/login">Login</a>
                     </li>
+                    @endif
                 </ul>
             </nav>
         </div>

@@ -1,4 +1,10 @@
 .header {
     display: flex;
     justify-content: space-between;
+
+}
+
+.header__inner {
+    display: flex;
+    width: 300px;
 }

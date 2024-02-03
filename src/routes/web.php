@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,22 @@ Route::controller(CustomerController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/search', 'search');
         Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
-        Route::get('/detail', 'detail');
+        Route::get('/shop/detail', 'detail');
+        Route::post('/reservation/create', 'createReservation');
 
         Route::get('/thanks','thanks');
-        Route::get('/menu/guest', 'guestMenu');
+        Route::get('/menu', 'showMenu');
+    }
+);
+
+Route::controller(AuthController::class)->group(
+    function () {
+        Route::get('/register', 'getRegister');
+        Route::post('/register', 'postRegister');
+
+        Route::get('/login', 'getLogin');
+        Route::post('/login', 'postLogin');
+
+        Route::get('/logout', 'getLogout');
     }
 );
