@@ -21,9 +21,12 @@ Route::controller(CustomerController::class)->group(function () {
         Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
         Route::get('/shop/detail', 'detail');
         Route::post('/reservation/create', 'createReservation');
+        Route::post('/reservation/delete', 'deleteReservation');
 
         Route::get('/thanks','thanks');
         Route::get('/menu', 'showMenu');
+
+        Route::get('/mypage', 'mypage');
     }
 );
 

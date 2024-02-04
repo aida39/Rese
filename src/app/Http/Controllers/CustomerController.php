@@ -9,6 +9,7 @@ use App\Models\ShopArea;
 use App\Models\ShopGenre;
 use App\Models\Favorite;
 use App\Models\Reservation;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -70,6 +71,13 @@ class CustomerController extends Controller
         return view('done');
     }
 
+    public function deleteReservation(Request $request)
+    {
+
+        Reservation::find($request->id)->delete();
+        return redirect()->back();
+    }
+
     public function thanks()
     {
         return view('thanks');
@@ -78,5 +86,18 @@ class CustomerController extends Controller
     public function showMenu()
     {
         return view('menu');
+    }
+
+    public function mypage()
+    {
+        $user_id = Auth::id();
+        $user_name = Auth::user()->name;
+
+        $reservations=Reservation::where('user_id', $user_id)->with('shop')->get();
+        foreach ($reservations as $reservation) {
+            $reservation->formatted_time = Carbon::parse($reservation->reservation_time)->format('H:i');
+        }
+        $favorites=Favorite::where('user_id', $user_id)->with('shop.shopArea', 'shop.shopGenre')->get();
+        return view('mypage', compact('user_name', 'reservations','favorites'));
     }
 }

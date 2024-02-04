@@ -30,7 +30,7 @@
                         <a class="menu-nav__link" href="/logout">Logout</a>
                     </li>
                     <li class="menu-nav__item">
-                        <a class="menu-nav__link" href="/login">Mypage</a>
+                        <a class="menu-nav__link" href="/mypage">Mypage</a>
                     </li>
                     @else
                     <li class="menu-nav__item">

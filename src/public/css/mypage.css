@@ -1,0 +1,62 @@
+.mypage__content {
+    display: flex;
+    width: 100%;
+}
+
+.mypage__reservation-status,
+.mypage__favorite-shop {
+    flex: 1;
+}
+
+.reservation-block {
+    width: 80%;
+    margin: 10px;
+    color: #fff;
+    background-color: #3560f6;
+}
+
+.reservation-block__form {
+    display: inline-block;
+}
+
+.reservation-block__button {
+    background-color: #3560f6;
+    border: none;
+}
+
+.fa-circle-xmark {
+    color: #fff;
+    font-size: 24px;
+}
+
+.mypage__favorite-shop__inner {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shop__card {
+    width: 40%;
+    border: 1px solid #e9eaea;
+    border-radius: 3px;
+}
+
+.shop__card-img {
+    padding: 10px 0;
+    text-align: center;
+}
+
+.shop__card-img img {
+    width: 100%;
+}
+
+.shop__card-text {
+    padding: 15px;
+}
+
+.shop__card-favorite--red {
+    color: red;
+}
+
+.shop__card-favorite--gray {
+    color: gray;
+}

@@ -15,4 +15,10 @@ class Reservation extends Model
         'reservation_time',
         'member_count',
     ];
+
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
+
 }

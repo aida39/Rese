@@ -37,28 +37,17 @@
     @foreach ($shops as $shop)
     <div class="shop__card">
         @php
-        $imagePath = '';
-
-        switch ($shop['shop_genre_id']) {
-        case 1:
-        $imagePath = 'images/sushi.jpg';
-        break;
-        case 2:
-        $imagePath = 'images/yakiniku.jpg';
-        break;
-        case 3:
-        $imagePath = 'images/izakaya.jpg';
-        break;
-        case 4:
-        $imagePath = 'images/italian.jpg';
-        break;
-        case 5:
-        $imagePath = 'images/ramen.jpg';
-        break;
-        }
+        $filenames = [
+        1 => 'sushi.jpg',
+        2 => 'yakiniku.jpg',
+        3 => 'izakaya.jpg',
+        4 => 'italian.jpg',
+        5 => 'ramen.jpg',
+        ];
+        $image_path = 'images/' . $filenames[$shop['shop_genre_id']];
         @endphp
         <div class="shop__card-img">
-            <img src="{{ asset($imagePath) }}" alt="Shop Image {{ $shop['shopGenre']['shop_genre'] }}">
+            <img src="{{ asset($image_path) }}" alt="shop_image {{ $shop['shopGenre']['shop_genre'] }}">
         </div>
         <div class="shop__card-text">
             <p class="">{{ $shop['shop_name'] }}</p>
