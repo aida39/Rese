@@ -17,7 +17,7 @@
                 <div class="reservation-block__header">
                     <img src="/images/clock.png" alt="clock">
                     <span>予約{{ $loop->iteration }}</span>
-                    <form class="reservation-block__form" action="{{ url('/reservation/delete') }}" method="post">
+                    <form class="reservation-block__form" action="{{ url('/reservation/delete') }}" method="post" onsubmit="return cancelReservationConfirmation({{ $reservation->id }})">
                         @csrf
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
                         <button type="submit" class="reservation-block__button">
@@ -90,4 +90,5 @@
 
     </div>
 </div>
+<script src="{{ asset('js/cancel-reservation.js') }}"></script>
 @endsection

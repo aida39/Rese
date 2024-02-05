@@ -52,19 +52,19 @@
     <form class="form" action="/reservation/create" method="post">
         @csrf
         <div class="reservation__input-field">
-            <input type="date" name="reservation_date">
-            <select name="reservation_time" id="">
+            <input type="date" name="reservation_date" value="<?php echo date('Y-m-d'); ?>" id="reservationDate">
+            <select name="reservation_time" id="reservationTime">
                 <option value="17:00:00">17:00</option>
                 <option value="17:30:00">17:30</option>
                 <option value="18:00:00">18:00</option>
-                <option value="19:30:00">18:30</option>
+                <option value="18:30:00">18:30</option>
                 <option value="19:00:00">19:00</option>
                 <option value="19:30:00">19:30</option>
                 <option value="20:00:00">20:00</option>
                 <option value="20:30:00">20:30</option>
                 <option value="21:00:00">21:00</option>
             </select>
-            <select name="member_count" id="">
+            <select name="member_count" id="reservationPeople">
                 <option value="1">1人</option>
                 <option value="2">2人</option>
                 <option value="3">3人</option>
@@ -73,7 +73,7 @@
             </select>
             <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
         </div>
-        <div class="reservation__confirm-field" id="confirmationOutput">
+        <div class="reservation__confirm-field" id="confirmField">
         </div>
 
         <div class="reservation-button__area">
@@ -82,28 +82,11 @@
         @else
         <p>IDをお持ちの方</p>
         <a href="/login">ログインして予約する</a>
-        <p>IDをお持ちでないの方</p>
+        <p>IDをお持ちでない方</p>
         <a href="/register">会員登録して予約する</a>
-
         @endif
-
     </form>
-
-    <script>
-        function showConfirmation() {
-            // フォームの値を取得
-            const date = document.getElementById('reservationDate').value;
-            const time = document.getElementById('reservationTime').value;
-            const partySize = document.getElementById('partySize').value;
-
-            // 表示用のdivに挿入
-            const confirmationOutput = document.getElementById('confirmationOutput');
-            confirmationOutput.innerHTML = `
-                <p>予約日: ${date}</p>
-                <p>予約時間: ${time}</p>
-                <p>人数: ${partySize}</p>
-            `;
-        }
-    </script>
 </div>
+<div id="storeName" data-name="{{ $shop['shop_name'] }}"></div>
+<script src="{{ asset('js/show-reservation.js') }}"></script>
 @endsection

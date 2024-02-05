@@ -16,19 +16,46 @@
     <header class="header">
         <div class="header__inner">
             <div class="header__logo">
-                <a href="/menu">
-                    <img src="/images/logo_open.png" alt="logo_open">
-                </a>
+                <nav class="nav" id="nav">
+                    <ul>
+                        <ul class="menu-nav">
+                            @if (Auth::check())
+                            <li class="menu-nav__item">
+                                <a class="menu-nav__link" href="/">Home</a>
+                            </li>
+                            <li class="menu-nav__item">
+                                <a class="menu-nav__link" href="/logout">Logout</a>
+                            </li>
+                            <li class="menu-nav__item">
+                                <a class="menu-nav__link" href="/mypage">Mypage</a>
+                            </li>
+                            @else
+                            <li class="menu-nav__item">
+                                <a class="menu-nav__link" href="/">Home</a>
+                            </li>
+                            <li class="menu-nav__item">
+                                <a class="menu-nav__link" href="/register">Registration</a>
+                            </li>
+                            <li class="menu-nav__item">
+                                <a class="menu-nav__link" href="/login">Login</a>
+                            </li>
+                            @endif
+                        </ul>
+                    </ul>
+                </nav>
+                <div class="menu" id="menu">
+                    <img src="/images/logo_open.png" alt="logo_open" id="menuImage">
+                </div>
+                <h1 class="header__title">
+                    Rese
+                </h1>
             </div>
-            <h1 class="header__title">
-                Rese
-            </h1>
-        </div>
-        @yield('search')
+            @yield('search')
     </header>
     <main>
         @yield('content')
     </main>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

@@ -68,7 +68,7 @@ class CustomerController extends Controller
         $reservation_data['user_id'] = $user_id;
 
         Reservation::create($reservation_data);
-        return view('done');
+        return redirect('/done');
     }
 
     public function deleteReservation(Request $request)
@@ -77,7 +77,10 @@ class CustomerController extends Controller
         Reservation::find($request->id)->delete();
         return redirect()->back();
     }
-
+    public function done()
+    {
+        return view('done');
+    }
     public function thanks()
     {
         return view('thanks');

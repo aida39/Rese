@@ -24,6 +24,7 @@ Route::controller(CustomerController::class)->group(function () {
         Route::post('/reservation/delete', 'deleteReservation');
 
         Route::get('/thanks','thanks');
+        Route::get('/done', 'done');
         Route::get('/menu', 'showMenu');
 
         Route::get('/mypage', 'mypage');
