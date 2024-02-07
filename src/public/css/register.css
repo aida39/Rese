@@ -1,0 +1,53 @@
+.register__container {
+    height: 90vh;
+    padding-top: 150px;
+    background-color: #eee;
+}
+
+.register__content {
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #959595;
+    background-color: #fff;
+}
+
+.register__header {
+    padding: 5px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #3560f6;
+    color: #fff;
+    font-size: 8px;
+    font-weight: lighter;
+}
+
+.register-form__group {
+    width: 100%;
+    padding: 10px 30px 20px;
+}
+
+.register-form__input-area {
+    margin-top: 20px;
+}
+
+.register-form__input {
+    width: 70%;
+    margin-left: 20px;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+.register-form__button-area {
+    width: 85%;
+    padding-bottom: 20px;
+    text-align: right;
+}
+
+.register-form__button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3560f6;
+    color: #fff;
+}

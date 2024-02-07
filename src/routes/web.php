@@ -15,19 +15,18 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::controller(CustomerController::class)->group(function () {
+Route::controller(CustomerController::class)->group(
+    function () {
         Route::get('/', 'index');
         Route::get('/search', 'search');
-        Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
         Route::get('/shop/detail', 'detail');
+        Route::get('/mypage', 'mypage');
+        Route::get('/thanks', 'thanks');
+        Route::get('/done', 'done');
+
         Route::post('/reservation/create', 'createReservation');
         Route::post('/reservation/delete', 'deleteReservation');
-
-        Route::get('/thanks','thanks');
-        Route::get('/done', 'done');
-        Route::get('/menu', 'showMenu');
-
-        Route::get('/mypage', 'mypage');
+        Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
     }
 );
 

@@ -5,41 +5,37 @@
 @endsection
 
 @section('content')
-<div class="login__content">
-    <div class="login-form__heading">
-        <h1>Login</h1>
-    </div>
-    <form class="form" action="/login" method="post">
-        @csrf
-        <div class="form__group">
-            <div class="form__group-content">
-                <div class="form__input">
+<div class="login__container">
+    <div class="login__content">
+        <div class="login__header">
+            <h1>Login</h1>
+        </div>
+        <form class="login-form" action="/login" method="post">
+            @csrf
+            <div class="login-form__group">
+                <div class="login-form__input-area">
                     <img src="images/email.png" alt="email">
-                    <input class="form__input-login" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
+                    <input class="login-form__input" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
                 </div>
-                <div class="form__error">
+                <div class="login-form__error">
                     @error('email')
                     {{ $message }}
                     @enderror
                 </div>
-            </div>
-        </div>
-        <div class="form__group">
-            <div class="form__group-content">
-                <div class="form__input">
+                <div class="login-form__input-area">
                     <img src="images/password.png" alt="password">
-                    <input class="form__input-login" type="password" name="password" placeholder="Password" />
+                    <input class="login-form__input" type="password" name="password" placeholder="Password" />
                 </div>
-                <div class="form__error">
+                <div class="login-form__error">
                     @error('password')
                     {{ $message }}
                     @enderror
                 </div>
+                <div class="login-form__button-area">
+                    <button class="login-form__button" type="submit">ログイン</button>
+                </div>
             </div>
-        </div>
-        <div class="form__button">
-            <button class="form__button-submit" type="submit">ログイン</button>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 @endsection

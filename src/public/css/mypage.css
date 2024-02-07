@@ -1,6 +1,15 @@
+body {
+    background-color: #eee;
+}
+
+.mypage__title {
+    text-align: center;
+}
+
 .mypage__content {
     display: flex;
     width: 100%;
+    margin: 0 30px;
 }
 
 .mypage__reservation-status,
@@ -11,6 +20,10 @@
 .reservation-block {
     width: 80%;
     margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #959595;
+
     color: #fff;
     background-color: #3560f6;
 }
@@ -20,13 +33,15 @@
 }
 
 .reservation-block__button {
-    background-color: #3560f6;
     border: none;
+    background-color: #3560f6;
 }
 
 .fa-circle-xmark {
     color: #fff;
     font-size: 24px;
+    text-align: end;
+
 }
 
 .mypage__favorite-shop__inner {

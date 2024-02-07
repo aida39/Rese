@@ -1,39 +1,38 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-
+    height: 90px;
+    background-color: #eee;
 }
 
 .header__inner {
     display: flex;
-    width: 300px;
 }
 
-a {
-    text-decoration: none;
-    color: blue
-}
-
-.nav {
+.menu__nav {
     position: absolute;
     height: 100vh;
     width: 100%;
     left: -100%;
-    background: #eee;
+    background: #fff;
     transition: .7s;
     text-align: center;
 }
 
-.nav ul {
-    padding-top: 80px;
+.menu__nav__list {
+    padding-top: 100px;
 }
 
-.nav ul li {
+.menu__nav__item {
     list-style-type: none;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
-.menu {
+.menu__nav__link {
+    text-decoration: none;
+    color: #3560f6;
+    font-size: 28px;
+}
+
+.menu__icon {
     display: inline-block;
     width: 36px;
     height: 32px;
@@ -43,14 +42,15 @@ a {
     top: 20px;
 }
 
-#menuImage {
-    width: 100%;
-    /* 画像がメニューのサイズに合うように調整 */
-    height: 100%;
+.menu__icon__image {
     object-fit: cover;
-    /* 画像が歪まないように調整 */
 }
 
+.header__title {
+    color: #3560f6;
+    position: relative;
+    left: 50px;
+}
 
 .in {
     transform: translateX(100%);

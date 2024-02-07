@@ -1,32 +1,119 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search__content {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #959595;
+    background-color: #eee;
+    overflow: hidden;
+}
+
+.search__content__inner select, input {
+    height: 50px;
+    padding: 0 20px;
+    border: none;
+}
+
+.search__area-box {
+    margin-right: -6px;
+}
+
+.search__genre-box {
+    margin-right: -5px;
+}
+
+.search__button {
+    display: inline-block;
+    position: absolute;
+    top: 34px;
+    right: 188px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.search__input {
+    padding-left: 40px;
+}
+
 .shop__content {
+    background-color: #eee;
+}
+
+.shop__content__inner {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    margin: 0 20px;
+
 }
 
 .shop__card {
-    width: 20%;
-    border: 1px solid #e9eaea;
-    border-radius: 3px;
+    width: calc(25% - 14px);
+    margin: 10px 7px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 5px #959595;
+    overflow: hidden;
 }
 
 .shop__card-img {
-    padding: 10px 0;
-    text-align: center;
+    height: 10vw;
+    overflow: hidden;
 }
 
 .shop__card-img img {
     width: 100%;
+    margin-top: -10%;
+    margin-bottom: -10%;
 }
+
 
 .shop__card-text {
     padding: 15px;
 }
 
-.shop__card-favorite--red {
+.shop__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.shop__info {
+    font-size: 13px;
+}
+
+.shop__unit {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.shop__detail {
+    height: 31px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    background-color: #3560f6;
+    font-size: 12px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.shop__favorite {
+    border: none;
+    background-color: #fff;
+    font-size: 32px;
+}
+
+.shop__favorite--red {
     color: red;
 }
 
-.shop__card-favorite--gray{
+.shop__favorite--gray {
     color: gray;
 }

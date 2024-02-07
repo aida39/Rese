@@ -77,18 +77,15 @@ class CustomerController extends Controller
         Reservation::find($request->id)->delete();
         return redirect()->back();
     }
+
     public function done()
     {
         return view('done');
     }
+
     public function thanks()
     {
         return view('thanks');
-    }
-
-    public function showMenu()
-    {
-        return view('menu');
     }
 
     public function mypage()
@@ -96,11 +93,11 @@ class CustomerController extends Controller
         $user_id = Auth::id();
         $user_name = Auth::user()->name;
 
-        $reservations=Reservation::where('user_id', $user_id)->with('shop')->get();
+        $reservations = Reservation::where('user_id', $user_id)->with('shop')->get();
         foreach ($reservations as $reservation) {
             $reservation->formatted_time = Carbon::parse($reservation->reservation_time)->format('H:i');
         }
-        $favorites=Favorite::where('user_id', $user_id)->with('shop.shopArea', 'shop.shopGenre')->get();
-        return view('mypage', compact('user_name', 'reservations','favorites'));
+        $favorites = Favorite::where('user_id', $user_id)->with('shop.shopArea', 'shop.shopGenre')->get();
+        return view('mypage', compact('user_name', 'reservations', 'favorites'));
     }
 }

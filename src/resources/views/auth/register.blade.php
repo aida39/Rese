@@ -5,54 +5,47 @@
 @endsection
 
 @section('content')
-<div class="register__content">
-    <div class="register-form__heading">
-        <h1>Registration</h1>
-    </div>
-    <form class="form" action="/register" method="post">
-        @csrf
-        <div class="form__group">
-            <div class="form__group-content">
-                <div class="form__input">
+<div class="register__container">
+    <div class="register__content">
+        <div class="register__header">
+            <h1>Registration</h1>
+        </div>
+        <form class="register-form" action="/register" method="post">
+            @csrf
+            <div class="register-form__group">
+                <div class="register-form__input-area">
                     <img src="images/username.png" alt="username">
-                    <input class="form__input-register" type="text" name="name" value="{{ old('name') }}" placeholder="Username" />
+                    <input class="register-form__input" type="text" name="name" value="{{ old('name') }}" placeholder="Username" />
                 </div>
-                <div class="form__error">
+                <div class="register-form__error">
                     @error('name')
                     {{ $message }}
                     @enderror
                 </div>
-            </div>
-        </div>
-        <div class="form__group">
-            <div class="form__group-content">
-                <div class="form__input">
+                <div class="register-form__input-area">
                     <img src="images/email.png" alt="email">
-                    <input class="form__input-register" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
+                    <input class="register-form__input" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
                 </div>
-                <div class="form__error">
+                <div class="register-form__error">
                     @error('email')
                     {{ $message }}
                     @enderror
                 </div>
-            </div>
-        </div>
-        <div class="form__group">
-            <div class="form__group-content">
-                <div class="form__input">
+                <div class="register-form__input-area">
                     <img src="images/password.png" alt="password">
-                    <input class="form__input-register" type="password" name="password" placeholder="Password" />
+                    <input class="register-form__input" type="password" name="password" placeholder="Password" />
                 </div>
-                <div class="form__error">
+                <div class="register-form__error">
                     @error('password')
                     {{ $message }}
                     @enderror
                 </div>
             </div>
-        </div>
-        <div class="form__button">
-            <button class="form__button-submit" type="submit">登録</button>
-        </div>
-    </form>
+            <div class="register-form__button-area">
+                <button class="register-form__button" type="submit">登録</button>
+            </div>
+
+        </form>
+    </div>
 </div>
 @endsection
