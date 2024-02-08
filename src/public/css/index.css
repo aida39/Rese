@@ -36,10 +36,15 @@
     border: none;
     background-color: #fff;
     cursor: pointer;
+    z-index: 9999;
 }
 
 .search__input {
     padding-left: 40px;
+}
+
+.hidden {
+    display: none;
 }
 
 .shop__content {

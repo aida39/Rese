@@ -44,7 +44,6 @@
             <div class="register-form__button-area">
                 <button class="register-form__button" type="submit">登録</button>
             </div>
-
         </form>
     </div>
 </div>

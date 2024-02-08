@@ -15,8 +15,10 @@
             @foreach($reservations as $reservation)
             <div class="reservation-block">
                 <div class="reservation-block__header">
-                    <img src="/images/clock.png" alt="clock">
-                    <span>予約{{ $loop->iteration }}</span>
+                    <div>
+                        <img src="/images/clock.png" alt="clock">
+                        <span>予約{{ $loop->iteration }}</span>
+                    </div>
                     <form class="reservation-block__form" action="{{ url('/reservation/delete') }}" method="post" onsubmit="return cancelReservationConfirmation({{ $reservation->id }});">
                         @csrf
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
@@ -26,27 +28,26 @@
                     </form>
                 </div>
                 <table class="reservation-table">
-                    <tr>
-                        <th>Shop</th>
-                        <td>{{$reservation->shop->shop_name}}</td>
+                    <tr class="reservation-table__row">
+                        <th class="reservation-table__header">Shop</th>
+                        <td class="reservation-table__data">{{$reservation->shop->shop_name}}</td>
                     </tr>
-                    <tr>
-                        <th>Date</th>
-                        <td>{{$reservation->reservation_date}}</td>
+                    <tr class="reservation-table__row">
+                        <th class="reservation-table__header">Date</th>
+                        <td class="reservation-table__data">{{$reservation->reservation_date}}</td>
                     </tr>
-                    <tr>
-                        <th>Time</th>
-                        <td>{{$reservation->formatted_time}}</td>
+                    <tr class="reservation-table__row">
+                        <th class="reservation-table__header">Time</th>
+                        <td class="reservation-table__data">{{$reservation->formatted_time}}</td>
                     </tr>
-                    <tr>
-                        <th>Number</th>
-                        <td>{{$reservation->member_count}}人</td>
+                    <tr class="reservation-table__row">
+                        <th class="reservation-table__header">Number</th>
+                        <td class="reservation-table__data">{{$reservation->member_count}}人</td>
                     </tr>
                 </table>
             </div>
             @endforeach
         </div>
-
         <div class="mypage__favorite-shop">
             <h2>お気に入り店舗</h2>
             <div class="mypage__favorite-shop__inner">
@@ -66,28 +67,29 @@
                         <img src="{{ asset($image_path) }}" alt="shop_image {{ $favorite->shop->shopGenre->shop_genre }}">
                     </div>
                     <div class="shop__card-text">
-                        <p class="">{{ $favorite->shop->shop_name }}</p>
-                        <span>#{{ $favorite->shop->shopArea->shop_area }}</span>
-                        <span>#{{ $favorite->shop->shopGenre->shop_genre }}</span>
-                        <a href="shop/detail?id={{$favorite->shop->id}}">詳しくみる</a>
-                        @if (Auth::check())
-                        <div class="shop__card-favorite">
-                            <form class="" action="{{ url('/favorite/'.$favorite->shop->id) }}" method="post">
-                                @csrf
-                                @method('PATCH')
-                                <input type="hidden" name="shop_id" value="{{ $favorite->shop->id }}">
-                                <button type="submit" class="">
-                                    <i class="fa-solid fa-heart {{ $favorite->where('user_id', Auth::id())->count() > 0 ? 'shop__card-favorite--red' : 'shop__card-favorite--gray' }}"></i>
-                                </button>
-                            </form>
+                        <p class="shop__title">{{ $favorite->shop->shop_name }}</p>
+                        <span class="shop__info">#{{ $favorite->shop->shopArea->shop_area }}</span>
+                        <span class="shop__info">#{{ $favorite->shop->shopGenre->shop_genre }}</span>
+                        <div class="shop__unit">
+                            <a href="shop/detail?id={{$favorite->shop->id}}" class="shop__detail">詳しくみる</a>
+                            @if (Auth::check())
+                            <div>
+                                <form class="" action="{{ url('/favorite/'.$favorite->shop->id) }}" method="post">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="shop_id" value="{{ $favorite->shop->id }}">
+                                    <button type="submit" class="shop__favorite">
+                                        <i class="fa-solid fa-heart {{ $favorite->where('user_id', Auth::id())->count() > 0 ? 'shop__favorite--red' : 'shop__favorite--gray' }}"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            @endif
                         </div>
-                        @endif
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
-
     </div>
 </div>
 <script src="{{ asset('js/cancel-reservation.js') }}"></script>

@@ -34,10 +34,8 @@ Route::controller(AuthController::class)->group(
     function () {
         Route::get('/register', 'getRegister');
         Route::post('/register', 'postRegister');
-
         Route::get('/login', 'getLogin');
         Route::post('/login', 'postLogin');
-
         Route::get('/logout', 'getLogout');
     }
 );

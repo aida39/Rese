@@ -28,10 +28,8 @@
             <span>#{{ $shop['shopArea']['shop_area'] }}</span>
             <span>#{{ $shop['shopGenre']['shop_genre'] }}</span>
             <p class="">{{ $shop['shop_description'] }}</p>
-
         </div>
     </div>
-
     <div class="right-wrapper reservation__content">
         <h2 class="reservation__title">予約</h2>
         @if (Auth::check())
@@ -65,13 +63,19 @@
             <div class="reservation-button__area">
                 <button class="reservation-button" type="submit">予約する</button>
             </div>
-            @else
-            <p>IDをお持ちの方</p>
-            <a href="/login">ログインして予約する</a>
-            <p>IDをお持ちでない方</p>
-            <a href="/register">会員登録して予約する</a>
-            @endif
         </form>
+        @else
+        <div class="login__field">
+            <div class="login__field__inner">
+                <p class="login__field__message">IDをお持ちの方</p>
+                <a href="/login" class="login__field__link">ログインして予約する</a>
+            </div>
+            <div class="login__field__inner">
+                <p class="login__field__message">IDをお持ちでない方</p>
+                <a href="/register" class="login__field__link">会員登録して予約する</a>
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 <script src="{{ asset('js/show-reservation.js') }}"></script>
