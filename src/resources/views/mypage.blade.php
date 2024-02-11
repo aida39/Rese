@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="mypage__title">
-        <h1>{{$user_name}}さん</h1>
+        <h1>{{$user->name}}さん</h1>
     </div>
     <div class="mypage__content">
         <div class="mypage__reservation-status">
@@ -19,7 +19,7 @@
                         <img src="/images/clock.png" alt="clock">
                         <span>予約{{ $loop->iteration }}</span>
                     </div>
-                    <form class="reservation-block__form-delete" action="{{ url('/reservation/delete') }}" method="post" onsubmit="return cancelReservationConfirmation({{ $reservation->id }});">
+                    <form class="reservation-block__form-delete" action="{{ route('reservation_delete', ['reservation_id' => $reservation->id ]) }}" method="post" onsubmit="cancelReservationConfirmation(event);">
                         @csrf
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
                         <button type="submit" class="reservation-block__button">

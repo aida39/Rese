@@ -28,6 +28,11 @@ class AuthController extends Controller
         }
     }
 
+    public function thanks()
+    {
+        return view('thanks');
+    }
+
     public function getLogin()
     {
         return view('auth/login');
