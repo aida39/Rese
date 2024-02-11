@@ -19,7 +19,7 @@
                         <img src="/images/clock.png" alt="clock">
                         <span>予約{{ $loop->iteration }}</span>
                     </div>
-                    <form class="reservation-block__form" action="{{ url('/reservation/delete') }}" method="post" onsubmit="return cancelReservationConfirmation({{ $reservation->id }});">
+                    <form class="reservation-block__form-delete" action="{{ url('/reservation/delete') }}" method="post" onsubmit="return cancelReservationConfirmation({{ $reservation->id }});">
                         @csrf
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
                         <button type="submit" class="reservation-block__button">
@@ -27,24 +27,44 @@
                         </button>
                     </form>
                 </div>
-                <table class="reservation-table">
-                    <tr class="reservation-table__row">
-                        <th class="reservation-table__header">Shop</th>
-                        <td class="reservation-table__data">{{$reservation->shop->shop_name}}</td>
-                    </tr>
-                    <tr class="reservation-table__row">
-                        <th class="reservation-table__header">Date</th>
-                        <td class="reservation-table__data">{{$reservation->reservation_date}}</td>
-                    </tr>
-                    <tr class="reservation-table__row">
-                        <th class="reservation-table__header">Time</th>
-                        <td class="reservation-table__data">{{$reservation->formatted_time}}</td>
-                    </tr>
-                    <tr class="reservation-table__row">
-                        <th class="reservation-table__header">Number</th>
-                        <td class="reservation-table__data">{{$reservation->member_count}}人</td>
-                    </tr>
-                </table>
+                <form class="reservation-block__form-update" action="{{ url('/reservation/update') }}" method="post">
+                    @csrf
+                    <table class="reservation-table">
+                        <tr class="reservation-table__row">
+                            <th class="reservation-table__header">Shop</th>
+                            <td class="reservation-table__data">{{$reservation->shop->shop_name}}</td>
+                        </tr>
+                        <tr class="reservation-table__row">
+                            <th class="reservation-table__header">Date</th>
+                            <td class="reservation-table__data">
+                                <input type="hidden" name="id" value="{{$reservation->id}}">
+                                <input class="reservation-date" type="date" name="reservation_date" value="{{$reservation->reservation_date}}">
+                            </td>
+                        </tr>
+                        <tr class="reservation-table__row">
+                            <th class="reservation-table__header">Time</th>
+                            <td class="reservation-table__data">
+                                <select class="reservation-time" name="reservation_time">
+                                    @foreach (['17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00'] as $time)
+                                    <option value="{{$time . ':00'}}" {{ $reservation->formatted_time == $time ? 'selected' : '' }}>{{$time}}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="reservation-table__row">
+                            <th class="reservation-table__header">Number</th>
+                            <td class="reservation-table__data">
+                                <select class="member_count" name="member_count">
+                                    @for ($i = 1; $i <= 5; $i++) <option value="{{$i}}" @if ($i==$reservation->member_count) selected @endif>{{$i}}人</option>
+                                        @endfor
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="reservation-update__area">
+                        <button class="reservation-update__button">変更する</button>
+                    </div>
+                </form>
             </div>
             @endforeach
         </div>

@@ -13,12 +13,12 @@ body {
 
 .mypage__reservation-status {
     flex: 4;
-    margin: 0 20px;
+    margin-left: 20px;
 }
 
 .mypage__favorite-shop {
     flex: 6;
-    margin: 0 20px;
+    margin-right: 20px;
 }
 
 .reservation-block {
@@ -39,7 +39,7 @@ body {
     margin-bottom: 10px;
 }
 
-.reservation-block__form {
+.reservation-block__form-delete {
     display: inline-block;
 }
 
@@ -54,18 +54,41 @@ body {
     font-size: 24px;
 }
 
+.reservation-table select, input {
+    height: 25px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 5px;
+}
+
 .reservation-table__row {
     height: 40px;
 }
 
 .reservation-table__header {
-    padding-right: 30px;
+    padding-right: 10px;
     font-weight: lighter;
     text-align: start;
 }
 
-.reservation-table__data {
-    font-weight: lighter;
+.reservation-block__form-update {
+    width: 100%;
+}
+
+.reservation-update__area {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.reservation-update__button {
+    display: inline-block;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #003ff5;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
 }
 
 .mypage__favorite-shop__inner {

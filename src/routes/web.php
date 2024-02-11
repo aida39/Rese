@@ -25,6 +25,7 @@ Route::controller(CustomerController::class)->group(
         Route::get('/done', 'done');
 
         Route::post('/reservation/create', 'createReservation');
+        Route::post('/reservation/update', 'updateReservation');
         Route::post('/reservation/delete', 'deleteReservation');
         Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
     }

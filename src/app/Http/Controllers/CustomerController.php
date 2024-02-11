@@ -13,16 +13,15 @@ use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
-
     public function index()
     {
         $shop_areas = ShopArea::all();
         $shop_genres = ShopGenre::all();
         $user_id = Auth::id();
         $shops = Shop::with('shopArea', 'shopGenre')
-            ->with(['favorite' => function ($query) use ($user_id) {
-                $query->where('user_id', $user_id);
-            }])->get();
+        ->with(['favorite' => function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        }])->get();
         return view('index', compact('shop_areas', 'shop_genres', 'shops'));
     }
 
@@ -31,7 +30,7 @@ class CustomerController extends Controller
         $shop_areas = ShopArea::all();
         $shop_genres = ShopGenre::all();
         $shops = Shop::with('shopArea', 'shopGenre')
-            ->AreaSearch($request->shop_area_id)
+        ->AreaSearch($request->shop_area_id)
             ->GenreSearch($request->shop_genre_id)
             ->KeywordSearch($request->keyword)->get();
         return view('index', compact('shop_areas', 'shop_genres', 'shops'));
@@ -62,6 +61,19 @@ class CustomerController extends Controller
         $reservation_data = $request->only(['shop_id', 'reservation_date', 'reservation_time', 'member_count']);
         $reservation_data['user_id'] = $user_id;
         Reservation::create($reservation_data);
+        return redirect('/done');
+    }
+
+    public function updateReservation(Request $request)
+    {
+        $user_id = Auth::id();
+        $reservation_data = $request->only(['shop_id', 'reservation_date', 'reservation_time', 'member_count']);
+        $reservation_data['user_id'] = $user_id;
+
+        $reservation_id = $request->id;
+        $reservation = Reservation::find($reservation_id);
+        $reservation->update($reservation_data);
+
         return redirect('/done');
     }
 

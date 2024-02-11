@@ -1,3 +1,7 @@
+body {
+    background-color: #eee;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -10,7 +14,6 @@
     margin-right: 20px;
     border-radius: 5px;
     box-shadow: 3px 3px 5px #959595;
-    background-color: #eee;
     overflow: hidden;
 }
 
