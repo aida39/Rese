@@ -5,6 +5,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +53,13 @@ Route::controller(ReservationController::class)->group(
 Route::controller(FavoriteController::class)->group(
     function () {
         Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
+    }
+);
+
+Route::controller(ReviewController::class)->group(
+    function () {
+        Route::get('/review/{reservation_id}', 'showReviewForm');
+        Route::post('/review', 'createReview');
+        Route::get('/done/review', 'doneReview');
     }
 );

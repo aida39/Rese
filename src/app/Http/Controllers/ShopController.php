@@ -9,6 +9,7 @@ use App\Models\ShopArea;
 use App\Models\ShopGenre;
 use App\Models\Favorite;
 use App\Models\Reservation;
+use App\Models\Review;
 use Carbon\Carbon;
 
 class ShopController extends Controller
@@ -21,7 +22,8 @@ class ShopController extends Controller
         $shops = Shop::with('shopArea', 'shopGenre')
             ->with(['favorite' => function ($query) use ($user_id) {
                 $query->where('user_id', $user_id);
-            }])->get();
+            }])
+            ->get();
         return view('index', compact('shop_areas', 'shop_genres', 'shops'));
     }
 
@@ -40,17 +42,39 @@ class ShopController extends Controller
     {
         $id = $request->input('id');
         $shop = Shop::with('shopArea', 'shopGenre')->findOrFail($id);
-        return view('detail', compact('shop'));
+        $reviews = Review::with(['reservation' => function ($query) use ($id) {
+                $query->where('shop_id', $id);
+            }, 'reservation.shop', 'reservation.user'])
+            ->whereHas('reservation', function ($query) use ($id) {
+                $query->where('shop_id', $id);
+            })
+            ->get();
+        return view('detail', compact('shop', 'reviews'));
     }
 
     public function mypage()
     {
         $user = Auth::user();
-        $reservations = Reservation::where('user_id', $user->id)->with('shop')->get();
-        foreach ($reservations as $reservation) {
+        $today = Carbon::now()->format('Y-m-d');
+        $past_reservations = Reservation::where('user_id', $user->id)
+            ->whereDate('reservation_date', '<', $today)->with('shop')->get();
+        $future_reservations = Reservation::where('user_id', $user->id)
+            ->whereDate('reservation_date', '>=', $today)->with('shop')->get();
+
+        foreach ($past_reservations as $reservation) {
             $reservation->formatted_time = Carbon::parse($reservation->reservation_time)->format('H:i');
+            $reservation->is_reviewed = $reservation->review()->exists();
         }
-        $favorites = Favorite::where('user_id', $user->id)->with('shop.shopArea', 'shop.shopGenre')->get();
-        return view('mypage', compact('user', 'reservations', 'favorites'));
+
+        foreach ($future_reservations as $future_reservation) {
+            $future_reservation->formatted_time = Carbon::parse($future_reservation->reservation_time)->format('H:i');
+        }
+
+        $favorites = Favorite::where('user_id', $user->id)
+            ->with('shop.shopArea', 'shop.shopGenre')
+            ->get();
+
+
+        return view('mypage', compact('user', 'past_reservations', 'future_reservations', 'favorites'));
     }
 }

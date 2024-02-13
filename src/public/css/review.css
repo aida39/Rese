@@ -1,0 +1,58 @@
+.review__container {
+    height: 90vh;
+    padding-top: 30px;
+    background-color: #eee;
+}
+
+.review__content {
+    width: 450px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #959595;
+    background-color: #fff;
+}
+
+.review__header {
+    padding: 5px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #3560f6;
+    color: #fff;
+    font-size: 8px;
+    font-weight: lighter;
+}
+
+.review-form__group {
+    width: 100%;
+    padding: 10px 30px 20px;
+}
+
+.review-form__label {
+    display: inline-block;
+}
+
+.review-form__label--required {
+    margin-left: 3px;
+    padding: 3px;
+    border-radius: 3px;
+    background-color: red;
+    font-size: 12px;
+    color: #fff;
+}
+
+.review-form__value {
+    margin-left: 20px;
+}
+
+.review-form__button-area {
+    padding: 10px;
+    text-align: right;
+}
+
+.review-form__button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3560f6;
+    color: #fff;
+}

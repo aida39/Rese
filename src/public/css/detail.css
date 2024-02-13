@@ -2,7 +2,7 @@ body {
     background-color: #eee;
 }
 
-.container {
+.container-inner {
     display: flex;
 }
 
@@ -134,4 +134,17 @@ body {
     color: #fff;
     font-size: 14px;
     text-decoration: none;
+}
+
+.review__content {
+    margin: 0 40px;
+}
+
+.review__card {
+    width: 45%;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 5px #959595;
 }
