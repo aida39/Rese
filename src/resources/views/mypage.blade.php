@@ -12,6 +12,11 @@
     <div class="mypage__wrapper">
         <div class="mypage__reservation-status">
             <h2>予約状況</h2>
+            <div class="error-message">
+                @error('reservation_date')
+                {{ $message }}
+                @enderror
+            </div>
             @foreach($future_reservations as $future_reservation)
             <div class="reservation-block">
                 <div class="reservation-block__header">

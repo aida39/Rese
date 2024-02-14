@@ -38,6 +38,11 @@
                 @csrf
                 <div class="reservation__input-field">
                     <input type="date" name="reservation_date" value="<?php echo date('Y-m-d'); ?>" id="reservationDate">
+                    <div class="error-message error-message--white">
+                        @error('reservation_date')
+                        {{ $message }}
+                        @enderror
+                    </div>
                     <select name="reservation_time" id="reservationTime">
                         <option value="17:00:00">17:00</option>
                         <option value="17:30:00">17:30</option>

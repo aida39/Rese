@@ -11,6 +11,7 @@ use App\Models\Favorite;
 use App\Models\Reservation;
 use App\Models\Review;
 use Carbon\Carbon;
+use App\Http\Requests\ReservationRequest;
 
 class ShopController extends Controller
 {

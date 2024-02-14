@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
+use App\Http\Requests\ReservationRequest;
 
 
 class ReservationController extends Controller
 {
-    public function createReservation(Request $request)
+    public function createReservation(ReservationRequest $request)
     {
         $user_id = Auth::id();
         $reservation_data = $request->only(['shop_id', 'reservation_date', 'reservation_time', 'member_count']);
@@ -18,7 +19,7 @@ class ReservationController extends Controller
         return redirect('/done');
     }
 
-    public function updateReservation(Request $request)
+    public function updateReservation(ReservationRequest $request)
     {
         $user_id = Auth::id();
         $reservation_data = $request->only(['shop_id', 'reservation_date', 'reservation_time', 'member_count']);

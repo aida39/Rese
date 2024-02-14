@@ -35,10 +35,21 @@
                         <option value="2">2（悪い）</option>
                         <option value="1">1（とても悪い）</option>
                     </select>
+                    <div class="error-message">
+                        @error('rating')
+                        {{ $message }}
+                        @enderror
+                    </div>
                 </div>
                 <div>
                     <p class="review-form__label">コメント<span class="review-form__label--required">必須</span></p>
-                    <textarea name="comment" cols="50" rows="5"></textarea>
+                    <div class="error-message">
+                        @error('comment')
+                        {{ $message }}
+                        @enderror
+                    </div>
+                    <textarea name="comment" cols="50" rows="5">{{ old('comment') }}</textarea>
+
                 </div>
                 <div class="review-form__error">
                     @error('name')

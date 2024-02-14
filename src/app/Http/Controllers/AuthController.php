@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
 
 class AuthController extends Controller
 {
@@ -14,7 +16,7 @@ class AuthController extends Controller
         return view('auth/register');
     }
 
-    public function postRegister(Request $request)
+    public function postRegister(RegisterRequest $request)
     {
         try {
             User::create([
@@ -38,7 +40,7 @@ class AuthController extends Controller
         return view('auth/login');
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(LoginRequest $request)
     {
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
             return redirect('/');
