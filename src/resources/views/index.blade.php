@@ -6,7 +6,7 @@
 
 @section('search')
 <div class="search__content">
-    <form action="/search" method="get">
+    <form class="search__content__form" action="/search" method="get">
         @csrf
         <div class="search__content__inner">
             <select class="search__area-box" name="shop_area_id">

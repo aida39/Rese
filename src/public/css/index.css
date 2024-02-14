@@ -70,8 +70,13 @@ body {
     overflow: hidden;
 }
 
+@media screen and (max-width: 768px) {
+    .shop__card {
+        width: calc(50% - 14px);
+    }
+}
+
 .shop__card-img {
-    height: 10vw;
     overflow: hidden;
 }
 
