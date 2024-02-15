@@ -18,12 +18,14 @@ use App\Http\Controllers\ReviewController;
 |
 */
 
+include __DIR__ . '/admin.php';
+
 Route::controller(ShopController::class)->group(
     function () {
-        Route::get('/', 'index');
+        Route::get('/', 'index')->name('index');
         Route::get('/search', 'search');
         Route::get('/shop/detail', 'detail');
-        Route::get('/mypage', 'mypage');
+        Route::get('/mypage', 'mypage')->middleware('auth:members');
     }
 );
 
