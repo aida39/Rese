@@ -19,6 +19,7 @@ use App\Http\Controllers\ReviewController;
 */
 
 include __DIR__ . '/admin.php';
+// include __DIR__ . '/manager.php';
 
 Route::controller(ShopController::class)->group(
     function () {

@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +16,24 @@ use App\Http\Controllers\Admin\LoginController;
 |
 */
 
+Route::prefix('admin')->controller(HomeController::class)->middleware('auth.admins:admins')->group(
+    function () {
+        Route::get('/index', 'index')->name('admin.index');
+    }
+);
+
 Route::prefix('admin')->controller(LoginController::class)->group(
     function () {
-        Route::get('/index', 'index')->middleware('auth.admins:admins')->name('admin.index');
-
         Route::get('/login', 'getLogin')->name('admin.login');
         Route::post('/login', 'postLogin');
         Route::get('/logout', 'getLogout');
+    }
+);
+
+Route::prefix('admin')->controller(RegisterController::class)->middleware('auth.admins:admins')->group(
+    function () {
+        Route::get('/register', 'getRegister');
+        Route::post('/register', 'postRegister');
+        Route::get('/thanks', 'thanks');
     }
 );
