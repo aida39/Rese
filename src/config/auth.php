@@ -40,13 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'members' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
         'admins' => [
             'driver' => 'session',
             'provider' => 'admins',
+        ],
+        'managers' => [
+            'driver' => 'session',
+            'provider' => 'managers',
         ],
     ],
 
@@ -72,13 +72,13 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'members' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'managers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Manager::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

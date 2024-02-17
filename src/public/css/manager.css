@@ -1,0 +1,71 @@
+body {
+    background-color: #eee;
+}
+
+.container {
+    margin-left: 30px;
+}
+
+.form-item {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 30px;
+
+}
+
+.form-item__input {
+    width: 350px;
+    height: 45px;
+    margin-bottom: 15px;
+    font-size: 16px;
+
+}
+
+.form-item__textarea {
+    width: 350px;
+    height: 230px;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.form-item__button {
+    display: block;
+    margin: 30px 0 0 30px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.reservation__title ,.reservation__message {
+    font-size: 20px;
+}
+
+.reservation-block {
+    width: 300px;
+    margin: 0 10px 10px 0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #959595;
+
+    color: #fff;
+    background-color: #3560f6;
+}
+
+.reservation-block__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.reservation-table__row {
+    height: 40px;
+}
+
+.reservation-table__header {
+    padding-right: 10px;
+    font-weight: lighter;
+    text-align: start;
+}

@@ -15,7 +15,7 @@
     <header class="header">
         <div class="header__inner">
             <div class="menu__icon">
-                <a class="menu__nav__link" href="/admin/index">
+                <a class="menu__nav__link" href="/manager/index">
                     <img src="/images/logo_open.png" alt="logo_open" class="menu__icon__image" id="menuImage">
                 </a>
             </div>

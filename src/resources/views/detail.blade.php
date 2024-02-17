@@ -86,6 +86,9 @@
     </div>
     <div class="review__content">
         <h2>口コミ</h2>
+        @if($reviews->isEmpty())
+        <p>口コミはまだありません</p>
+        @else
         @foreach($reviews as $review)
         <div class="review__card">
             <div class="review__title">
@@ -96,6 +99,7 @@
             <p class="review__text">{{ $review->comment }}</p>
         </div>
         @endforeach
+        @endif
     </div>
 </div>
 <script src="{{ asset('js/show-reservation.js') }}"></script>

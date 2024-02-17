@@ -3,18 +3,18 @@ body {
 }
 
 .admin__menu {
-    width: 500px;
+    width: 350px;
     margin: 30px;
-    padding: 10px 60px;
+    padding: 10px 30px;
     border-radius: 8px;
-    background-color: #5580f7;
+    box-shadow: 3px 3px 5px #959595;
+    background-color: #fff;
 }
 
 .admin__menu__title {
     margin-bottom: 30px;
     font-size: 24px;
     font-weight: 100;
-    color: #fff;
 }
 
 .admin__menu__inner {
@@ -24,8 +24,65 @@ body {
 .admin__menu__link {
     padding: 10px 12px;
     border-radius: 5px;
-    background-color: #003ff5;
+    background-color: #3560f6;
     color: #fff;
     font-size: 16px;
+    text-decoration: none;
+}
+
+.admin__shop-area {
+    display: flex;
+    flex-wrap: wrap;
+margin: 0 30px;
+}
+
+.shop__card {
+    width: calc(25% - 14px);
+    margin: 0 14px 20px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 5px #959595;
+    overflow: hidden;
+}
+
+.shop__card-img {
+    overflow: hidden;
+}
+
+.shop__card-img img {
+    width: 100%;
+    margin-top: -10%;
+    margin-bottom: -10%;
+}
+
+.shop__card-text {
+    padding: 15px;
+}
+
+.shop__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.shop__info {
+    font-size: 13px;
+}
+
+.shop__unit {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.shop__detail {
+    display: inline-block;
+    width: 110px;
+    margin-top: 10px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: #3560f6;
+    font-size: 12px;
+    color: #fff;
     text-decoration: none;
 }

@@ -19,14 +19,14 @@ use App\Http\Controllers\ReviewController;
 */
 
 include __DIR__ . '/admin.php';
-// include __DIR__ . '/manager.php';
+include __DIR__ . '/manager.php';
 
 Route::controller(ShopController::class)->group(
     function () {
         Route::get('/', 'index')->name('index');
         Route::get('/search', 'search');
         Route::get('/shop/detail', 'detail');
-        Route::get('/mypage', 'mypage')->middleware('auth:members');
+        Route::get('/mypage', 'mypage')->middleware('auth');
     }
 );
 
@@ -38,11 +38,11 @@ Route::controller(AuthController::class)->group(
 
         Route::get('/login', 'getLogin');
         Route::post('/login', 'postLogin');
-        Route::get('/logout', 'getLogout');
+        Route::get('/logout', 'getLogout')->middleware('auth');
     }
 );
 
-Route::controller(ReservationController::class)->group(
+Route::controller(ReservationController::class)->middleware('auth')->group(
     function () {
         Route::post('/reservation/create', 'createReservation');
         Route::post('/reservation/update', 'updateReservation');
@@ -53,13 +53,13 @@ Route::controller(ReservationController::class)->group(
     }
 );
 
-Route::controller(FavoriteController::class)->group(
+Route::controller(FavoriteController::class)->middleware('auth')->group(
     function () {
         Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
     }
 );
 
-Route::controller(ReviewController::class)->group(
+Route::controller(ReviewController::class)->middleware('auth')->group(
     function () {
         Route::get('/review/{reservation_id}', 'showReviewForm');
         Route::post('/review', 'createReview');

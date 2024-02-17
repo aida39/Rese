@@ -11,6 +11,7 @@ class Shop extends Model
     protected $fillable = [
         'shop_area_id',
         'shop_genre_id',
+        'manager_id',
         'shop_name',
         'shop_description',
     ];
@@ -25,11 +26,16 @@ class Shop extends Model
         return $this->belongsTo(ShopGenre::class);
     }
 
+    public function manager()
+    {
+        return $this->belongsTo(Manager::class);
+    }
+
     public function favorite()
     {
         return $this->hasMany(Favorite::class);
     }
-    
+
     public function scopeAreaSearch($query, $shop_area_id)
     {
         if (!empty($shop_area_id)) {
