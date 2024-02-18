@@ -10,6 +10,7 @@ use App\Models\ShopArea;
 use App\Models\ShopGenre;
 use App\Models\Reservation;
 use Carbon\Carbon;
+use App\Http\Requests\ShopRequest;
 
 
 class ShopController extends Controller
@@ -28,7 +29,7 @@ class ShopController extends Controller
         return view('manager/create', compact('shop_areas', 'shop_genres',));
     }
 
-    public function store(Request $request)
+    public function store(ShopRequest $request)
     {
         $manager_id = Auth::guard('managers')->id();
         $shop_data = $request->only(['shop_area_id', 'shop_genre_id', 'shop_name', 'shop_description']);
@@ -52,7 +53,7 @@ class ShopController extends Controller
         return view('manager/edit', compact('shop', 'shop_areas', 'shop_genres',));
     }
 
-    public function update(Request $request)
+    public function update(ShopRequest $request)
     {
         $shop_data = $request->only(['shop_area_id', 'shop_genre_id', 'shop_name', 'shop_description']);
         $shop = Shop::find($request->id);

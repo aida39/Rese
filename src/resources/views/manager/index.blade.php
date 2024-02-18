@@ -1,21 +1,21 @@
 @extends('layouts.app_manager')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+<link rel="stylesheet" href="{{ asset('css/manager.css') }}">
 @endsection
 
 @section('content')
 <div class="container">
-    <div class="admin__menu">
-        <h1 class="admin__menu__title">店舗代表者用 管理画面</h1>
-        <div class="admin__menu__inner">
-            <a class="admin__menu__link" href="create">店舗情報の作成</a>
+    <div class="manager__menu">
+        <h1 class="manager__menu__title">店舗代表者用 管理画面</h1>
+        <div class="manager__menu__inner">
+            <a class="manager__menu__link" href="create">店舗情報の作成</a>
         </div>
-        <div class="admin__menu__inner">
-            <a class="admin__menu__link" href="logout">ログアウト</a>
+        <div class="manager__menu__inner">
+            <a class="manager__menu__link" href="logout">ログアウト</a>
         </div>
     </div>
-    <div class="admin__shop-area">
+    <div class="manager__shop-area">
         @foreach($shops as $shop)
         <div class="shop__card">
             <div class="shop__card-text">

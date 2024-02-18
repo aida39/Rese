@@ -6,6 +6,96 @@ body {
     margin-left: 30px;
 }
 
+.manager__menu {
+    width: 350px;
+    margin: 30px 0;
+    padding: 10px 30px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 5px #959595;
+    background-color: #fff;
+}
+
+.manager__menu__title {
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: 100;
+}
+
+.manager__menu__inner {
+    margin-bottom: 30px;
+}
+
+.manager__menu__link {
+    padding: 10px 12px;
+    border-radius: 5px;
+    background-color: #3560f6;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.manager__shop-area {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shop__card {
+    width: calc(25% - 14px);
+    margin: 0 14px 20px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 5px #959595;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .shop__card {
+        width: calc(50% - 14px);
+    }
+}
+
+.shop__card-img {
+    overflow: hidden;
+}
+
+.shop__card-img img {
+    width: 100%;
+    margin-top: -10%;
+    margin-bottom: -10%;
+}
+
+.shop__card-text {
+    padding: 15px;
+}
+
+.shop__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.shop__info {
+    font-size: 13px;
+}
+
+.shop__unit {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.shop__detail {
+    display: inline-block;
+    width: 110px;
+    margin-top: 10px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: #3560f6;
+    font-size: 12px;
+    color: #fff;
+    text-decoration: none;
+}
+
 .form-item {
     width: 500px;
     display: flex;
@@ -38,7 +128,7 @@ body {
     cursor: pointer;
 }
 
-.reservation__title ,.reservation__message {
+.reservation__title, .reservation__message {
     font-size: 20px;
 }
 
