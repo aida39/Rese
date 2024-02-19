@@ -9,7 +9,7 @@
     <div class="content">
         <p class="message">店舗情報を作成しました</p>
         <div class="button-area">
-            <a href="index" class="button">戻る</a>
+            <a href="/manager/index" class="button">戻る</a>
         </div>
     </div>
 </div>

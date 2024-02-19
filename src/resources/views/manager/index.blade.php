@@ -6,15 +6,7 @@
 
 @section('content')
 <div class="container">
-    <div class="manager__menu">
-        <h1 class="manager__menu__title">店舗代表者用 管理画面</h1>
-        <div class="manager__menu__inner">
-            <a class="manager__menu__link" href="create">店舗情報の作成</a>
-        </div>
-        <div class="manager__menu__inner">
-            <a class="manager__menu__link" href="logout">ログアウト</a>
-        </div>
-    </div>
+    <h1 class="title">{{$manager->name}}さん担当店舗一覧</h1>
     <div class="manager__shop-area">
         @foreach($shops as $shop)
         <div class="shop__card">

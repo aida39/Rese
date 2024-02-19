@@ -24,6 +24,8 @@ class ShopRequest extends FormRequest
     public function rules()
     {
         return [
+            'shop_area_id' => ['required'],
+            'shop_genre_id' => ['required'],
             'shop_name' => ['required','string', 'max:255'],
             'shop_description' => ['required', 'string', 'max:255'],
         ];
@@ -32,6 +34,8 @@ class ShopRequest extends FormRequest
     public function messages()
     {
         return [
+            'shop_area_id.required' => 'エリアを指定してください',
+            'shop_genre_id.required' => 'ジャンルを指定してください',
             'shop_name.required' => '店名を入力してください',
             'shop_name.string' => '店名を文字列で入力してください',
             'shop_name.max' => '店名を255文字以下で入力してください',

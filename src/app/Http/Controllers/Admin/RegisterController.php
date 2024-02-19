@@ -12,7 +12,7 @@ class RegisterController extends Controller
 {
     public function getRegister()
     {
-        return view('admin/register');
+        return view('admin/index');
     }
 
     public function postRegister(RegisterRequest $request)

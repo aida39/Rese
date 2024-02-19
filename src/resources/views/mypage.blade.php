@@ -17,6 +17,16 @@
                 {{ $message }}
                 @enderror
             </div>
+            <div class="error-message">
+                @error('reservation_time')
+                {{ $message }}
+                @enderror
+            </div>
+            <div class="error-message">
+                @error('member_count')
+                {{ $message }}
+                @enderror
+            </div>
             @foreach($future_reservations as $future_reservation)
             <div class="reservation-block">
                 <div class="reservation-block__header">
@@ -43,16 +53,22 @@
                             <th class="reservation-table__header">Date</th>
                             <td class="reservation-table__data">
                                 <input type="hidden" name="id" value="{{$future_reservation->id}}">
-                                <input class="reservation-date" type="date" name="reservation_date" value="{{$future_reservation->reservation_date}}">
+                                <input class="reservation-date" type="date" name="reservation_date" value="{{ old('reservation_date', $future_reservation->reservation_date) }}">
                             </td>
                         </tr>
                         <tr class="reservation-table__row">
                             <th class="reservation-table__header">Time</th>
                             <td class="reservation-table__data">
                                 <select class="reservation-time" name="reservation_time">
-                                    @foreach (['17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00'] as $time)
-                                    <option value="{{$time . ':00'}}" {{ $future_reservation->formatted_time == $time ? 'selected' : '' }}>{{$time}}</option>
-                                    @endforeach
+                                    <option value="17:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '17:00:00' ? 'selected' : '' }}>17:00</option>
+                                    <option value="17:30:00" {{ old('reservation_time', $future_reservation->formatted_time) == '17:30:00' ? 'selected' : '' }}>17:30</option>
+                                    <option value="18:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '18:00:00' ? 'selected' : '' }}>18:00</option>
+                                    <option value="18:30:00" {{ old('reservation_time', $future_reservation->formatted_time) == '18:30:00' ? 'selected' : '' }}>18:30</option>
+                                    <option value="19:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '19:00:00' ? 'selected' : '' }}>19:00</option>
+                                    <option value="19:30:00" {{ old('reservation_time', $future_reservation->formatted_time) == '19:30:00' ? 'selected' : '' }}>19:30</option>
+                                    <option value="20:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '20:00:00' ? 'selected' : '' }}>20:00</option>
+                                    <option value="20:30:00" {{ old('reservation_time', $future_reservation->formatted_time) == '20:30:00' ? 'selected' : '' }}>20:30</option>
+                                    <option value="21:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '21:00:00' ? 'selected' : '' }}>21:00</option>
                                 </select>
                             </td>
                         </tr>
@@ -60,8 +76,11 @@
                             <th class="reservation-table__header">Number</th>
                             <td class="reservation-table__data">
                                 <select class="member_count" name="member_count">
-                                    @for ($i = 1; $i <= 5; $i++) <option value="{{$i}}" @if ($i==$future_reservation->member_count) selected @endif>{{$i}}人</option>
-                                        @endfor
+                                    <option value="1" {{ old('member_count', $future_reservation->member_count) == 1 ? 'selected' : '' }}>1人</option>
+                                    <option value="2" {{ old('member_count', $future_reservation->member_count) == 2 ? 'selected' : '' }}>2人</option>
+                                    <option value="3" {{ old('member_count', $future_reservation->member_count) == 3 ? 'selected' : '' }}>3人</option>
+                                    <option value="4" {{ old('member_count', $future_reservation->member_count) == 4 ? 'selected' : '' }}>4人</option>
+                                    <option value="5" {{ old('member_count', $future_reservation->member_count) == 5 ? 'selected' : '' }}>5人</option>
                                 </select>
                             </td>
                         </tr>

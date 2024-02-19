@@ -24,13 +24,17 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => ['required','string', 'max:255'],
+            'rating' => ['required', 'integer', 'between:1,5'],
+            'comment' => ['required', 'string', 'max:255'],
         ];
     }
 
     public function messages()
     {
         return [
+            'rating.required' => '評価を入力してください',
+            'rating.integer' => '評価は整数で入力してください',
+            'rating.between' => '評価は1から5の間の数字で入力してください',
             'comment.required' => 'コメントを入力してください',
             'comment.string' => 'コメントを文字列で入力してください',
             'comment.max' => 'コメントを255文字以下で入力してください',

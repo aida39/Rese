@@ -27,17 +27,22 @@
                     <span class="review-form__value">{{$reservation->member_count}}人</span>
                 </div>
                 <div>
-                    <p class="review-form__label">評価<span class="review-form__label--required">必須</span></p>
+                    <p class="review-form__label">来店評価</p>
                     <select class="review-form__value" name="rating">
-                        <option value="5">5（とても良い）</option>
-                        <option value="4">4（良い）</option>
-                        <option value="3">3（普通）</option>
-                        <option value="2">2（悪い）</option>
-                        <option value="1">1（とても悪い）</option>
+                        <option value="5" {{ old('rating') == '5' ? 'selected' : '' }}>5（とても良い）</option>
+                        <option value="4" {{ old('rating') == '4' ? 'selected' : '' }}>4（良い）</option>
+                        <option value="3" {{ old('rating') == '3' ? 'selected' : '' }}>3（普通）</option>
+                        <option value="2" {{ old('rating') == '2' ? 'selected' : '' }}>2（悪い）</option>
+                        <option value="1" {{ old('rating') == '1' ? 'selected' : '' }}>1（とても悪い）</option>
                     </select>
                 </div>
+                <div class="error-message">
+                    @error('rating')
+                    {{ $message }}
+                    @enderror
+                </div>
                 <div>
-                    <p class="review-form__label">コメント<span class="review-form__label--required">必須</span></p>
+                    <p class="review-form__label">コメント</p>
 
                     <textarea name="comment" cols="50" rows="5">{{ old('comment') }}</textarea>
                 </div>

@@ -1,20 +1,51 @@
 @extends('layouts.app_admin')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
 @endsection
 
 @section('content')
-<div class="admin__menu">
-    <h1 class="admin__menu__title">管理者用 管理画面</h1>
-    <div class="admin__menu__inner">
-        <a class="admin__menu__link" href="/admin/register">店舗代表者の作成</a>
+<div class="register__container">
+    <div class="register__content">
+        <div class="register__header">
+            <h1>店舗代表者の作成</h1>
+        </div>
+        <form class="register-form" action="/admin/register" method="post">
+            @csrf
+            <div class="register-form__group">
+                <div class="register-form__input-area">
+                    <img src="/images/username.png" alt="name">
+                    <input class="register-form__input" type="text" name="name" value="{{ old('name') }}" placeholder="name" />
+                </div>
+                <div class="error-message error-message--margin-left">
+                    @error('name')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="register-form__input-area">
+                    <img src="/images/email.png" alt="email">
+                    <input class="register-form__input" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
+                </div>
+                <div class="error-message error-message--margin-left">
+                    @error('email')
+                    {{ $message }}
+                    @enderror
+                </div>
+                <div class="register-form__input-area">
+                    <img src="/images/password.png" alt="password">
+                    <input class="register-form__input" type="password" name="password" placeholder="Password" />
+                </div>
+                <div class="error-message error-message--margin-left">
+                    @error('password')
+                    {{ $message }}
+                    @enderror
+                </div>
+            </div>
+            <div class="register-form__button-area">
+                <button class="register-form__button" type="submit">作成する</button>
+            </div>
     </div>
-    <div class="admin__menu__inner">
-        <a class="admin__menu__link" href="/admin">メール送信</a>
-    </div>
-    <div class="admin__menu__inner">
-        <a class="admin__menu__link" href="/admin/logout">ログアウト</a>
-    </div>
+    </form>
+</div>
 </div>
 @endsection

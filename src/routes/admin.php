@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\RegisterController;
 
@@ -16,9 +15,11 @@ use App\Http\Controllers\Admin\RegisterController;
 |
 */
 
-Route::prefix('admin')->controller(HomeController::class)->middleware('auth.admins:admins')->group(
+Route::prefix('admin')->controller(RegisterController::class)->middleware('auth.admins:admins')->group(
     function () {
-        Route::get('/index', 'index')->name('admin.index');
+        Route::get('/index', 'getRegister')->name('admin.index');
+        Route::post('/register', 'postRegister');
+        Route::get('/thanks', 'thanks');
     }
 );
 
@@ -30,10 +31,4 @@ Route::prefix('admin')->controller(LoginController::class)->group(
     }
 );
 
-Route::prefix('admin')->controller(RegisterController::class)->middleware('auth.admins:admins')->group(
-    function () {
-        Route::get('/register', 'getRegister');
-        Route::post('/register', 'postRegister');
-        Route::get('/thanks', 'thanks');
-    }
-);
+

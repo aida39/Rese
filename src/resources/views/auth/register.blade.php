@@ -17,7 +17,7 @@
                     <img src="images/username.png" alt="username">
                     <input class="register-form__input" type="text" name="name" value="{{ old('name') }}" placeholder="Username" />
                 </div>
-                <div class="error-message">
+                <div class="error-message error-message--margin-left">
                     @error('name')
                     {{ $message }}
                     @enderror
@@ -26,7 +26,7 @@
                     <img src="images/email.png" alt="email">
                     <input class="register-form__input" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
                 </div>
-                <div class="error-message">
+                <div class="error-message error-message--margin-left">
                     @error('email')
                     {{ $message }}
                     @enderror
@@ -35,7 +35,7 @@
                     <img src="images/password.png" alt="password">
                     <input class="register-form__input" type="password" name="password" placeholder="Password" />
                 </div>
-                <div class="error-message">
+                <div class="error-message error-message--margin-left">
                     @error('password')
                     {{ $message }}
                     @enderror

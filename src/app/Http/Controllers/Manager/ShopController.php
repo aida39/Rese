@@ -17,9 +17,9 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $manager_id = Auth::guard('managers')->id();
-        $shops = shop::with('shopArea', 'shopGenre')->where('manager_id', $manager_id)->get();
-        return view('manager/index', compact('shops'));
+        $manager = Auth::guard('managers')->user();
+        $shops = shop::with('shopArea', 'shopGenre')->where('manager_id', $manager->id)->get();
+        return view('manager/index', compact('shops', 'manager'));
     }
 
     public function create()

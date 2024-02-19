@@ -6,39 +6,53 @@
 
 @section('content')
 
-<div class="admin__shop-area">
+<div class="shop-area">
     <form action="store" method="post">
         @csrf
         <div class="form-item">
             <span>店名</span>
             <input class="form-item__input" type="text" name="shop_name" value="{{ old('shop_name') }}"></input>
         </div>
-        <div class="error-message">
+        <div class="error-message error-message--margin-left">
             @error('shop_name')
             {{ $message }}
             @enderror
         </div>
         <div class="form-item">
+            <span>店舗画像</span>
+            <input class="form-item__input" type="file" name="image">
+        </div>
+        <div class="form-item">
             <span>エリア</span>
             <select class="form-item__input" name="shop_area_id">
                 @foreach($shop_areas as $shop_area)
-                <option value="{{$shop_area->id}}">{{$shop_area->shop_area}}</option>
+                <option value="{{ $shop_area->id }}" {{ old('shop_area_id') == $shop_area->id ? 'selected' : '' }}>{{ $shop_area->shop_area }}</option>
                 @endforeach
             </select>
+        </div>
+        <div class="error-message error-message--margin-left">
+            @error('shop_area_id')
+            {{ $message }}
+            @enderror
         </div>
         <div class="form-item">
             <span>ジャンル</span>
             <select class="form-item__input" name="shop_genre_id">
                 @foreach($shop_genres as $shop_genre)
-                <option value="{{$shop_genre->id}}">{{$shop_genre->shop_genre}}</option>
+                <option value="{{ $shop_genre->id }}" {{ old('shop_genre_id') == $shop_genre->id ? 'selected' : '' }}>{{ $shop_genre->shop_genre }}</option>
                 @endforeach
             </select>
         </div>
+        <div class="error-message error-message--margin-left">
+            @error('shop_genre_id')
+            {{ $message }}
+            @enderror
+        </div>
         <div class="form-item">
             <span>説明</span>
-            <textarea class="form-item__textarea" name="shop_description" rows="10" columns="30" >{{ old('shop_description') }}</textarea>
+            <textarea class="form-item__textarea" name="shop_description" rows="10" columns="30">{{ old('shop_description') }}</textarea>
         </div>
-        <div class="error-message">
+        <div class="error-message error-message--margin-left">
             @error('shop_description')
             {{ $message }}
             @enderror

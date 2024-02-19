@@ -9,7 +9,7 @@
     @if($reservations->isEmpty())
     <p class="reservation__message">現在予約はありません</p>
     @else
-    <h1 class="reservation__title">{{$reservations->first()->shop->shop_name}}の予約状況</h1>
+    <h1 class="title">{{$reservations->first()->shop->shop_name}}の予約状況</h1>
     @foreach($reservations as $reservation)
     <div class=" reservation-block">
         <div class="reservation-block__header">
