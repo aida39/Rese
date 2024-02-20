@@ -82,13 +82,15 @@
             </form>
             @else
             <div class="login__field">
-                <div class="login__field__inner">
-                    <p class="login__field__message">IDをお持ちの方</p>
-                    <a href="/login" class="login__field__link">ログインして予約する</a>
-                </div>
-                <div class="login__field__inner">
-                    <p class="login__field__message">IDをお持ちでない方</p>
-                    <a href="/register" class="login__field__link">会員登録して予約する</a>
+                <div class="login__field-inner">
+                    <div class="login__field__item">
+                        <p class="login__field__message">IDをお持ちの方</p>
+                        <a href="/login" class="login__field__link">ログインして予約する</a>
+                    </div>
+                    <div class="login__field__item">
+                        <p class="login__field__message">IDをお持ちでない方</p>
+                        <a href="/register" class="login__field__link">会員登録して予約する</a>
+                    </div>
                 </div>
             </div>
             @endif

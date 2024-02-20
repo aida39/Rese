@@ -10,22 +10,30 @@
     border-radius: 5px;
     box-shadow: 3px 3px 5px #959595;
     background-color: #fff;
-
 }
 
 .thanks__message {
     padding: 70px 0 40px;
     font-size: 24px;
     text-align: center;
-
 }
 
-.login__button-area {
+@media screen and (max-width: 768px) {
+    .thanks__content {
+        width: 300px;
+    }
+
+    .thanks__message {
+        font-size: 18px;
+    }
+}
+
+.thanks__button-area {
     padding-bottom: 70px;
     text-align: center;
 }
 
-.login__button {
+.thanks__button {
     padding: 10px;
     border-radius: 5px;
     background-color: #3560f6;

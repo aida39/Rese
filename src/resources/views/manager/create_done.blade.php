@@ -1,15 +1,15 @@
 @extends('layouts.app_manager')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/done.css') }}">
+<link rel="stylesheet" href="{{ asset('css/thanks.css') }}">
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="content">
-        <p class="message">店舗情報を作成しました</p>
-        <div class="button-area">
-            <a href="/manager/index" class="button">戻る</a>
+<div class="thanks__container">
+    <div class="thanks__content">
+        <p class="thanks__message">店舗情報を作成しました</p>
+        <div class="thanks__button-area">
+            <a class="thanks__button" href="/manager/index">戻る</a>
         </div>
     </div>
 </div>

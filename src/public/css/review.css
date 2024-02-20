@@ -12,6 +12,12 @@
     background-color: #fff;
 }
 
+@media screen and (max-width: 768px) {
+    .review__content {
+        width: 300px;
+    }
+}
+
 .review__header {
     padding: 5px 20px;
     border-top-left-radius: 5px;
@@ -31,21 +37,31 @@
     display: inline-block;
 }
 
-.review-form__label--required {
-    margin-left: 3px;
-    padding: 3px;
-    border-radius: 3px;
-    background-color: red;
-    font-size: 12px;
-    color: #fff;
+.review-form__text {
+    width: 390px;
 }
 
 .review-form__value {
     margin-left: 20px;
 }
 
+.review-form__value:nth-child(3) {
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .review-form__text {
+        width: 240px;
+    }
+
+    .review-form__value {
+        font-size: 15px;
+    }
+
+}
+
 .review-form__button-area {
-    padding: 10px;
+    padding: 10px 0;
     text-align: right;
 }
 

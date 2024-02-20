@@ -60,15 +60,15 @@
                             <th class="reservation-table__header">Time</th>
                             <td class="reservation-table__data">
                                 <select class="reservation-time" name="reservation_time">
-                                    <option value="17:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '17:00:00' ? 'selected' : '' }}>17:00</option>
-                                    <option value="17:30:00" {{ old('reservation_time', $future_reservation->formatted_time) == '17:30:00' ? 'selected' : '' }}>17:30</option>
-                                    <option value="18:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '18:00:00' ? 'selected' : '' }}>18:00</option>
-                                    <option value="18:30:00" {{ old('reservation_time', $future_reservation->formatted_time) == '18:30:00' ? 'selected' : '' }}>18:30</option>
-                                    <option value="19:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '19:00:00' ? 'selected' : '' }}>19:00</option>
-                                    <option value="19:30:00" {{ old('reservation_time', $future_reservation->formatted_time) == '19:30:00' ? 'selected' : '' }}>19:30</option>
-                                    <option value="20:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '20:00:00' ? 'selected' : '' }}>20:00</option>
-                                    <option value="20:30:00" {{ old('reservation_time', $future_reservation->formatted_time) == '20:30:00' ? 'selected' : '' }}>20:30</option>
-                                    <option value="21:00:00" {{ old('reservation_time', $future_reservation->formatted_time) == '21:00:00' ? 'selected' : '' }}>21:00</option>
+                                    <option value="17:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '17:00:00' ? 'selected' : '' }}>17:00</option>
+                                    <option value="17:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '17:30:00' ? 'selected' : '' }}>17:30</option>
+                                    <option value="18:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '18:00:00' ? 'selected' : '' }}>18:00</option>
+                                    <option value="18:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '18:30:00' ? 'selected' : '' }}>18:30</option>
+                                    <option value="19:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '19:00:00' ? 'selected' : '' }}>19:00</option>
+                                    <option value="19:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '19:30:00' ? 'selected' : '' }}>19:30</option>
+                                    <option value="20:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '20:00:00' ? 'selected' : '' }}>20:00</option>
+                                    <option value="20:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '20:30:00' ? 'selected' : '' }}>20:30</option>
+                                    <option value="21:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '21:00:00' ? 'selected' : '' }}>21:00</option>
                                 </select>
                             </td>
                         </tr>
@@ -155,7 +155,7 @@
                     @if(empty($reservation->is_reviewed))
                     <a class="review__button" href="/review/{{$reservation->id}}">評価する</a>
                     @else
-                    <p class="review__button inactive">評価済み</p>
+                    <p class="review__button review__button--inactive">評価済み</p>
                     @endif
                 </td>
             </tr>

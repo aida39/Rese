@@ -44,8 +44,7 @@
             <div class="register-form__button-area">
                 <button class="register-form__button" type="submit">作成する</button>
             </div>
+        </form>
     </div>
-    </form>
-</div>
 </div>
 @endsection

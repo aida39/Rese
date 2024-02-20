@@ -5,12 +5,12 @@
 }
 
 .login__content {
-    width: 500px;
+    width: 400px;
     margin: 0 auto;
+    padding-bottom: 15px;
     border-radius: 5px;
     box-shadow: 3px 3px 5px #959595;
     background-color: #fff;
-
 }
 
 .login__header {
@@ -23,25 +23,34 @@
     font-weight: lighter;
 }
 
-.login-form__group {
-    width: 100%;
-    padding: 0 30px 15px;
+.login-form {
+    width: 320px;
+    margin: 0 auto;
+}
 
+@media screen and (max-width: 768px) {
+    .login__content {
+        width: 300px;
+    }
+
+    .login-form {
+        width: 250px;
+    }
 }
 
 .login-form__input-area {
-    margin-top: 30px;
+    width: 100%;
+    text-align: end;
+    margin-top: 20px;
 }
 
 .login-form__input {
-    width: 70%;
-    margin-left: 20px;
+    width: calc(100% - 35px);
     border: none;
     border-bottom: 1px solid #000;
 }
 
 .login-form__button-area {
-    width: 85%;
     margin-top: 15px;
     text-align: right;
 }
@@ -52,4 +61,5 @@
     border-radius: 5px;
     background-color: #3560f6;
     color: #fff;
+    cursor: pointer;
 }

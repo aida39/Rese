@@ -58,7 +58,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0 20px;
+    margin: 0 40px;
     border-radius: 5px;
     box-shadow: 3px 3px 5px #959595;
     background-color: #3560f6;
@@ -87,7 +87,7 @@ body {
 
 .reservation__confirm-field {
     width: 75%;
-    margin: 20px 30px 150px;
+    margin: 20px 30px 200px;
     padding: 10px 20px;
     border-radius: 5px;
     background-color: #5580f7;
@@ -120,14 +120,16 @@ body {
 }
 
 .login__field {
-    margin: 0 30px 300px;
-    padding: 20px 40px 10px;
+    width: 85%;
+    margin: 0 0 350px 30px;
+    padding: 0 0 30px 30px;
     border-radius: 8px;
     background-color: #5580f7;
 }
 
 .login__field__inner {
-    margin-bottom: 50px;
+    width: 80%;
+    margin: 0 auto 50px;
 }
 
 .login__field__message {

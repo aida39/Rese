@@ -6,21 +6,22 @@
 
 @section('content')
 
-<div class="shop-area">
+<div class="container">
+    <h1 class="title">店舗情報の作成</h1>
     <form action="store" method="post">
         @csrf
         <div class="form-item">
             <span>店名</span>
             <input class="form-item__input" type="text" name="shop_name" value="{{ old('shop_name') }}"></input>
         </div>
-        <div class="error-message error-message--margin-left">
+        <div class="error-message error-message--margin">
             @error('shop_name')
             {{ $message }}
             @enderror
         </div>
         <div class="form-item">
             <span>店舗画像</span>
-            <input class="form-item__input" type="file" name="image">
+            <input class="form-item__input form-item__input--small" type="file" name="image">
         </div>
         <div class="form-item">
             <span>エリア</span>
@@ -30,7 +31,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="error-message error-message--margin-left">
+        <div class="error-message error-message--margin">
             @error('shop_area_id')
             {{ $message }}
             @enderror
@@ -43,7 +44,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="error-message error-message--margin-left">
+        <div class="error-message error-message--margin">
             @error('shop_genre_id')
             {{ $message }}
             @enderror
@@ -52,7 +53,7 @@
             <span>説明</span>
             <textarea class="form-item__textarea" name="shop_description" rows="10" columns="30">{{ old('shop_description') }}</textarea>
         </div>
-        <div class="error-message error-message--margin-left">
+        <div class="error-message error-message--margin">
             @error('shop_description')
             {{ $message }}
             @enderror

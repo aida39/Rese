@@ -43,8 +43,7 @@
                 </div>
                 <div>
                     <p class="review-form__label">コメント</p>
-
-                    <textarea name="comment" cols="50" rows="5">{{ old('comment') }}</textarea>
+                    <textarea class="review-form__text" name="comment" cols="50" rows="5">{{ old('comment') }}</textarea>
                 </div>
                 <div class="error-message">
                     @error('comment')

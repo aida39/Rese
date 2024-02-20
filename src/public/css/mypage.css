@@ -11,13 +11,6 @@ body {
     width: 100%;
 }
 
-@media screen and (max-width: 768px) {
-    .mypage__wrapper {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
 .mypage__reservation-status {
     flex: 4;
     margin-left: 20px;
@@ -29,14 +22,24 @@ body {
 }
 
 .reservation-block {
-    width: 90%;
+    width: 400px;
     margin: 0 10px 10px 0;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 3px 3px 5px #959595;
-
     color: #fff;
     background-color: #3560f6;
+}
+
+@media screen and (max-width: 768px) {
+    .mypage__wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .reservation-block {
+        width: 300px;
+    }
 }
 
 .reservation-block__header {
@@ -105,7 +108,7 @@ body {
 }
 
 .shop__card {
-    width: calc(50% - 14px);
+    width: 300px;
     margin: 0 14px 20px 0;
     background-color: #fff;
     border-radius: 8px;
@@ -171,11 +174,23 @@ body {
     margin: 20px;
 }
 
+
+
 .visit-history__table {
     width: 90%;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 3px 3px 5px #959595;
+}
+
+@media screen and (max-width: 768px) {
+    .visit-history {
+        font-size: 13px;
+    }
+
+    .visit-history__table {
+        width: 100%;
+    }
 }
 
 .visit-history__table-header {
@@ -198,7 +213,7 @@ body {
     text-decoration: none;
 }
 
-.inactive {
+.review__button--inactive {
     background-color: #5580f7;
     color: #e5e5e5;
 }

@@ -18,7 +18,10 @@
 }
 
 .menu__nav__list {
-    padding-top: 100px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .menu__nav__item {
@@ -58,7 +61,14 @@
 
 .error-message {
     color: red;
+    font-size: 16px;
     font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .error-message {
+        font-size: 13px;
+    }
 }
 
 .error-message--white {
@@ -66,6 +76,10 @@
     margin-left: 30px;
 }
 
+.error-message--margin {
+    margin: 0 0 15px 150px;
+}
+
 .error-message--margin-left {
-    margin-left: 50px;
+    margin-left: 35px;
 }

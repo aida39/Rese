@@ -24,7 +24,7 @@ class ReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            'reservation_date'=>['required', 'after:tomorrow'],
+            'reservation_date'=>['required', 'after:today'],
             'reservation_time' => ['required', 'date_format:H:i:s'],
             'member_count' => ['required', 'integer', 'between:1,5'],
         ];
