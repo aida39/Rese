@@ -35,18 +35,8 @@
     <div class="shop__content__inner">
         @foreach ($shops as $shop)
         <div class="shop__card">
-            @php
-            $filenames = [
-            1 => 'sushi.jpg',
-            2 => 'yakiniku.jpg',
-            3 => 'izakaya.jpg',
-            4 => 'italian.jpg',
-            5 => 'ramen.jpg',
-            ];
-            $image_path = 'images/' . $filenames[$shop['shop_genre_id']];
-            @endphp
             <div class="shop__card-img">
-                <img src="{{ asset($image_path) }}" alt="shop_image {{ $shop['shopGenre']['shop_genre'] }}">
+                <img src="{{ asset($shop->image_path) }}" alt="shop_image {{ $shop['shopGenre']['shop_genre'] }}">
             </div>
             <div class="shop__card-text">
                 <p class="shop__title">{{ $shop['shop_name'] }}</p>

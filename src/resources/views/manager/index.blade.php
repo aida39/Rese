@@ -6,10 +6,13 @@
 
 @section('content')
 <div class="container">
-    <h1 class="title">{{$manager->name}}さん担当店舗一覧</h1>
+    <h1 class="title">{{$manager->name}}さん担当店舗</h1>
     <div class="manager__shop-area">
         @foreach($shops as $shop)
         <div class="shop__card">
+            <div class="shop__card-img">
+                <img src="{{ asset($shop->image_path) }}" alt="店舗画像">
+            </div>
             <div class="shop__card-text">
                 <p class="shop__title">{{$shop->shop_name}}</p>
                 <span class="shop__info">#{{$shop->shopArea->shop_area}}</span>

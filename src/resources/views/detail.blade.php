@@ -12,18 +12,8 @@
                 <a href="/" class="shop-detail__link">&lt;</a>
                 <h1 class="shop-detail__name">{{ $shop['shop_name'] }}</h1>
             </div>
-            @php
-            $filenames = [
-            1 => 'sushi.jpg',
-            2 => 'yakiniku.jpg',
-            3 => 'izakaya.jpg',
-            4 => 'italian.jpg',
-            5 => 'ramen.jpg',
-            ];
-            $image_path = 'images/' . $filenames[$shop['shop_genre_id']];
-            @endphp
             <div class="shop-detail__img">
-                <img src="{{ asset($image_path) }}" alt="Shop Image {{ $shop['shopGenre']['shop_genre'] }}">
+                <img src="{{ asset($shop->image_path) }}" alt="Shop Image {{ $shop['shopGenre']['shop_genre'] }}">
             </div>
             <div class="shop-detail__text">
                 <span>#{{ $shop['shopArea']['shop_area'] }}</span>

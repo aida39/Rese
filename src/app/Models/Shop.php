@@ -13,6 +13,7 @@ class Shop extends Model
         'shop_genre_id',
         'manager_id',
         'shop_name',
+        'image_path',
         'shop_description',
     ];
 

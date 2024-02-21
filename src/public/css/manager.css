@@ -74,18 +74,19 @@ body {
 
 .shop__unit {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 10px;
 }
 
 .shop__detail {
     display: inline-block;
-    width: 110px;
-    margin-top: 10px;
+    width: 120px;
+    margin: 0 0 10px 0;
     padding: 10px 10px;
     border-radius: 5px;
     background-color: #3560f6;
-    font-size: 12px;
+    font-size: 13px;
     color: #fff;
     text-decoration: none;
     text-align: center;

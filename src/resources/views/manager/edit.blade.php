@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-    <form action="update" method="post">
+    <form action="update" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-item">
             <span>店名</span>
@@ -20,6 +20,11 @@
         <div class="form-item">
             <span>店舗画像</span>
             <input class="form-item__input form-item__input--small" type="file" name="image">
+        </div>
+        <div class="error-message error-message--margin">
+            @error('image')
+            {{ $message }}
+            @enderror
         </div>
         <div class="form-item">
             <span>エリア</span>

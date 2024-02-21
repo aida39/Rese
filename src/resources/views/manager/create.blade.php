@@ -5,10 +5,9 @@
 @endsection
 
 @section('content')
-
 <div class="container">
     <h1 class="title">店舗情報の作成</h1>
-    <form action="store" method="post">
+    <form action="store" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-item">
             <span>店名</span>
@@ -22,6 +21,11 @@
         <div class="form-item">
             <span>店舗画像</span>
             <input class="form-item__input form-item__input--small" type="file" name="image">
+        </div>
+        <div class="error-message error-message--margin">
+            @error('image')
+            {{ $message }}
+            @enderror
         </div>
         <div class="form-item">
             <span>エリア</span>

@@ -9,6 +9,7 @@ use App\Models\Shop;
 use App\Models\ShopArea;
 use App\Models\ShopGenre;
 use App\Http\Requests\ShopRequest;
+use Illuminate\Support\Facades\Storage;
 
 
 class ShopController extends Controller
@@ -32,6 +33,9 @@ class ShopController extends Controller
         $manager_id = Auth::guard('managers')->id();
         $shop_data = $request->only(['shop_area_id', 'shop_genre_id', 'shop_name', 'shop_description']);
         $shop_data['manager_id'] = $manager_id;
+
+        $request->file('image')->store('public/images');
+        $shop_data['image_path'] = 'storage/images/' . $request->file('image')->hashName();
         Shop::create($shop_data);
         return view('manager/create_done');
     }
@@ -55,6 +59,14 @@ class ShopController extends Controller
     {
         $shop_data = $request->only(['shop_area_id', 'shop_genre_id', 'shop_name', 'shop_description']);
         $shop = Shop::find($request->id);
+
+        $old_image_path = str_replace('storage', 'public', $shop->image_path);
+        if (Storage::disk('local')->exists($old_image_path)) {
+            Storage::disk('local')->delete($old_image_path);
+        }
+
+        $request->file('image')->store('public/images');
+        $shop_data['image_path'] = 'storage/images/' . $request->file('image')->hashName();
         $shop->update($shop_data);
         return view('manager/edit_done');
     }
