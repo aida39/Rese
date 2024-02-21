@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Manager\ShopController;
 use App\Http\Controllers\Manager\LoginController;
+use App\Http\Controllers\Manager\ReservationController;
+use App\Http\Controllers\Manager\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,6 @@ Route::prefix('manager')->controller(ShopController::class)->middleware('auth.ma
         Route::post('/store', 'store');
         Route::get('/edit', 'edit');
         Route::post('/update', 'update');
-        Route::get('/reservation', 'showReservation');
     }
 );
 
@@ -31,5 +32,17 @@ Route::prefix('manager')->controller(LoginController::class)->group(
         Route::get('/login', 'getLogin')->name('manager.login');
         Route::post('/login', 'postLogin');
         Route::get('/logout', 'getLogout')->middleware('auth.managers:managers');
+    }
+);
+
+Route::prefix('manager')->controller(ReservationController::class)->middleware('auth.managers:managers')->group(
+    function () {
+        Route::get('/reservation', 'showReservation');
+    }
+);
+
+Route::prefix('manager')->controller(ReviewController::class)->middleware('auth.managers:managers')->group(
+    function () {
+        Route::get('/review', 'showReview');
     }
 );

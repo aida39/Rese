@@ -17,6 +17,7 @@
                 <div class="shop__unit">
                     <a class="shop__detail" href="edit?id={{$shop['id']}}">店舗情報の更新</a>
                     <a class=" shop__detail" href="reservation?id={{$shop['id']}}">予約情報の確認</a>
+                    <a class=" shop__detail" href="review?id={{$shop['id']}}">評価の確認</a>
                 </div>
             </div>
         </div>
