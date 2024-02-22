@@ -114,8 +114,12 @@ body {
     font-weight: 100;
 }
 
+.preview-image {
+    width: 500px;
+}
+
 @media screen and (max-width: 768px) {
-    .form-item {
+    .form-item, .preview-image {
         width: 300px;
     }
 

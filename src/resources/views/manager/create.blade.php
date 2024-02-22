@@ -20,8 +20,9 @@
         </div>
         <div class="form-item">
             <span>店舗画像</span>
-            <input class="form-item__input form-item__input--small" type="file" name="image">
+            <input class="form-item__input form-item__input--small" type="file" name="image" id="image" onchange="previewImage(event)">
         </div>
+        <div id="imagePreview" class="image-preview"></div>
         <div class="error-message error-message--margin">
             @error('image')
             {{ $message }}
@@ -65,4 +66,5 @@
         <button class="form-item__button" type="submit">作成する</button>
     </form>
 </div>
+<script src="{{ asset('js/image-preview.js') }}"></script>
 @endsection
