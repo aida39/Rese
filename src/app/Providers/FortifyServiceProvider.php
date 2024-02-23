@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Lang;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -41,5 +44,13 @@ class FortifyServiceProvider extends ServiceProvider
             $email = (string) $request->email;
             return Limit::perMinute(10)->by($email . $request->ip());
         });
+
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new  MailMessage)
+                ->subject(Lang::get('ユーザー登録のご確認'))
+                ->view('vendor.mail.VerifyEmail', ['url' => $url]);
+        });
+
+        Fortify::viewPrefix('auth.');
     }
 }

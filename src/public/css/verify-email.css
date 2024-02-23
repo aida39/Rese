@@ -1,0 +1,43 @@
+.container {
+    padding: 20px;
+    background-color: #eee;
+    height: 90vh;
+}
+
+.verify-email__title {
+    color: #333;
+    font-size: 20px;
+}
+
+.verify-email__message {
+    color: #555;
+}
+
+.verify-email__link-message {
+    color: #838383;
+    font-size: 14px;
+    margin: 40px 0 0;
+}
+
+.verify-email__link-button {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #214be0;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.menu__icon {
+    cursor: default;
+}
+
+@media screen and (max-width: 768px) {
+    .verify-email__message {
+        width: 320px;
+    }
+}

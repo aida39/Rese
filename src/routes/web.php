@@ -21,48 +21,42 @@ use App\Http\Controllers\ReviewController;
 include __DIR__ . '/admin.php';
 include __DIR__ . '/manager.php';
 
-Route::controller(ShopController::class)->group(
-    function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/search', 'search');
-        Route::get('/shop/detail', 'detail');
-        Route::get('/mypage', 'mypage')->middleware('auth');
-    }
-);
+Route::controller(ShopController::class)->middleware(['verified.users'])->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/search', 'search');
+    Route::get('/shop/detail', 'detail');
+    Route::get('/mypage', 'mypage');
+});
 
-Route::controller(AuthController::class)->group(
-    function () {
-        Route::get('/register', 'getRegister');
-        Route::post('/register', 'postRegister');
-        Route::get('/thanks', 'thanks');
+Route::controller(AuthController::class)->middleware(['verified.users'])->group(function () {
+    Route::get('/register', 'getRegister');
+    Route::post('/register', 'postRegister');
+    Route::get('/thanks', 'thanks');
 
-        Route::get('/login', 'getLogin');
-        Route::post('/login', 'postLogin');
-        Route::get('/logout', 'getLogout')->middleware('auth');
-    }
-);
+    Route::get('/login', 'getLogin');
+    Route::post('/login', 'postLogin');
+});
 
-Route::controller(ReservationController::class)->middleware('auth')->group(
-    function () {
-        Route::post('/reservation/create', 'createReservation');
-        Route::post('/reservation/update', 'updateReservation');
-        Route::post('/reservation/{reservation_id}', 'deleteReservation')->name('reservation_delete');
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/email/verify', 'emailVerification')->name('verification.notice');
+    Route::get('/logout', 'getLogout');
+});
 
-        Route::get('/done', 'doneReservation');
-        Route::get('/change', 'changeReservation');
-    }
-);
+Route::controller(ReservationController::class)->middleware(['verified.users'])->group(function () {
+    Route::post('/reservation/create', 'createReservation');
+    Route::post('/reservation/update', 'updateReservation');
+    Route::post('/reservation/{reservation_id}', 'deleteReservation')->name('reservation_delete');
 
-Route::controller(FavoriteController::class)->middleware('auth')->group(
-    function () {
-        Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
-    }
-);
+    Route::get('/done', 'doneReservation');
+    Route::get('/change', 'changeReservation');
+});
 
-Route::controller(ReviewController::class)->middleware('auth')->group(
-    function () {
-        Route::get('/review/{reservation_id}', 'showReviewForm');
-        Route::post('/review', 'createReview');
-        Route::get('/done/review', 'doneReview');
-    }
-);
+Route::controller(FavoriteController::class)->middleware(['verified.users'])->group(function () {
+    Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
+});
+
+Route::controller(ReviewController::class)->middleware(['verified.users'])->group(function () {
+    Route::get('/review/{reservation_id}', 'showReviewForm');
+    Route::post('/review', 'createReview');
+    Route::get('/done/review', 'doneReview');
+});

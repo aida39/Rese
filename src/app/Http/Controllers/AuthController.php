@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -19,15 +20,22 @@ class AuthController extends Controller
     public function postRegister(RegisterRequest $request)
     {
         try {
-            User::create([
+            $user = User::create([
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
             ]);
-            return redirect('thanks');
+            Auth::login($user);
+            event(new Registered($user));
+            return redirect('/thanks');
         } catch (\Throwable $exception) {
             return redirect('register');
         }
+    }
+
+    public function emailVerification()
+    {
+        return view('auth/verify-email');
     }
 
     public function thanks()
@@ -37,6 +45,9 @@ class AuthController extends Controller
 
     public function getLogin()
     {
+        if (Auth::check()) {
+            return redirect('/');
+        }
         return view('auth/login');
     }
 

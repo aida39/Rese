@@ -44,7 +44,7 @@
                 <span class="shop__info">#{{ $shop['shopGenre']['shop_genre'] }}</span>
                 <div class="shop__unit">
                     <a href="shop/detail?id={{$shop['id']}}" class="shop__detail">詳しくみる</a>
-                    @if (Auth::check())
+                    @if (Auth::check() )
                     <div>
                         <form action="{{ url('/favorite/'.$shop['id']) }}" method="post">
                             @csrf
