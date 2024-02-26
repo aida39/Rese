@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="shop__content">
     <h1 class="title">{{$manager->name}}さん担当店舗</h1>
-    <div class="manager__shop-area">
+    <div class="shop__content__inner">
         @foreach($shops as $shop)
         <div class="shop__card">
             <div class="shop__card-img">

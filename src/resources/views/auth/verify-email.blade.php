@@ -37,7 +37,7 @@
     </header>
     <main>
         <div class="container">
-            <h1 class="verify-email__title">ユーザー登録を完了してください</h1>
+            <h1 class="verify-email__title">アカウント登録を完了してください</h1>
             <p class="verify-email__message">登録したメールアドレス宛てにメールを送信しました。<br>
                 メールに記載されているリンクをクリックして、登録手続きを完了してください。</p>
             <div class="verify-email__link">

@@ -54,23 +54,28 @@ body {
     }
 
     .search__content {
-        width: 250px;
-        margin-left: 30px;
+        width: calc(100% - 40px);
+        margin: 0 20px;
+    }
+
+    .search__content__form {
+        width: 100%;
     }
 
     .search__content__inner {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
     .search__area-box, .search__genre-box {
-        width: 250px;
+        width: 100%;
         margin: 0 0 2px 0;
     }
 
     .search__button {
         top: 205px;
-        left: 35px;
+        left: 30px;
         width: 30px;
     }
 }
@@ -85,18 +90,25 @@ body {
 
 .shop__content__inner {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 20px;
 
 }
 
 .shop__card {
-    width: 300px;
-    margin: 10px 7px;
+    width: calc(25% - 14px);
+    margin: 10px 0;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 3px 3px 5px #959595;
     overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .shop__card {
+        width: calc(50% - 14px);
+    }
 }
 
 .shop__card-img {
@@ -144,6 +156,20 @@ body {
     border: none;
     background-color: #fff;
     font-size: 32px;
+}
+
+@media screen and (max-width: 768px) {
+    .shop__info {
+        font-size: 12px;
+    }
+
+    .shop__detail {
+        padding: 5px 7px;
+    }
+
+    .shop__favorite {
+        font-size: 24px;
+    }
 }
 
 .shop__favorite--red {

@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-    margin-left: 30px;
+    margin: 30px;
 }
 
 .manager__menu {
@@ -34,18 +34,27 @@ body {
     text-decoration: none;
 }
 
-.manager__shop-area {
+.shop__content__inner {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
+    margin: 0 20px;
+
 }
 
 .shop__card {
-    width: 300px;
-    margin: 0 14px 20px 0;
+    width: calc(25% - 14px);
+    margin: 0 0 20px 0;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 3px 3px 5px #959595;
     overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .shop__card {
+        width: calc(50% - 14px);
+    }
 }
 
 .shop__card-img {
@@ -92,60 +101,12 @@ body {
     text-align: center;
 }
 
-.form-item {
-    width: 500px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+.title {
+    margin: 15px 20px;
+    font-size: 20px;
 }
 
-.form-item__input {
-    width: 350px;
-    height: 45px;
-    font-size: 16px;
-
-}
-
-.form-item__textarea {
-    width: 350px;
-    height: 230px;
-    font-size: 16px;
-    font-weight: 100;
-}
-
-.preview-image {
-    width: 500px;
-}
-
-@media screen and (max-width: 768px) {
-    .form-item, .preview-image {
-        width: 300px;
-    }
-
-    .form-item__input, .form-item__textarea {
-        width: 200px;
-        font-size: 14px;
-    }
-
-    .form-item__input--small {
-        font-size: 11px;
-    }
-
-    .error-message--margin {
-        margin: 0 0 15px 100px;
-    }
-}
-
-.form-item__button {
-    display: block;
-    margin-top: 30px;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.title, .reservation__message {
+.reservation__message {
     font-size: 20px;
 }
 
@@ -201,4 +162,166 @@ body {
     .review__card {
         width: 330px;
     }
+}
+
+
+
+
+.container {
+    height: 90vh;
+    padding-top: 30px;
+    background-color: #eee;
+}
+
+.content {
+    width: 600px;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px #959595;
+    background-color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        width: 300px;
+    }
+}
+
+.shop__header {
+    padding: 5px 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #3560f6;
+    color: #fff;
+    font-size: 8px;
+    font-weight: lighter;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form__group {
+    width: 100%;
+    padding: 10px 30px 20px;
+}
+
+.form__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.form__item:nth-child(1) {
+    margin-top: 10px;
+}
+
+.form__label {
+    display: inline-block;
+}
+
+
+
+.form__input {
+    width: 450px;
+    height: 45px;
+    font-size: 16px;
+
+}
+
+.form__textarea {
+    width: 450px;
+    height: 230px;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.preview-image, .image-preview img {
+    width: 540px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .form {
+        width: 300px;
+    }
+
+    .preview-image {
+        width: 270px;
+    }
+
+    .form__group {
+        padding: 15px;
+    }
+
+    .form__label {
+        font-size: 12px;
+    }
+
+    .form__input, .form__textarea {
+        width: 200px;
+        font-size: 14px;
+    }
+
+    .form__input--small {
+        font-size: 11px;
+    }
+
+    .error-message--margin {
+        margin: 0 0 5px 70px;
+    }
+}
+
+.form__text {
+    width: 390px;
+}
+
+.form__value {
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .form__text {
+        width: 200px;
+    }
+
+
+}
+
+.form__button-area {
+    padding: 10px 0;
+    text-align: right;
+}
+
+.form__button {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3560f6;
+    color: #fff;
+}
+
+#input-file-01 {
+    display: none;
+}
+
+#bt-file-01 {
+    height: 34px;
+    margin-right: 5px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3560f6;
+    color: #fff;
+}
+
+.form__select-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 450px;
 }

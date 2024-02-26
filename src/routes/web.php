@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
@@ -25,7 +26,6 @@ Route::controller(ShopController::class)->middleware(['verified.users'])->group(
     Route::get('/', 'index')->name('index');
     Route::get('/search', 'search');
     Route::get('/shop/detail', 'detail');
-    Route::get('/mypage', 'mypage');
 });
 
 Route::controller(AuthController::class)->middleware(['verified.users'])->group(function () {
@@ -40,6 +40,10 @@ Route::controller(AuthController::class)->middleware(['verified.users'])->group(
 Route::controller(AuthController::class)->group(function () {
     Route::get('/email/verify', 'emailVerification')->name('verification.notice');
     Route::get('/logout', 'getLogout');
+});
+
+Route::controller(UserController::class)->middleware(['verified.users'])->group(function () {
+    Route::get('/mypage', 'mypage');
 });
 
 Route::controller(ReservationController::class)->middleware(['verified.users'])->group(function () {
