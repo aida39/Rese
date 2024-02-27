@@ -27,9 +27,9 @@
                     <input class="form__input form__input--small" type="file" name="image" id="input-file-01" onchange="previewImage(event)">
                     <div class="form__select-button">
                         <button id="bt-file-01" type="button">ファイルを選択</button>
+                        <span id="output-01" class="output"></span>
                     </div>
                 </div>
-                <div id="output-01" class="output"></div>
                 <div id="imagePreview" class="image-preview"></div>
                 <div class="error-message error-message--margin">
                     @error('image')

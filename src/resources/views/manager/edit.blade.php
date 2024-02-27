@@ -27,10 +27,9 @@
                     <input class="form__input form__input--small" type="file" name="image" id="input-file-01" onchange="previewImage(event)">
                     <div class="form__select-button">
                         <button id="bt-file-01" type="button">ファイルを選択</button>
-                        <!-- <p>画像を変更する場合は選択してください</p> -->
+                        <span id="output-01" class="output">{{ $shop->file_name }}</span>
                     </div>
                 </div>
-                <div id="output-01" class="output"></div>
                 <div id="imagePreview" class="image-preview">
                     <img src="{{ asset($shop->image_path) }}" alt="Current Image">
                 </div>

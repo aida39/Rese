@@ -9,6 +9,7 @@ use App\Models\Shop;
 use App\Models\ShopArea;
 use App\Models\ShopGenre;
 use App\Http\Requests\ShopRequest;
+use App\Http\Requests\ShopUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -52,21 +53,26 @@ class ShopController extends Controller
         $shop_genres = ShopGenre::all();
         $shop_id = $request->input('id');
         $shop = Shop::with('shopArea', 'shopGenre')->findOrFail($shop_id);
+        $shop['file_name'] = str_replace('storage/images/', '', $shop['image_path']);
         return view('manager/edit', compact('shop', 'shop_areas', 'shop_genres',));
     }
 
-    public function update(ShopRequest $request)
+    public function update(ShopUpdateRequest $request)
     {
         $shop_data = $request->only(['shop_area_id', 'shop_genre_id', 'shop_name', 'shop_description']);
         $shop = Shop::find($request->id);
 
-        $old_image_path = str_replace('storage', 'public', $shop->image_path);
-        if (Storage::disk('local')->exists($old_image_path)) {
-            Storage::disk('local')->delete($old_image_path);
+        if ($request->hasFile('image')) {
+            $old_image_path = str_replace('storage', 'public', $shop->image_path);
+            if (Storage::disk('local')->exists($old_image_path)) {
+                Storage::disk('local')->delete($old_image_path);
+            }
+            $request->file('image')->store('public/images');
+            $shop_data['image_path'] = 'storage/images/' . $request->file('image')->hashName();
+        } else {
+            $shop_data['image_path'] = $shop->image_path;
         }
 
-        $request->file('image')->store('public/images');
-        $shop_data['image_path'] = 'storage/images/' . $request->file('image')->hashName();
         $shop->update($shop_data);
         return view('manager/edit_done');
     }

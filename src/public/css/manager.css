@@ -223,13 +223,17 @@ body {
     display: inline-block;
 }
 
-
-
 .form__input {
     width: 450px;
     height: 45px;
     font-size: 16px;
+}
 
+.form__select-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 450px;
 }
 
 .form__textarea {
@@ -250,7 +254,7 @@ body {
         width: 300px;
     }
 
-    .preview-image {
+    .preview-image, .image-preview img {
         width: 270px;
     }
 
@@ -262,7 +266,7 @@ body {
         font-size: 12px;
     }
 
-    .form__input, .form__textarea {
+    .form__input, .form__select-button, .form__textarea {
         width: 200px;
         font-size: 14px;
     }
@@ -288,8 +292,6 @@ body {
     .form__text {
         width: 200px;
     }
-
-
 }
 
 .form__button-area {
@@ -319,9 +321,20 @@ body {
     color: #fff;
 }
 
-.form__select-button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 450px;
+#output-01 {
+    width: 320px;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 768px) {
+    #bt-file-01 {
+        width: 100px;
+        padding: 3px;
+        font-size: 11px;
+    }
+
+    #output-01 {
+        width: 120px;
+        font-size: 12px;
+    }
 }
