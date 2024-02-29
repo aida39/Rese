@@ -44,7 +44,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-Route::get('/email/verify/{id}/{hash}', [CustomVerifyEmailController::class, 'verifyEmail'])
+Route::get('/email/verify/{id}/{hash}', [CustomVerifyEmailController::class, 'VerifyEmail'])
     ->name('verification.verify');
 
 Route::controller(UserController::class)->middleware(['verified.users'])->group(function () {
