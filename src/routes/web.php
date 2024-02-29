@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CustomVerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/email/verify', 'emailVerification')->name('verification.notice');
     Route::get('/logout', 'getLogout');
 });
+
+
+Route::get('/email/verify/{id}/{hash}', [CustomVerifyEmailController::class, 'verifyEmail'])
+    ->name('verification.verify');
 
 Route::controller(UserController::class)->middleware(['verified.users'])->group(function () {
     Route::get('/mypage', 'mypage');

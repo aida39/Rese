@@ -52,3 +52,26 @@
     font-size: 14px;
     text-decoration: none;
 }
+
+.verify-email__link {
+padding: 0 30px 30px;
+}
+
+.verify-email__link-message {
+    color: #838383;
+    font-size: 14px;
+    margin: 20px auto 0;
+}
+
+.verify-email__link-button {
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #214be0;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+
+}

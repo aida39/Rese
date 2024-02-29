@@ -25,11 +25,10 @@ class AuthController extends Controller
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
             ]);
-            Auth::login($user);
             event(new Registered($user));
-            return redirect('/thanks');
+            return redirect('/email/verify');
         } catch (\Throwable $exception) {
-            return redirect('register');
+            return redirect('/register');
         }
     }
 
