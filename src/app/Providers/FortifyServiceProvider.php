@@ -15,6 +15,8 @@ use Laravel\Fortify\Fortify;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Carbon;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -50,6 +52,31 @@ class FortifyServiceProvider extends ServiceProvider
                 ->subject(Lang::get('アカウント登録のご確認'))
                 ->view('vendor.mail.VerifyEmail', ['url' => $url]);
         });
+
+        VerifyEmail::createUrlUsing(function ($notifiable) {
+            $url = '';
+            if ($notifiable instanceof \App\Models\User) {
+                $url = URL::temporarySignedRoute(
+                    'verification.verify',
+                    Carbon::now()->addMinutes(config('auth.verification.expire', 60)),
+                    [
+                        'id' => $notifiable->getKey(),
+                        'hash' => sha1($notifiable->getEmailForVerification()),
+                    ]
+                );
+            } elseif ($notifiable instanceof \App\Models\Manager) {
+                $url = URL::temporarySignedRoute(
+                    'manager.verification.verify',
+                    Carbon::now()->addMinutes(config('auth.verification.expire', 60)),
+                    [
+                        'id' => $notifiable->getKey(),
+                        'hash' => sha1($notifiable->getEmailForVerification()),
+                    ]
+                );
+            }
+            return $url;
+        });
+
 
         Fortify::viewPrefix('auth.');
     }

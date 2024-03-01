@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Manager\ShopController;
+use App\Http\Controllers\Manager\CustomVerifyEmailController;
 use App\Http\Controllers\Manager\LoginController;
 use App\Http\Controllers\Manager\ReservationController;
 use App\Http\Controllers\Manager\ReviewController;
@@ -26,7 +27,12 @@ Route::prefix('manager')->controller(ShopController::class)->middleware('auth.ma
         Route::post('/update', 'update');
     }
 );
-
+Route::prefix('manager')->controller(CustomVerifyEmailController::class)->group(
+    function () {
+        Route::get('/email/verify/{id}/{hash}', 'VerifyEmail')->name('manager.verification.verify');
+        Route::get('/thanks', 'thanks');
+    }
+);
 Route::prefix('manager')->controller(LoginController::class)->group(
     function () {
         Route::get('/login', 'getLogin')->name('manager.login');
