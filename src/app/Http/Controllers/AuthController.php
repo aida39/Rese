@@ -28,7 +28,7 @@ class AuthController extends Controller
             event(new Registered($user));
             return redirect('/email/verify');
         } catch (\Throwable $exception) {
-            return redirect('/register');
+            return redirect('/register')->with('error-message', '登録中にエラーが発生しました');
         }
     }
 

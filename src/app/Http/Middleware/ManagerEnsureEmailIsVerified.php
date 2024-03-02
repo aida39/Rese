@@ -8,14 +8,15 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 
-class UserEnsureEmailIsVerified
+class ManagerEnsureEmailIsVerified
 {
     public function handle($request, Closure $next, $redirectToRoute = null)
     {
-        if ($request->user() && $request->user() instanceof MustVerifyEmail && !$request->user()->hasVerifiedEmail()) {
+        if ($request->user('managers') && $request->user('managers') instanceof MustVerifyEmail && !$request->user('managers')->hasVerifiedEmail()) {
             Auth::logout();
-            return redirect('email/verify');
+            return redirect('/manager/email/verify');
         }
+
         return $next($request);
     }
 }

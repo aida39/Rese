@@ -9,7 +9,12 @@ use Illuminate\Auth\Events\Verified;
 
 class CustomVerifyEmailController extends Controller
 {
-    public function VerifyEmail(Request $request, $id)
+    public function emailVerification()
+    {
+        return view('manager/verify-email');
+    }
+
+    public function verifyEmail(Request $request, $id)
     {
         $manager = Manager::find($id);
         if (!$manager) {

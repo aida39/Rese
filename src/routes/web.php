@@ -23,13 +23,13 @@ use App\Http\Controllers\CustomVerifyEmailController;
 include __DIR__ . '/admin.php';
 include __DIR__ . '/manager.php';
 
-Route::controller(ShopController::class)->middleware(['verified.users'])->group(function () {
-    Route::get('/', 'index')->name('index');
+Route::controller(ShopController::class)->group(function () {
+    Route::get('/', 'index')->middleware('verified.users')->name('index');
     Route::get('/search', 'search');
     Route::get('/shop/detail', 'detail');
 });
 
-Route::controller(AuthController::class)->middleware(['verified.users'])->group(function () {
+Route::controller(AuthController::class)->group(function () {
     Route::get('/register', 'getRegister');
     Route::post('/register', 'postRegister');
     Route::get('/thanks', 'thanks');
@@ -47,11 +47,11 @@ Route::controller(AuthController::class)->group(function () {
 Route::get('/email/verify/{id}/{hash}', [CustomVerifyEmailController::class, 'VerifyEmail'])
     ->name('verification.verify');
 
-Route::controller(UserController::class)->middleware(['verified.users'])->group(function () {
+Route::controller(UserController::class)->middleware('auth')->group(function () {
     Route::get('/mypage', 'mypage');
 });
 
-Route::controller(ReservationController::class)->middleware(['verified.users'])->group(function () {
+Route::controller(ReservationController::class)->middleware('auth')->group(function () {
     Route::post('/reservation/create', 'createReservation');
     Route::post('/reservation/update', 'updateReservation');
     Route::post('/reservation/{reservation_id}', 'deleteReservation')->name('reservation_delete');
@@ -60,11 +60,11 @@ Route::controller(ReservationController::class)->middleware(['verified.users'])-
     Route::get('/change', 'changeReservation');
 });
 
-Route::controller(FavoriteController::class)->middleware(['verified.users'])->group(function () {
+Route::controller(FavoriteController::class)->middleware('auth')->group(function () {
     Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
 });
 
-Route::controller(ReviewController::class)->middleware(['verified.users'])->group(function () {
+Route::controller(ReviewController::class)->middleware('auth')->group(function () {
     Route::get('/review/{reservation_id}', 'showReviewForm');
     Route::post('/review', 'createReview');
     Route::get('/done/review', 'doneReview');

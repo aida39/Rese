@@ -40,6 +40,11 @@
                     {{ $message }}
                     @enderror
                 </div>
+                @if(session('error-message'))
+                <div class="error-message error-message--margin-left">
+                    {{ session('error-message') }}
+                </div>
+                @endif
             </div>
             <div class="register-form__button-area">
                 <button class="register-form__button" type="submit">登録</button>

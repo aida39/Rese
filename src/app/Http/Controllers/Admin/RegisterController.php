@@ -28,7 +28,7 @@ class RegisterController extends Controller
             event(new Registered($manager));
             return redirect('admin/thanks');
         } catch (\Throwable $exception) {
-            return redirect('admin/register');
+            return redirect('admin/index')->with('error-message', '登録中にエラーが発生しました');
         }
     }
 

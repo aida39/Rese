@@ -20,19 +20,22 @@ use App\Http\Controllers\Manager\ReviewController;
 
 Route::prefix('manager')->controller(ShopController::class)->middleware('auth.managers:managers')->group(
     function () {
-        Route::get('/index', 'index')->name('manager.index');
+        Route::get('/index', 'index')->middleware('verified.managers')->name('manager.index');
         Route::get('/create', 'create');
         Route::post('/store', 'store');
         Route::get('/edit', 'edit');
         Route::post('/update', 'update');
     }
 );
+
 Route::prefix('manager')->controller(CustomVerifyEmailController::class)->group(
     function () {
-        Route::get('/email/verify/{id}/{hash}', 'VerifyEmail')->name('manager.verification.verify');
+        Route::get('/email/verify', 'emailVerification');
+        Route::get('/email/verify/{id}/{hash}', 'verifyEmail')->name('manager.verification.verify');
         Route::get('/thanks', 'thanks');
     }
 );
+
 Route::prefix('manager')->controller(LoginController::class)->group(
     function () {
         Route::get('/login', 'getLogin')->name('manager.login');
