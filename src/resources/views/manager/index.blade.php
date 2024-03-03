@@ -8,6 +8,9 @@
 <div class="shop__content">
     <h1 class="title">{{$manager->name}}さん担当店舗</h1>
     <div class="shop__content__inner">
+        @if($shops->isEmpty())
+        <p>担当店舗はありません</p>
+        @else
         @foreach($shops as $shop)
         <div class="shop__card">
             <div class="shop__card-img">
@@ -25,6 +28,7 @@
             </div>
         </div>
         @endforeach
+        @endif
     </div>
 </div>
 @endsection

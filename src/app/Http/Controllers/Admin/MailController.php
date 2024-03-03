@@ -20,8 +20,7 @@ class MailController extends Controller
     {
         $data = $request->all();
         $emails = User::pluck('email')->all();
-
-        Mail::to($emails)->send(new AdminMail($data['mail_subject'], $data['mail_message']));
+        Mail::bcc($emails)->send(new AdminMail($data['mail_subject'], $data['mail_message']));
 
         return redirect('/admin/done/mail');
     }

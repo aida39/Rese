@@ -50,7 +50,7 @@ class FortifyServiceProvider extends ServiceProvider
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new  MailMessage)
                 ->subject(Lang::get('アカウント登録のご確認'))
-                ->view('vendor.mail.VerifyEmail', ['url' => $url]);
+                ->view('emails.verify_email', ['url' => $url]);
         });
 
         VerifyEmail::createUrlUsing(function ($notifiable) {

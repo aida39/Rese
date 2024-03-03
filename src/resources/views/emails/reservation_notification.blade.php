@@ -9,7 +9,7 @@
 
 <ul>
     <li>ご予約者のお名前: {{ $reservation->user->name }}</li>
-    <li>ご来店日時: {{ $reservation->reservation_date }}{{ $reservation->reservation_time }}</li>
+    <li>ご来店日時: {{ $reservation->reservation_date }} {{ $reservation->reservation_time }}</li>
     <li>ご予約店名: {{ $reservation->shop->shop_name }}</li>
 </ul>
 

@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <div class="mypage__title">
-        <h1>{{$user->name}}さん</h1>
+        <h1>{{$user->name}}さんのマイページ</h1>
     </div>
     <div class="mypage__wrapper">
         <div class="mypage__reservation-status">
@@ -27,6 +27,9 @@
                 {{ $message }}
                 @enderror
             </div>
+            @if($future_reservations->isEmpty())
+            <p>予約はありません</p>
+            @else
             @foreach($future_reservations as $future_reservation)
             <div class="reservation-block">
                 <div class="reservation-block__header">
@@ -91,9 +94,13 @@
                 </form>
             </div>
             @endforeach
+            @endif
         </div>
         <div class="mypage__favorite-shop">
             <h2>お気に入り店舗</h2>
+            @if($favorites->isEmpty())
+            <p>お気に入りはありません</p>
+            @else
             <div class="mypage__favorite-shop__inner">
                 @foreach ($favorites as $favorite)
                 <div class="shop__card">
@@ -122,11 +129,15 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </div>
     <div class="visit-history">
         <h2>来店履歴</h2>
+        @if($past_reservations->isEmpty())
+        <p>来店履歴はありません</p>
+        @else
         <table class="visit-history__table">
             <tr class="visit-history__table-row">
                 <th class="visit-history__table-header">Shop</th>
@@ -151,6 +162,7 @@
             </tr>
             @endforeach
         </table>
+        @endif
     </div>
 </div>
 <script src="{{ asset('js/cancel-reservation.js') }}"></script>
