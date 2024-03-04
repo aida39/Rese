@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Models\Favorite;
 use App\Models\Reservation;
 use Carbon\Carbon;
@@ -14,24 +15,22 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $today = Carbon::now()->format('Y-m-d');
-        $past_reservations = Reservation::where('user_id', $user->id)
-            ->whereDate('reservation_date', '<', $today)->with('shop')->get();
+
         $future_reservations = Reservation::where('user_id', $user->id)
             ->whereDate('reservation_date', '>=', $today)->with('shop')->get();
-
-        foreach ($past_reservations as $reservation) {
-            $reservation->formatted_time = Carbon::parse($reservation->reservation_time)->format('H:i');
-            $reservation->is_reviewed = $reservation->review()->exists();
-        }
-
         foreach ($future_reservations as $future_reservation) {
             $future_reservation->formatted_time = Carbon::parse($future_reservation->reservation_time)->format('H:i');
         }
 
-        $favorites = Favorite::where('user_id', $user->id)
-            ->with('shop.shopArea', 'shop.shopGenre')
-            ->get();
+        $visited_records = Reservation::where('user_id', $user->id)->where('visited_flag', 1)->with('shop')->get();
+        foreach ($visited_records as $visited_record) {
+            $visited_record->formatted_time = Carbon::parse($visited_record->reservation_time)->format('H:i');
+            $visited_record->is_reviewed = $visited_record->review()->exists();
+        }
 
-        return view('mypage', compact('user', 'past_reservations', 'future_reservations', 'favorites'));
+        $favorites = Favorite::where('user_id', $user->id)
+            ->with('shop.shopArea', 'shop.shopGenre')->get();
+
+        return view('mypage', compact('user', 'visited_records', 'future_reservations', 'favorites'));
     }
 }

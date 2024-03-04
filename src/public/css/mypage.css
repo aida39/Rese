@@ -85,13 +85,16 @@ body {
     width: 100%;
 }
 
-.reservation-update__area {
+.reservation__footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 15px;
 }
 
 .reservation-update__button {
     display: inline-block;
+    height: 31px;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;

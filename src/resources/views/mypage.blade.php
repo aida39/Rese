@@ -88,7 +88,10 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="reservation-update__area">
+                    <div class="reservation__footer">
+                        <div>
+                            {!! QrCode::size(75)->generate(url('/manager/reception/'.$future_reservation->id)) !!}
+                        </div>
                         <button class="reservation-update__button">変更する</button>
                     </div>
                 </form>
@@ -135,7 +138,7 @@
     </div>
     <div class="visit-history">
         <h2>来店履歴</h2>
-        @if($past_reservations->isEmpty())
+        @if($visited_records->isEmpty())
         <p>来店履歴はありません</p>
         @else
         <table class="visit-history__table">
@@ -146,15 +149,15 @@
                 <th class="visit-history__table-header">Number</th>
                 <th class="visit-history__table-header">Review</th>
             </tr>
-            @foreach($past_reservations as $reservation)
+            @foreach($visited_records as $visited_record)
             <tr class="visit-history__table-row">
-                <td class="visit-history__table-data">{{$reservation->shop->shop_name}}</td>
-                <td class="visit-history__table-data">{{$reservation->reservation_date}}</td>
-                <td class="visit-history__table-data">{{$reservation->formatted_time}}</td>
-                <td class="visit-history__table-data">{{$reservation->member_count}}人</td>
+                <td class="visit-history__table-data">{{$visited_record->shop->shop_name}}</td>
+                <td class="visit-history__table-data">{{$visited_record->reservation_date}}</td>
+                <td class="visit-history__table-data">{{$visited_record->formatted_time}}</td>
+                <td class="visit-history__table-data">{{$visited_record->member_count}}人</td>
                 <td class="visit-history__table-data">
-                    @if(empty($reservation->is_reviewed))
-                    <a class="review__button" href="/review/{{$reservation->id}}">評価する</a>
+                    @if(empty($visited_record->is_reviewed))
+                    <a class="review__button" href="/review/{{$visited_record->id}}">評価する</a>
                     @else
                     <p class="review__button review__button--inactive">評価済み</p>
                     @endif

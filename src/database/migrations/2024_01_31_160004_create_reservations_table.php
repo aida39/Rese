@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('reservation_date');
             $table->time('reservation_time');
             $table->tinyInteger('member_count');
+            $table->boolean('visited_flag')->default(false);
             $table->timestamps();
         });
     }

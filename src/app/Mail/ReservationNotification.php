@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Carbon;
 
 class ReservationNotification extends Mailable
 {
@@ -23,6 +24,7 @@ class ReservationNotification extends Mailable
     public function __construct($reservation)
     {
         $this->reservation = $reservation;
+        $reservation->formatted_time = Carbon::parse($reservation->reservation_time)->format('H:i');
     }
 
     /**

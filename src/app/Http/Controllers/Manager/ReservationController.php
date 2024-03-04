@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use App\Models\Reservation;
-use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -27,5 +27,23 @@ class ReservationController extends Controller
         }
         $reservations = $reservations->isEmpty() ? collect() : $reservations;
         return view('manager/reservation', compact('reservations'));
+    }
+
+    public function markVisitedFlag($reservation_id)
+    {
+        $reservation = Reservation::find($reservation_id);
+
+        if (!$reservation) {
+            abort(404, '予約が見つかりません');
+        }
+
+        $reservation->visited_flag = 1;
+        $reservation->save();
+        return redirect('manager/done/reception');
+    }
+
+    public function doneReception()
+    {
+        return view('manager/reception_done');
     }
 }

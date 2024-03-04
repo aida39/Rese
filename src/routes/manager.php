@@ -47,6 +47,8 @@ Route::prefix('manager')->controller(LoginController::class)->group(
 Route::prefix('manager')->controller(ReservationController::class)->middleware('auth.managers:managers')->group(
     function () {
         Route::get('/reservation', 'showReservation');
+        Route::get('/reception/{reservation_id}', 'markVisitedFlag');
+        Route::get('/done/reception', 'doneReception');
     }
 );
 
