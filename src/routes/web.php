@@ -32,17 +32,13 @@ Route::controller(ShopController::class)->group(function () {
 Route::controller(AuthController::class)->group(function () {
     Route::get('/register', 'getRegister');
     Route::post('/register', 'postRegister');
+    Route::get('/email/verify', 'emailVerification')->name('verification.notice');
     Route::get('/thanks', 'thanks');
 
     Route::get('/login', 'getLogin');
     Route::post('/login', 'postLogin');
-});
-
-Route::controller(AuthController::class)->group(function () {
-    Route::get('/email/verify', 'emailVerification')->name('verification.notice');
     Route::get('/logout', 'getLogout');
 });
-
 
 Route::get('/email/verify/{id}/{hash}', [CustomVerifyEmailController::class, 'VerifyEmail'])
     ->name('verification.verify');
