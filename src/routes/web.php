@@ -8,7 +8,6 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CustomVerifyEmailController;
-use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,8 +64,4 @@ Route::controller(ReviewController::class)->middleware('auth')->group(function (
     Route::get('/review/{reservation_id}', 'showReviewForm');
     Route::post('/review', 'createReview');
     Route::get('/done/review', 'doneReview');
-});
-
-Route::controller(PaymentController::class)->middleware('auth')->group(function () {
-    Route::post('/pay', 'pay');
 });

@@ -6,16 +6,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Http\Requests\ReservationRequest;
-
+use Stripe\Stripe;
+use Stripe\Charge;
 
 class ReservationController extends Controller
 {
-    public function createReservation(ReservationRequest $request)
+    public function createReservation(Request $request)
     {
         $user_id = Auth::id();
-        $reservation_data = $request->only(['shop_id', 'reservation_date', 'reservation_time', 'member_count']);
+        $reservation_data = $request->only(['shop_id', 'course_id', 'reservation_date', 'reservation_time', 'member_count']);
         $reservation_data['user_id'] = $user_id;
+        $amount = $request->input('amount');
         Reservation::create($reservation_data);
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $charge = Charge::create(array(
+            'amount' => $amount,
+            'currency' => 'jpy',
+            'source' => request()->stripeToken,
+        ));
+
         return redirect('/done');
     }
 

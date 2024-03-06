@@ -27,6 +27,10 @@
                     <span class="review-form__value">{{$reservation->member_count}}人</span>
                 </div>
                 <div>
+                    <p class="review-form__label">コース　</p>
+                    <span class="review-form__value">{{$reservation->course->course}}コース</span>
+                </div>
+                <div>
                     <p class="review-form__label">来店評価</p>
                     <select class="review-form__value" name="rating">
                         <option value="5" {{ old('rating') == '5' ? 'selected' : '' }}>5（とても良い）</option>

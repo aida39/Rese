@@ -24,7 +24,7 @@
         <div class="right-wrapper reservation__content">
             <h2 class="reservation__title">予約</h2>
             @if (Auth::check())
-            <form class="form" action="/pay" method="post">
+            <form class="form" id="reservationForm" action="/reservation/create" method="post">
                 @csrf
                 <div class="reservation__input-field">
                     <input type="date" name="reservation_date" value="{{ old('reservation_date', date('Y-m-d')) }}" id="reservationDate">
@@ -63,18 +63,20 @@
                     </div>
                     <select name="course_id" id="reservationCourse">
                         @foreach($courses as $course)
-                        <option value="{{ $course->id }}" {{ old('course_id') == $course->id ? 'selected' : '' }}>
+                        <option value="{{ $course->id }}" data-course="{{ $course->course }}" data-price="{{ $course->price }}" {{ old('course_id') == $course->id ? 'selected' : '' }}>
                             {{ $course->course }}コース
                         </option>
                         @endforeach
                     </select>
-
+                    <input type="hidden" id="courseName_{{ $course->id }}" value="{{ $course->course }}">
+                    <input type="hidden" id="coursePrice_{{ $course->id }}" value="{{ $course->price }}">
                     <div class="error-message error-message--white">
                         @error('member_count')
                         {{ $message }}
                         @enderror
                     </div>
                     <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
+
                 </div>
                 <div class="reservation__confirm-field" id="confirmField">
                     <span id="storeName" data-name="{{ $shop['shop_name'] }}"></span>
@@ -120,7 +122,24 @@
 <script src="{{ asset('js/show-reservation.js') }}"></script>
 <script src="https://checkout.stripe.com/checkout.js"></script>
 <script>
+    var stripeKey = "{{ env('STRIPE_KEY') }}";
+</script>
+<script src="{{ asset('js/stripe-payment.js') }}"></script>
+
+<!-- <script>
     function openStripeCheckout() {
+        var courseSelect = document.getElementById('reservationCourse');
+        var selectedOption = courseSelect.options[courseSelect.selectedIndex];
+        var coursePrice = parseFloat(selectedOption.dataset.price);
+        var memberCount = parseInt(document.getElementById('reservationPeople').value); // 予約人数を取得して整数に変換
+
+        if (isNaN(coursePrice) || isNaN(memberCount)) {
+            alert('金額または人数が不正です');
+            return;
+        }
+
+        var amount = coursePrice * memberCount; // 金額を計算
+
         var handler = StripeCheckout.configure({
             key: "{{ env('STRIPE_KEY') }}",
             image: "https://stripe.com/img/documentation/checkout/marketplace.png",
@@ -128,19 +147,17 @@
             currency: "JPY",
             name: "Stripe決済デモ",
             description: "これはデモ決済です",
-            amount: 100,
+            amount: amount,
             token: function(token) {
-                // ここに支払いが成功した後の処理を追加します
                 alert('支払いが成功しました。');
             }
         });
 
         handler.open({
-            name: "Stripe決済デモ",
-            description: "これはデモ決済です",
-            amount: 100
+            name: "Stripe決済画面（デモ）",
+            description: "支払いが完了すると予約が確定します",
+            amount: amount
         });
     }
-</script>
-
+</script> -->
 @endsection

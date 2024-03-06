@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Favorite;
 use App\Models\Reservation;
+use App\Models\Course;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -31,6 +32,8 @@ class UserController extends Controller
         $favorites = Favorite::where('user_id', $user->id)
             ->with('shop.shopArea', 'shop.shopGenre')->get();
 
-        return view('mypage', compact('user', 'visited_records', 'future_reservations', 'favorites'));
+        $courses = Course::all();
+
+        return view('mypage', compact('user', 'visited_records', 'future_reservations', 'favorites', 'courses'));
     }
 }

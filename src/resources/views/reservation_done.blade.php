@@ -7,7 +7,7 @@
 @section('content')
 <div class="thanks__container">
     <div class="thanks__content">
-        <p class="thanks__message">ご予約ありがとうございます</p>
+        <p class="thanks__message">お支払いが完了しました<br>ご予約ありがとうございます</p>
         <div class="thanks__button-area">
             <a class="thanks__button" href="/mypage">戻る</a>
         </div>

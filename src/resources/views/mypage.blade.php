@@ -87,6 +87,19 @@
                                 </select>
                             </td>
                         </tr>
+                        <tr class="reservation-table__row">
+                            <th class="reservation-table__header">Course</th>
+                            <td class="reservation-table__data">
+                                <select name="course_id">
+                                    @foreach($courses as $course)
+                                    <option value="{{ $course->id }}" {{ $future_reservation->course_id == $course->id ? 'selected' : '' }}>
+                                        {{ $course->course }}コース
+                                    </option>
+                                    @endforeach
+                                </select>
+
+                            </td>
+                        </tr>
                     </table>
                     <div class="reservation__footer">
                         <div>
@@ -147,6 +160,7 @@
                 <th class="visit-history__table-header">Date</th>
                 <th class="visit-history__table-header">Time</th>
                 <th class="visit-history__table-header">Number</th>
+                <th class="visit-history__table-header">Course</th>
                 <th class="visit-history__table-header">Review</th>
             </tr>
             @foreach($visited_records as $visited_record)
@@ -155,6 +169,7 @@
                 <td class="visit-history__table-data">{{$visited_record->reservation_date}}</td>
                 <td class="visit-history__table-data">{{$visited_record->formatted_time}}</td>
                 <td class="visit-history__table-data">{{$visited_record->member_count}}人</td>
+                <td class="visit-history__table-data">{{$visited_record->course->course}}コース</td>
                 <td class="visit-history__table-data">
                     @if(empty($visited_record->is_reviewed))
                     <a class="review__button" href="/review/{{$visited_record->id}}">評価する</a>
