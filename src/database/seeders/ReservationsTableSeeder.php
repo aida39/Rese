@@ -18,6 +18,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '1',
             'shop_id' => '1',
+            'course_id' => '1',
             'reservation_date' => '2024-01-01',
             'reservation_time' => '18:30:00',
             'member_count' => '3',
@@ -27,6 +28,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '1',
             'shop_id' => '2',
+            'course_id' => '2',
             'reservation_date' => '2024-02-01',
             'reservation_time' => '18:00:00',
             'member_count' => '4',
@@ -36,6 +38,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '1',
             'shop_id' => '3',
+            'course_id' => '3',
             'reservation_date' => '2024-06-01',
             'reservation_time' => '19:00:00',
             'member_count' => '2',
@@ -45,6 +48,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '2',
             'shop_id' => '1',
+            'course_id' => '2',
             'reservation_date' => '2024-01-01',
             'reservation_time' => '18:30:00',
             'member_count' => '3',
@@ -54,6 +58,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '2',
             'shop_id' => '2',
+            'course_id' => '2',
             'reservation_date' => '2024-02-01',
             'reservation_time' => '18:00:00',
             'member_count' => '4',
@@ -63,6 +68,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '2',
             'shop_id' => '3',
+            'course_id' => '1',
             'reservation_date' => '2024-06-01',
             'reservation_time' => '19:00:00',
             'member_count' => '2',
@@ -72,6 +78,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '3',
             'shop_id' => '1',
+            'course_id' => '2',
             'reservation_date' => '2024-08-01',
             'reservation_time' => '18:30:00',
             'member_count' => '3',
@@ -81,6 +88,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '3',
             'shop_id' => '2',
+            'course_id' => '3',
             'reservation_date' => '2024-09-01',
             'reservation_time' => '18:00:00',
             'member_count' => '4',
@@ -90,6 +98,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '3',
             'shop_id' => '3',
+            'course_id' => '1',
             'reservation_date' => '2024-06-01',
             'reservation_time' => '19:00:00',
             'member_count' => '2',
@@ -99,6 +108,7 @@ class ReservationsTableSeeder extends Seeder
         $param = [
             'user_id' => '3',
             'shop_id' => '4',
+            'course_id' => '3',
             'reservation_date' => '2024-07-01',
             'reservation_time' => '18:00:00',
             'member_count' => '4',

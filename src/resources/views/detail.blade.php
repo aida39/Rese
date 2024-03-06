@@ -24,7 +24,7 @@
         <div class="right-wrapper reservation__content">
             <h2 class="reservation__title">予約</h2>
             @if (Auth::check())
-            <form class="form" action="/reservation/create" method="post">
+            <form class="form" action="/pay" method="post">
                 @csrf
                 <div class="reservation__input-field">
                     <input type="date" name="reservation_date" value="{{ old('reservation_date', date('Y-m-d')) }}" id="reservationDate">
@@ -61,13 +61,26 @@
                         {{ $message }}
                         @enderror
                     </div>
+                    <select name="course_id" id="reservationCourse">
+                        @foreach($courses as $course)
+                        <option value="{{ $course->id }}" {{ old('course_id') == $course->id ? 'selected' : '' }}>
+                            {{ $course->course }}コース
+                        </option>
+                        @endforeach
+                    </select>
+
+                    <div class="error-message error-message--white">
+                        @error('member_count')
+                        {{ $message }}
+                        @enderror
+                    </div>
                     <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
                 </div>
                 <div class="reservation__confirm-field" id="confirmField">
                     <span id="storeName" data-name="{{ $shop['shop_name'] }}"></span>
                 </div>
                 <div class="reservation-button__area">
-                    <button class="reservation-button" type="submit">予約する</button>
+                    <button class="reservation-button" type="button" onclick="openStripeCheckout()">決済画面に進む</button>
                 </div>
             </form>
             @else
@@ -105,4 +118,29 @@
     </div>
 </div>
 <script src="{{ asset('js/show-reservation.js') }}"></script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+    function openStripeCheckout() {
+        var handler = StripeCheckout.configure({
+            key: "{{ env('STRIPE_KEY') }}",
+            image: "https://stripe.com/img/documentation/checkout/marketplace.png",
+            locale: "auto",
+            currency: "JPY",
+            name: "Stripe決済デモ",
+            description: "これはデモ決済です",
+            amount: 100,
+            token: function(token) {
+                // ここに支払いが成功した後の処理を追加します
+                alert('支払いが成功しました。');
+            }
+        });
+
+        handler.open({
+            name: "Stripe決済デモ",
+            description: "これはデモ決済です",
+            amount: 100
+        });
+    }
+</script>
+
 @endsection

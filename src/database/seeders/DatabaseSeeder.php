@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
             ShopGenresTableSeeder::class,
             ShopsTableSeeder::class,
             FavoritesTableSeeder::class,
+            CoursesTableSeeder::class,
             ReservationsTableSeeder::class,
             ReviewsTableSeeder::class,
         ]);
     }
-
 }

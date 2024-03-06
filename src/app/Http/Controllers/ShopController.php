@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\ShopArea;
 use App\Models\ShopGenre;
 use App\Models\Review;
+use App\Models\Course;
 
 class ShopController extends Controller
 {
@@ -39,14 +40,14 @@ class ShopController extends Controller
     {
         $id = $request->input('id');
         $shop = Shop::with('shopArea', 'shopGenre')->findOrFail($id);
+        $courses = Course::all();
         $reviews = Review::with(['reservation' => function ($query) use ($id) {
-                $query->where('shop_id', $id);
-            }, 'reservation.shop', 'reservation.user'])
+            $query->where('shop_id', $id);
+        }, 'reservation.shop', 'reservation.user'])
             ->whereHas('reservation', function ($query) use ($id) {
                 $query->where('shop_id', $id);
             })
             ->get();
-        return view('detail', compact('shop', 'reviews'));
+        return view('detail', compact('shop', 'courses', 'reviews'));
     }
-
 }
