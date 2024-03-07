@@ -93,13 +93,13 @@
                                 <select name="course_id">
                                     @foreach($courses as $course)
                                     <option value="{{ $course->id }}" {{ $future_reservation->course_id == $course->id ? 'selected' : '' }}>
-                                        {{ $course->course }}コース
+                                        {{ $course->course }}{{ old($course->course) }}コース
                                     </option>
                                     @endforeach
                                 </select>
-
                             </td>
                         </tr>
+
                     </table>
                     <div class="reservation__footer">
                         <div>

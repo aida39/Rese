@@ -32,7 +32,7 @@ class ReservationController extends Controller
     public function updateReservation(ReservationRequest $request)
     {
         $user_id = Auth::id();
-        $reservation_data = $request->only(['shop_id', 'reservation_date', 'reservation_time', 'member_count']);
+        $reservation_data = $request->only(['shop_id', 'course_id','reservation_date', 'reservation_time', 'member_count']);
         $reservation_data['user_id'] = $user_id;
 
         $reservation_id = $request->id;

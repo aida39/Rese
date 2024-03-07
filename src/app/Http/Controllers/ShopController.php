@@ -43,7 +43,7 @@ class ShopController extends Controller
         $courses = Course::all();
         $reviews = Review::with(['reservation' => function ($query) use ($id) {
             $query->where('shop_id', $id);
-        }, 'reservation.shop', 'reservation.user'])
+        }, 'reservation.shop', 'reservation.user','reservation.course'])
             ->whereHas('reservation', function ($query) use ($id) {
                 $query->where('shop_id', $id);
             })

@@ -36,6 +36,10 @@
                     <th class="reservation-table__header">Number</th>
                     <td class="reservation-table__data">{{$reservation->member_count}}人</td>
                 </tr>
+                <tr class="reservation-table__row">
+                    <th class="reservation-table__header">Course</th>
+                    <td class="reservation-table__data">{{$reservation->course->course}}コース</td>
+                </tr>
             </table>
         </div>
         @endforeach

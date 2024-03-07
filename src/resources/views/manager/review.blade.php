@@ -16,6 +16,7 @@
             <div class="review__title">
                 <p>{{ $review->reservation->user->name }}さん</p>
                 <p>来店日:{{ $review->reservation->reservation_date }}</p>
+                <p>コース:{{ $review->reservation->course->course }}コース</p>
             </div>
             <p class="review__rating">評価(5段階):{{ $review->rating }}</p>
             <p class="review__text">{{ $review->comment }}</p>

@@ -27,7 +27,7 @@
             <form class="form" id="reservationForm" action="/reservation/create" method="post">
                 @csrf
                 <div class="reservation__input-field">
-                    <input type="date" name="reservation_date" value="{{ old('reservation_date', date('Y-m-d')) }}" id="reservationDate">
+                    <input type="date" name="reservation_date" value="{{ old('reservation_date', date('Y-m-d', strtotime('tomorrow'))) }}" id="reservationDate">
                     <div class="error-message error-message--white">
                         @error('reservation_date')
                         {{ $message }}
@@ -111,6 +111,7 @@
             <div class="review__title">
                 <p>{{ $review->reservation->user->name }}さん</p>
                 <p>来店日:{{ $review->reservation->reservation_date }}</p>
+                <p>コース:{{ $review->reservation->course->course }}コース</p>
             </div>
             <p class="review__rating">評価(5段階):{{ $review->rating }}</p>
             <p class="review__text">{{ $review->comment }}</p>
@@ -125,39 +126,4 @@
     var stripeKey = "{{ env('STRIPE_KEY') }}";
 </script>
 <script src="{{ asset('js/stripe-payment.js') }}"></script>
-
-<!-- <script>
-    function openStripeCheckout() {
-        var courseSelect = document.getElementById('reservationCourse');
-        var selectedOption = courseSelect.options[courseSelect.selectedIndex];
-        var coursePrice = parseFloat(selectedOption.dataset.price);
-        var memberCount = parseInt(document.getElementById('reservationPeople').value); // 予約人数を取得して整数に変換
-
-        if (isNaN(coursePrice) || isNaN(memberCount)) {
-            alert('金額または人数が不正です');
-            return;
-        }
-
-        var amount = coursePrice * memberCount; // 金額を計算
-
-        var handler = StripeCheckout.configure({
-            key: "{{ env('STRIPE_KEY') }}",
-            image: "https://stripe.com/img/documentation/checkout/marketplace.png",
-            locale: "auto",
-            currency: "JPY",
-            name: "Stripe決済デモ",
-            description: "これはデモ決済です",
-            amount: amount,
-            token: function(token) {
-                alert('支払いが成功しました。');
-            }
-        });
-
-        handler.open({
-            name: "Stripe決済画面（デモ）",
-            description: "支払いが完了すると予約が確定します",
-            amount: amount
-        });
-    }
-</script> -->
 @endsection

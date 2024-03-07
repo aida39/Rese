@@ -54,7 +54,7 @@
     <main>
         @yield('content')
     </main>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/drawer-menu.js') }}"></script>
 </body>
 
 </html>
