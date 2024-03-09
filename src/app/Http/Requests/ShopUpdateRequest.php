@@ -35,8 +35,8 @@ class ShopUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'shop_area_id.required' => 'エリアを指定してください',
-            'shop_genre_id.required' => 'ジャンルを指定してください',
+            'shop_area_id.required' => 'エリアを選択してください',
+            'shop_genre_id.required' => 'ジャンルを選択してください',
             'shop_name.required' => '店名を入力してください',
             'shop_name.string' => '店名を文字列で入力してください',
             'shop_name.max' => '店名を255文字以下で入力してください',

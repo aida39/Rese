@@ -61,4 +61,72 @@ document.addEventListener('DOMContentLoaded', function() {
         const formattedTime = time.split(':').slice(0, 2).join(':');
         return formattedTime;
     }
+
+    const dateErrorMessage = document.getElementById('dateErrorMessage');
+    const timeErrorMessage = document.getElementById('timeErrorMessage');
+    const peopleErrorMessage = document.getElementById('peopleErrorMessage');
+    const courseErrorMessage = document.getElementById('courseErrorMessage');
+    const reservationButton = document.querySelector('.reservation-button');
+
+    validateReservation();
+
+    dateInput.addEventListener('input', validateReservation);
+    timeSelect.addEventListener('input', validateReservation);
+    peopleSelect.addEventListener('input', validateReservation);
+    courseSelect.addEventListener('change', validateReservation);
+    reservationButton.addEventListener('click', handleReservation);
+
+    function validateReservation() {
+        const selectedDate = dateInput.value;
+        const selectedTime = timeSelect.value;
+        const selectedPeople = peopleSelect.value;
+        const selectedCourse = courseSelect.value;
+        const today = new Date().toISOString().split('T')[0];
+
+        if (!selectedDate) {
+            dateErrorMessage.textContent = '日付を選択してください';
+        } else if (selectedDate <= today) {
+            dateErrorMessage.textContent = '明日以降の日付を選択してください';
+        } else {
+            dateErrorMessage.textContent = '';
+        }
+
+        if (!selectedTime) {
+            timeErrorMessage.textContent = '時間を選択してください';
+        } else {
+            timeErrorMessage.textContent = '';
+        }
+
+        if (!selectedPeople) {
+            peopleErrorMessage.textContent = '人数を選択してください';
+        } else {
+            peopleErrorMessage.textContent = '';
+        }
+
+        if (!selectedCourse) {
+            courseErrorMessage.textContent = 'コースを選択してください';
+        } else {
+            courseErrorMessage.textContent = '';
+        }
+
+        if (dateErrorMessage.textContent || timeErrorMessage.textContent || peopleErrorMessage.textContent || courseErrorMessage.textContent) {
+            reservationButton.disabled = true;
+            reservationButton.classList.add('disabled');
+        } else {
+            reservationButton.disabled = false;
+            reservationButton.classList.remove('disabled');
+        }
+    }
+
+    function handleReservation() {
+        const dateError = dateErrorMessage.textContent;
+        const timeError = timeErrorMessage.textContent;
+        const peopleError = peopleErrorMessage.textContent;
+        const courseError = courseErrorMessage.textContent;
+
+        if (dateError || timeError || peopleError || courseError) {
+            return;
+        }
+
+    }
 });

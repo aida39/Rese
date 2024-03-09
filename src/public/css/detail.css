@@ -119,6 +119,11 @@ body {
 
 }
 
+.reservation-button.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .login__field {
     width: 85%;
     margin: 0 0 350px 30px;

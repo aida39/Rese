@@ -27,11 +27,8 @@
             <form class="form" id="reservationForm" action="/reservation/create" method="post">
                 @csrf
                 <div class="reservation__input-field">
-                    <input type="date" name="reservation_date" value="{{ old('reservation_date', date('Y-m-d', strtotime('tomorrow'))) }}" id="reservationDate">
-                    <div class="error-message error-message--white">
-                        @error('reservation_date')
-                        {{ $message }}
-                        @enderror
+                    <input type="date" name="reservation_date" value="{{ old('reservation_date', date('Y-m-d')) }}" id="reservationDate">
+                    <div class="error-message error-message--white" id="dateErrorMessage">
                     </div>
                     <select name="reservation_time" id="reservationTime">
                         <option value="17:00:00" {{ old('reservation_time') == '17:00:00' ? 'selected' : '' }}>17:00</option>
@@ -44,10 +41,7 @@
                         <option value="20:30:00" {{ old('reservation_time') == '20:30:00' ? 'selected' : '' }}>20:30</option>
                         <option value="21:00:00" {{ old('reservation_time') == '21:00:00' ? 'selected' : '' }}>21:00</option>
                     </select>
-                    <div class="error-message error-message--white">
-                        @error('reservation_time')
-                        {{ $message }}
-                        @enderror
+                    <div class="error-message error-message--white" id="timeErrorMessage">
                     </div>
                     <select name="member_count" id="reservationPeople">
                         <option value="1" {{ old('member_count') == '1' ? 'selected' : '' }}>1人</option>
@@ -56,10 +50,7 @@
                         <option value="4" {{ old('member_count') == '4' ? 'selected' : '' }}>4人</option>
                         <option value="5" {{ old('member_count') == '5' ? 'selected' : '' }}>5人</option>
                     </select>
-                    <div class="error-message error-message--white">
-                        @error('member_count')
-                        {{ $message }}
-                        @enderror
+                    <div class="error-message error-message--white" id="peopleErrorMessage">
                     </div>
                     <select name="course_id" id="reservationCourse">
                         @foreach($courses as $course)
@@ -68,15 +59,11 @@
                         </option>
                         @endforeach
                     </select>
+                    <div class="error-message error-message--white" id="courseErrorMessage">
+                    </div>
                     <input type="hidden" id="courseName_{{ $course->id }}" value="{{ $course->course }}">
                     <input type="hidden" id="coursePrice_{{ $course->id }}" value="{{ $course->price }}">
-                    <div class="error-message error-message--white">
-                        @error('member_count')
-                        {{ $message }}
-                        @enderror
-                    </div>
                     <input type="hidden" name="shop_id" value="{{ $shop['id'] }}">
-
                 </div>
                 <div class="reservation__confirm-field" id="confirmField">
                     <span id="storeName" data-name="{{ $shop['shop_name'] }}"></span>
