@@ -17,7 +17,7 @@ class UserController extends Controller
         $user = Auth::user();
         $today = Carbon::now()->format('Y-m-d');
 
-        $future_reservations = Reservation::where('user_id', $user->id)
+        $future_reservations = Reservation::where('user_id', $user->id)->where('visited_flag', 0)
             ->whereDate('reservation_date', '>=', $today)->with('shop')->get();
         foreach ($future_reservations as $future_reservation) {
             $future_reservation->formatted_time = Carbon::parse($future_reservation->reservation_time)->format('H:i');

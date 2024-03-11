@@ -27,13 +27,17 @@ class ShopController extends Controller
 
     public function search(Request $request)
     {
+        $selected_area = $request->shop_area_id;
+        $selected_genre = $request->shop_genre_id;
+        $keyword = $request->keyword;
+
         $shop_areas = ShopArea::all();
         $shop_genres = ShopGenre::all();
         $shops = Shop::with('shopArea', 'shopGenre')
-            ->AreaSearch($request->shop_area_id)
-            ->GenreSearch($request->shop_genre_id)
-            ->KeywordSearch($request->keyword)->get();
-        return view('index', compact('shop_areas', 'shop_genres', 'shops'));
+            ->AreaSearch($selected_area)
+            ->GenreSearch($selected_genre)
+            ->KeywordSearch($keyword)->get();
+        return view('index', compact('selected_area','selected_genre','keyword','shop_areas', 'shop_genres', 'shops'));
     }
 
     public function detail(Request $request)

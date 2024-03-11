@@ -12,19 +12,19 @@
             <select class="search__area-box" name="shop_area_id">
                 <option value="">All area</option>
                 @foreach ($shop_areas as $shop_area)
-                <option value="{{ $shop_area['id'] }}">{{ $shop_area['shop_area'] }}</option>
+                <option value="{{ $shop_area['id'] }}" {{ isset($selected_area) && $selected_area == $shop_area['id'] ? 'selected' : '' }}>{{ $shop_area['shop_area'] }}</option>
                 @endforeach
             </select>
             <select class="search__genre-box" name="shop_genre_id">
                 <option value="">All genre</option>
                 @foreach ($shop_genres as $shop_genre)
-                <option value="{{ $shop_genre['id'] }}">{{ $shop_genre['shop_genre'] }}</option>
+                <option value="{{ $shop_genre['id'] }}" {{ isset($selected_genre) && $selected_genre == $shop_genre['id'] ? 'selected' : '' }}>{{ $shop_genre['shop_genre'] }}</option>
                 @endforeach
             </select>
             <button class="search__button" type="submit">
                 <img src="/images/search.png">
             </button>
-            <input class="search__input" type="search" name="keyword" placeholder="Search…" value="{{ old('keyword') }}">
+            <input class="search__input" type="search" name="keyword" placeholder="Search…" value="{{ request()->query('keyword') }}">
         </div>
     </form>
 </div>
