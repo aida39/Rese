@@ -36,15 +36,14 @@ body {
 
 .shop__content__inner {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    margin: 0 20px;
+    margin: 0 10px;
 
 }
 
 .shop__card {
-    width: calc(25% - 14px);
-    margin: 0 0 20px 0;
+    width: 280px;
+    margin: 0 10px 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 3px 3px 5px #959595;
@@ -52,8 +51,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-    .shop__card {
-        width: calc(50% - 14px);
+    .shop__content__inner {
+        width: 300px;
+        margin: 0 auto;
     }
 }
 
@@ -305,6 +305,7 @@ body {
     border-radius: 5px;
     background-color: #3560f6;
     color: #fff;
+    cursor: pointer;
 }
 
 #input-file-01 {
@@ -319,6 +320,7 @@ body {
     border-radius: 5px;
     background-color: #3560f6;
     color: #fff;
+    cursor: pointer;
 }
 
 #output-01 {

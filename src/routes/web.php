@@ -37,7 +37,7 @@ Route::controller(AuthController::class)->group(function () {
 
     Route::get('/login', 'getLogin');
     Route::post('/login', 'postLogin');
-    Route::get('/logout', 'getLogout');
+    Route::get('/logout', 'getLogout')->middleware('auth');
 });
 
 Route::get('/email/verify/{id}/{hash}', [CustomVerifyEmailController::class, 'VerifyEmail'])

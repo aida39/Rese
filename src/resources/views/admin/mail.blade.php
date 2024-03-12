@@ -15,7 +15,7 @@
             <div class="form__group">
                 <div class="form__item">
                     <p class="form__label">タイトル</p>
-                    <input class="form__input" type="text" name="mail_subject"></input>
+                    <input class="form__input" type="text" name="mail_subject" value="{{old('mail_subject')}}"></input>
                 </div>
                 <div class="error-message error-message--margin">
                     @error('mail_subject')
@@ -24,7 +24,7 @@
                 </div>
                 <div class="form__item">
                     <p class="form__label">本文</p>
-                    <textarea class="form__textarea" name="mail_message" rows="10" columns="30"></textarea>
+                    <textarea class="form__textarea" name="mail_message" rows="10" columns="30">{{old('mail_message')}}</textarea>
                 </div>
                 <div class="error-message error-message--margin">
                     @error('mail_message')
