@@ -86,12 +86,18 @@ body {
 }
 
 .reservation__confirm-field {
-    width: 75%;
+    width: 80%;
     margin: 20px 30px 200px;
     padding: 10px 20px;
     border-radius: 5px;
     background-color: #5580f7;
     color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .reservation__confirm-field {
+        font-size: 14px;
+    }
 }
 
 .reservation-table__row {
@@ -126,7 +132,7 @@ body {
 
 .login__field {
     width: 85%;
-    margin: 0 0 350px 30px;
+    margin: 0 auto 350px;
     padding: 0 0 30px 30px;
     border-radius: 8px;
     background-color: #5580f7;

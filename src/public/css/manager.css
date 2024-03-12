@@ -35,26 +35,17 @@ body {
 }
 
 .shop__content__inner {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 10px;
-
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin: 20px;
 }
 
 .shop__card {
-    width: 280px;
-    margin: 0 10px 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 3px 3px 5px #959595;
     overflow: hidden;
-}
-
-@media screen and (max-width: 768px) {
-    .shop__content__inner {
-        width: 300px;
-        margin: 0 auto;
-    }
 }
 
 .shop__card-img {
@@ -84,14 +75,13 @@ body {
 .shop__unit {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     margin-top: 10px;
 }
 
 .shop__detail {
     display: inline-block;
     width: 120px;
-    margin: 0 0 10px 0;
+    margin: 0 10px 10px 0;
     padding: 10px 10px;
     border-radius: 5px;
     background-color: #3560f6;
@@ -111,14 +101,14 @@ body {
 }
 
 .reservation__wrapper {
-    display: flex;
-    width: 100%;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    margin: 20px;
 
 }
 
 .reservation-block {
-    width: 250px;
-    margin: 0 10px 10px 0;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 3px 3px 5px #959595;
@@ -160,7 +150,7 @@ body {
 
 @media screen and (max-width: 768px) {
     .review__card {
-        width: 330px;
+        width: 100%;
     }
 }
 

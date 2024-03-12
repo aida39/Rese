@@ -6,6 +6,12 @@ body {
     margin-left: 20px;
 }
 
+@media screen and (max-width: 768px) {
+    .mypage__title {
+        font-size: 14px;
+    }
+}
+
 .mypage__wrapper {
     display: flex;
     width: 100%;
@@ -13,7 +19,7 @@ body {
 
 .mypage__reservation-status {
     flex: 4;
-    margin-left: 20px;
+    margin: 0 20px;
 }
 
 .mypage__favorite-shop {
@@ -21,9 +27,13 @@ body {
     margin: 0 20px;
 }
 
+.mypage__reservation-status__inner {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
 .reservation-block {
-    width: 400px;
-    margin: 0 10px 10px 0;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 3px 3px 5px #959595;
@@ -35,10 +45,6 @@ body {
     .mypage__wrapper {
         display: flex;
         flex-direction: column;
-    }
-
-    .reservation-block {
-        width: 300px;
     }
 }
 
@@ -105,14 +111,13 @@ body {
 }
 
 .mypage__favorite-shop__inner {
-    display: flex;
-    flex-wrap: wrap;
-
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin: 20px 0;
 }
 
 .shop__card {
-    width: 300px;
-    margin: 0 14px 20px 0;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 3px 3px 5px #959595;
@@ -188,7 +193,7 @@ body {
 
 @media screen and (max-width: 768px) {
     .visit-history {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .visit-history__table {

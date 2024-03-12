@@ -30,87 +30,89 @@
             @if($future_reservations->isEmpty())
             <p>予約はありません</p>
             @else
-            @foreach($future_reservations as $future_reservation)
-            <div class="reservation-block">
-                <div class="reservation-block__header">
-                    <div>
-                        <img src="/images/clock.png" alt="clock">
-                        <span>予約{{ $loop->iteration }}</span>
+            <div class="mypage__reservation-status__inner">
+                @foreach($future_reservations as $future_reservation)
+                <div class="reservation-block">
+                    <div class="reservation-block__header">
+                        <div>
+                            <img src="/images/clock.png" alt="clock">
+                            <span>予約{{ $loop->iteration }}</span>
+                        </div>
+                        <form class="reservation-block__form-delete" action="{{ route('reservation_delete', ['reservation_id' => $future_reservation->id ]) }}" method="post" onsubmit="cancelReservationConfirmation(event);">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $future_reservation->id }}">
+                            <button type="submit" class="reservation-block__button">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </button>
+                        </form>
                     </div>
-                    <form class="reservation-block__form-delete" action="{{ route('reservation_delete', ['reservation_id' => $future_reservation->id ]) }}" method="post" onsubmit="cancelReservationConfirmation(event);">
+                    <form class="reservation-block__form-update" action="{{ url('/reservation/update') }}" method="post">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $future_reservation->id }}">
-                        <button type="submit" class="reservation-block__button">
-                            <i class="fa-regular fa-circle-xmark"></i>
-                        </button>
+                        <table class="reservation-table">
+                            <tr class="reservation-table__row">
+                                <th class="reservation-table__header">Shop</th>
+                                <td class="reservation-table__data">{{$future_reservation->shop->shop_name}}</td>
+                            </tr>
+                            <tr class="reservation-table__row">
+                                <th class="reservation-table__header">Date</th>
+                                <td class="reservation-table__data">
+                                    <input type="hidden" name="id" value="{{$future_reservation->id}}">
+                                    <input class="reservation-date" type="date" name="reservation_date" value="{{ old('reservation_date', $future_reservation->reservation_date) }}">
+                                </td>
+                            </tr>
+                            <tr class="reservation-table__row">
+                                <th class="reservation-table__header">Time</th>
+                                <td class="reservation-table__data">
+                                    <select class="reservation-time" name="reservation_time">
+                                        <option value="17:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '17:00:00' ? 'selected' : '' }}>17:00</option>
+                                        <option value="17:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '17:30:00' ? 'selected' : '' }}>17:30</option>
+                                        <option value="18:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '18:00:00' ? 'selected' : '' }}>18:00</option>
+                                        <option value="18:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '18:30:00' ? 'selected' : '' }}>18:30</option>
+                                        <option value="19:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '19:00:00' ? 'selected' : '' }}>19:00</option>
+                                        <option value="19:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '19:30:00' ? 'selected' : '' }}>19:30</option>
+                                        <option value="20:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '20:00:00' ? 'selected' : '' }}>20:00</option>
+                                        <option value="20:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '20:30:00' ? 'selected' : '' }}>20:30</option>
+                                        <option value="21:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '21:00:00' ? 'selected' : '' }}>21:00</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="reservation-table__row">
+                                <th class="reservation-table__header">Number</th>
+                                <td class="reservation-table__data">
+                                    <select class="member_count" name="member_count">
+                                        <option value="1" {{ old('member_count', $future_reservation->member_count) == 1 ? 'selected' : '' }}>1人</option>
+                                        <option value="2" {{ old('member_count', $future_reservation->member_count) == 2 ? 'selected' : '' }}>2人</option>
+                                        <option value="3" {{ old('member_count', $future_reservation->member_count) == 3 ? 'selected' : '' }}>3人</option>
+                                        <option value="4" {{ old('member_count', $future_reservation->member_count) == 4 ? 'selected' : '' }}>4人</option>
+                                        <option value="5" {{ old('member_count', $future_reservation->member_count) == 5 ? 'selected' : '' }}>5人</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="reservation-table__row">
+                                <th class="reservation-table__header">Course</th>
+                                <td class="reservation-table__data">
+                                    <select name="course_id">
+                                        @foreach($courses as $course)
+                                        <option value="{{ $course->id }}" {{ (old('course_id', $future_reservation->course_id) == $course->id) ? 'selected' : '' }}>
+                                            {{ $course->course }}コース
+                                        </option>
+                                        @endforeach
+                                    </select>
+
+                                </td>
+                            </tr>
+
+                        </table>
+                        <div class="reservation__footer">
+                            <div>
+                                {!! QrCode::size(75)->generate(url('/manager/reception/'.$future_reservation->id)) !!}
+                            </div>
+                            <button class="reservation-update__button">変更する</button>
+                        </div>
                     </form>
                 </div>
-                <form class="reservation-block__form-update" action="{{ url('/reservation/update') }}" method="post">
-                    @csrf
-                    <table class="reservation-table">
-                        <tr class="reservation-table__row">
-                            <th class="reservation-table__header">Shop</th>
-                            <td class="reservation-table__data">{{$future_reservation->shop->shop_name}}</td>
-                        </tr>
-                        <tr class="reservation-table__row">
-                            <th class="reservation-table__header">Date</th>
-                            <td class="reservation-table__data">
-                                <input type="hidden" name="id" value="{{$future_reservation->id}}">
-                                <input class="reservation-date" type="date" name="reservation_date" value="{{ old('reservation_date', $future_reservation->reservation_date) }}">
-                            </td>
-                        </tr>
-                        <tr class="reservation-table__row">
-                            <th class="reservation-table__header">Time</th>
-                            <td class="reservation-table__data">
-                                <select class="reservation-time" name="reservation_time">
-                                    <option value="17:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '17:00:00' ? 'selected' : '' }}>17:00</option>
-                                    <option value="17:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '17:30:00' ? 'selected' : '' }}>17:30</option>
-                                    <option value="18:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '18:00:00' ? 'selected' : '' }}>18:00</option>
-                                    <option value="18:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '18:30:00' ? 'selected' : '' }}>18:30</option>
-                                    <option value="19:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '19:00:00' ? 'selected' : '' }}>19:00</option>
-                                    <option value="19:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '19:30:00' ? 'selected' : '' }}>19:30</option>
-                                    <option value="20:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '20:00:00' ? 'selected' : '' }}>20:00</option>
-                                    <option value="20:30:00" {{ old('reservation_time', $future_reservation->reservation_time) == '20:30:00' ? 'selected' : '' }}>20:30</option>
-                                    <option value="21:00:00" {{ old('reservation_time', $future_reservation->reservation_time) == '21:00:00' ? 'selected' : '' }}>21:00</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="reservation-table__row">
-                            <th class="reservation-table__header">Number</th>
-                            <td class="reservation-table__data">
-                                <select class="member_count" name="member_count">
-                                    <option value="1" {{ old('member_count', $future_reservation->member_count) == 1 ? 'selected' : '' }}>1人</option>
-                                    <option value="2" {{ old('member_count', $future_reservation->member_count) == 2 ? 'selected' : '' }}>2人</option>
-                                    <option value="3" {{ old('member_count', $future_reservation->member_count) == 3 ? 'selected' : '' }}>3人</option>
-                                    <option value="4" {{ old('member_count', $future_reservation->member_count) == 4 ? 'selected' : '' }}>4人</option>
-                                    <option value="5" {{ old('member_count', $future_reservation->member_count) == 5 ? 'selected' : '' }}>5人</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="reservation-table__row">
-                            <th class="reservation-table__header">Course</th>
-                            <td class="reservation-table__data">
-                                <select name="course_id">
-                                    @foreach($courses as $course)
-                                    <option value="{{ $course->id }}" {{ (old('course_id', $future_reservation->course_id) == $course->id) ? 'selected' : '' }}>
-                                        {{ $course->course }}コース
-                                    </option>
-                                    @endforeach
-                                </select>
-
-                            </td>
-                        </tr>
-
-                    </table>
-                    <div class="reservation__footer">
-                        <div>
-                            {!! QrCode::size(75)->generate(url('/manager/reception/'.$future_reservation->id)) !!}
-                        </div>
-                        <button class="reservation-update__button">変更する</button>
-                    </div>
-                </form>
+                @endforeach
             </div>
-            @endforeach
             @endif
         </div>
         <div class="mypage__favorite-shop">
