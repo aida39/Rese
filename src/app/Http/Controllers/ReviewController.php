@@ -14,7 +14,7 @@ class ReviewController extends Controller
 {
     public function showReviewForm($reservation_id)
     {
-        $reservation = Reservation::where('id', $reservation_id)->with('shop','course')->first();
+        $reservation = Reservation::where('id', $reservation_id)->with('shop', 'course')->first();
         if (!$reservation || $reservation->user_id !== Auth::id()) {
             abort(403, 'このページにアクセスする権限がありません。');
         }

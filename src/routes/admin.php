@@ -39,5 +39,3 @@ Route::prefix('admin')->controller(MailController::class)->middleware('auth.admi
         Route::get('/done/mail', 'doneMail');
     }
 );
-
-

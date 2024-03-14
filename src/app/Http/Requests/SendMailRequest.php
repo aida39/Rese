@@ -24,7 +24,7 @@ class SendMailRequest extends FormRequest
     public function rules()
     {
         return [
-            'mail_subject' =>['required', 'string', 'max:255'],
+            'mail_subject' => ['required', 'string', 'max:255'],
             'mail_message' => ['required', 'string', 'max:255'],
         ];
     }

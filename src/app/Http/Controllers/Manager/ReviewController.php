@@ -18,14 +18,14 @@ class ReviewController extends Controller
             abort(403, 'このページにアクセスする権限がありません');
         }
 
-        $id= $request->input('id');
+        $id = $request->input('id');
         $reviews = Review::with(['reservation' => function ($query) use ($id) {
             $query->where('shop_id', $id);
         }, 'reservation.shop', 'reservation.user'])
-        ->whereHas('reservation', function ($query) use ($id) {
-            $query->where('shop_id', $id);
-        })
-        ->get();
+            ->whereHas('reservation', function ($query) use ($id) {
+                $query->where('shop_id', $id);
+            })
+            ->get();
         $reviews = $reviews->isEmpty() ? collect() : $reviews;
         return view('manager/review', compact('reviews'));
     }

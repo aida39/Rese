@@ -40,12 +40,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/logout', 'getLogout')->middleware('auth');
 });
 
-Route::get('/email/verify/{id}/{hash}', [CustomVerifyEmailController::class, 'VerifyEmail'])
+Route::get('/email/verify/{id}/{hash}', [CustomVerifyEmailController::class, 'verifyEmail'])
     ->name('verification.verify');
 
-Route::controller(UserController::class)->middleware('auth')->group(function () {
-    Route::get('/mypage', 'mypage');
-});
+Route::get('/mypage',  [UserController::class, 'mypage'])->middleware('auth');
 
 Route::controller(ReservationController::class)->middleware('auth')->group(function () {
     Route::post('/reservation/create', 'createReservation');
@@ -56,9 +54,8 @@ Route::controller(ReservationController::class)->middleware('auth')->group(funct
     Route::get('/change', 'changeReservation');
 });
 
-Route::controller(FavoriteController::class)->middleware('auth')->group(function () {
-    Route::patch('/favorite/{shop_id}', 'switchFavoriteStatus');
-});
+Route::patch('/favorite/{shop_id}', [FavoriteController::class, 'switchFavoriteStatus'])
+    ->middleware('auth');
 
 Route::controller(ReviewController::class)->middleware('auth')->group(function () {
     Route::get('/review/{reservation_id}', 'showReviewForm');

@@ -8,7 +8,7 @@ use Illuminate\Auth\Events\Verified;
 
 class CustomVerifyEmailController extends Controller
 {
-    public function VerifyEmail(Request $request, $id)
+    public function verifyEmail(Request $request, $id)
     {
         $user = User::find($id);
         if (!$user) {

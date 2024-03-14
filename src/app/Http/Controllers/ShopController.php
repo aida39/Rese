@@ -37,7 +37,7 @@ class ShopController extends Controller
             ->AreaSearch($selected_area)
             ->GenreSearch($selected_genre)
             ->KeywordSearch($keyword)->get();
-        return view('index', compact('selected_area','selected_genre','keyword','shop_areas', 'shop_genres', 'shops'));
+        return view('index', compact('selected_area', 'selected_genre', 'keyword', 'shop_areas', 'shop_genres', 'shops'));
     }
 
     public function detail(Request $request)
@@ -47,7 +47,7 @@ class ShopController extends Controller
         $courses = Course::all();
         $reviews = Review::with(['reservation' => function ($query) use ($id) {
             $query->where('shop_id', $id);
-        }, 'reservation.shop', 'reservation.user','reservation.course'])
+        }, 'reservation.shop', 'reservation.user', 'reservation.course'])
             ->whereHas('reservation', function ($query) use ($id) {
                 $query->where('shop_id', $id);
             })
