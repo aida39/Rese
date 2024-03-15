@@ -12,11 +12,13 @@ class FavoriteController extends Controller
     {
         $user_id = Auth::id();
         $shop = Shop::findOrFail($shop_id);
-        if ($shop->favorite->where('user_id', $user_id)->count() > 0) {
+
+        if ($shop->favorite()->where('user_id', $user_id)->exists()) {
             $shop->favorite()->where('user_id', $user_id)->delete();
         } else {
             $shop->favorite()->create(['user_id' => $user_id]);
         }
+
         return redirect()->back();
     }
 }

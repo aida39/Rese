@@ -17,20 +17,27 @@ class UserController extends Controller
         $user = Auth::user();
         $today = Carbon::now()->format('Y-m-d');
 
-        $future_reservations = Reservation::where('user_id', $user->id)->where('visited_flag', 0)
-            ->whereDate('reservation_date', '>=', $today)->with('shop')->get();
+        $future_reservations = Reservation::where('user_id', $user->id)
+            ->where('visited_flag', 0)
+            ->whereDate('reservation_date', '>=', $today)
+            ->with('shop')
+            ->get();
         foreach ($future_reservations as $future_reservation) {
             $future_reservation->formatted_time = Carbon::parse($future_reservation->reservation_time)->format('H:i');
         }
 
-        $visited_records = Reservation::where('user_id', $user->id)->where('visited_flag', 1)->with('shop')->get();
+        $visited_records = Reservation::where('user_id', $user->id)
+            ->where('visited_flag', 1)
+            ->with('shop')
+            ->get();
         foreach ($visited_records as $visited_record) {
             $visited_record->formatted_time = Carbon::parse($visited_record->reservation_time)->format('H:i');
             $visited_record->is_reviewed = $visited_record->review()->exists();
         }
 
         $favorites = Favorite::where('user_id', $user->id)
-            ->with('shop.shopArea', 'shop.shopGenre')->get();
+            ->with('shop.shopArea', 'shop.shopGenre')
+            ->get();
 
         $courses = Course::all();
 

@@ -18,7 +18,7 @@ class ShopController extends Controller
     public function index()
     {
         $manager = Auth::guard('managers')->user();
-        $shops = shop::with('shopArea', 'shopGenre')->where('manager_id', $manager->id)->get();
+        $shops = Shop::with('shopArea', 'shopGenre')->where('manager_id', $manager->id)->get();
         return view('manager/index', compact('shops', 'manager'));
     }
 
@@ -26,7 +26,7 @@ class ShopController extends Controller
     {
         $shop_areas = ShopArea::all();
         $shop_genres = ShopGenre::all();
-        return view('manager/create', compact('shop_areas', 'shop_genres',));
+        return view('manager/create', compact('shop_areas', 'shop_genres'));
     }
 
     public function store(ShopRequest $request)
@@ -54,7 +54,7 @@ class ShopController extends Controller
         $shop_id = $request->input('id');
         $shop = Shop::with('shopArea', 'shopGenre')->findOrFail($shop_id);
         $shop['file_name'] = str_replace('storage/images/', '', $shop['image_path']);
-        return view('manager/edit', compact('shop', 'shop_areas', 'shop_genres',));
+        return view('manager/edit', compact('shop', 'shop_areas', 'shop_genres'));
     }
 
     public function update(ShopUpdateRequest $request)
