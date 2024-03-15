@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Manager;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ManagerRegisterRequest;
 use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
@@ -16,7 +16,7 @@ class RegisterController extends Controller
         return view('admin/index');
     }
 
-    public function postRegister(RegisterRequest $request)
+    public function postRegister(ManagerRegisterRequest $request)
     {
         try {
             $manager = Manager::create([

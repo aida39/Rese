@@ -37,8 +37,14 @@ body {
 .shop__content__inner {
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
     margin: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .shop__content__inner {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
 }
 
 .shop__card {
