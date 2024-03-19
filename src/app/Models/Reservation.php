@@ -19,7 +19,7 @@ class Reservation extends Model
 
     public function user()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 
     public function shop()
@@ -29,7 +29,7 @@ class Reservation extends Model
 
     public function course()
     {
-        return $this->belongsTo(course::class);
+        return $this->belongsTo(Course::class);
     }
 
     public function review()
