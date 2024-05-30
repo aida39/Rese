@@ -1,6 +1,6 @@
 # Rese
 ある企業のグループ会社の飲食店予約サービスです
-![top_screen](src/top_screen_image.png)
+![top_screen](src/top_screen_image.jpg)
 
 ## 作成した目的
 外部の飲食店予約サービスでは手数料を取られるため、自社で予約サービスを持ちたい
@@ -49,7 +49,7 @@
 - MySQL 8.0.26
 
 ## テーブル設計
-![table_design](src/table_design.png)
+![table_design](src/table_design.jpg)
 
 ## ER図
 ![Rese_ER-Diagram](src/Rese.drawio.png)
