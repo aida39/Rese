@@ -35,8 +35,12 @@ class ShopController extends Controller
         $shop_data = $request->only(['shop_area_id', 'shop_genre_id', 'shop_name', 'shop_description']);
         $shop_data['manager_id'] = $manager_id;
 
-        $request->file('image')->store('public/images');
-        $shop_data['image_path'] = 'storage/images/' . $request->file('image')->hashName();
+        $directory = env('APP_ENV') === 'production'
+            ? env('PROD_IMAGE_DIRECTORY')
+            : env('DEV_IMAGE_DIRECTORY');
+        $file = Storage::disk('s3')->put($directory, $request->file('image'));
+        $shop_data['image_path'] = Storage::disk('s3')->url($file);
+
         Shop::create($shop_data);
         return view('manager/create_done');
     }
