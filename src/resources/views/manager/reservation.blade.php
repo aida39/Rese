@@ -15,7 +15,7 @@
         <div class=" reservation-block">
             <div class="reservation-block__header">
                 <div>
-                    <img src="/images/clock.png" alt="clock">
+                    <img src="/images/clock.jpg" alt="clock">
                     <span>予約{{ $loop->iteration }}</span>
                 </div>
             </div>

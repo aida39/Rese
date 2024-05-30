@@ -22,7 +22,7 @@
                 @endforeach
             </select>
             <button class="search__button" type="submit">
-                <img src="/images/search.png">
+                <img src="/images/search.jpg">
             </button>
             <input class="search__input" type="search" name="keyword" placeholder="Search…" value="{{ request()->query('keyword') }}">
         </div>

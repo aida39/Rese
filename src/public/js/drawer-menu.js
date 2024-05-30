@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         nav.classList.toggle('in');
 
         const isOpen = target.classList.contains('open');
-        menuImage.src = isOpen ? "/images/logo_close.png" : "/images/logo_open.png";
+        menuImage.src = isOpen ? "/images/logo_close.jpg" : "/images/logo_open.jpg";
 
         if (isOpen) {
             inputElements.forEach(input => {

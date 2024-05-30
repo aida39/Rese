@@ -14,7 +14,7 @@
             @csrf
             <div class="login-form__group">
                 <div class="login-form__input-area">
-                    <img src="images/email.png" alt="email">
+                    <img src="images/email.jpg" alt="email">
                     <input class="login-form__input" type="email" name="email" value="{{ old('email') }}" placeholder="Email" />
                 </div>
                 <div class="error-message error-message--margin-left">
@@ -23,7 +23,7 @@
                     @enderror
                 </div>
                 <div class="login-form__input-area">
-                    <img src="images/password.png" alt="password">
+                    <img src="images/password.jpg" alt="password">
                     <input class="login-form__input" type="password" name="password" placeholder="Password" />
                 </div>
                 <div class="error-message error-message--margin-left">

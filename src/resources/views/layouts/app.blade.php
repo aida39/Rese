@@ -43,7 +43,7 @@
                 </ul>
             </nav>
             <div class="menu__icon" id="menu">
-                <img src="/images/logo_open.png" alt="logo_open" class="menu__icon__image" id="menuImage">
+                <img src="/images/logo_open.jpg" alt="logo_open" class="menu__icon__image" id="menuImage">
             </div>
             <h1 class="header__title">
                 Rese

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Mail\AdminMail;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\SendMailRequest;
 use App\Models\User;
