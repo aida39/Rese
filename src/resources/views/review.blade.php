@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('css')
-    {{-- <link rel="stylesheet" href="{{ asset('css/index.css') }}"> --}}
-
     <link rel="stylesheet" href="{{ asset('css/review.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-star-rating@1.6.3/dist/star-rating.min.js"></script>
 @endsection
 
 @section('content')
@@ -51,14 +51,10 @@
                 @csrf
                 <div class="review-form__group">
                     <div>
-                        <p class="review-form__label">体験を評価してください</p>
-                        <select class="review-form__value" name="rating">
-                            <option value="5" {{ old('rating') == '5' ? 'selected' : '' }}>5（とても良い）</option>
-                            <option value="4" {{ old('rating') == '4' ? 'selected' : '' }}>4（良い）</option>
-                            <option value="3" {{ old('rating') == '3' ? 'selected' : '' }}>3（普通）</option>
-                            <option value="2" {{ old('rating') == '2' ? 'selected' : '' }}>2（悪い）</option>
-                            <option value="1" {{ old('rating') == '1' ? 'selected' : '' }}>1（とても悪い）</option>
-                        </select>
+                        <div id="app">
+                            <p class="review-form__label">体験を評価してください</p>
+                            <star-rating active-color="#3560f6" v-bind:star-size="45" :show-rating="false"></star-rating>
+                        </div>
                     </div>
                     <div class="error-message">
                         @error('rating')
@@ -74,9 +70,15 @@
                             {{ $message }}
                         @enderror
                     </div>
-                    <div>
+                    <div id="upFileWrap">
                         <p class="review-form__label">画像の追加</p>
-                        <input type="file" name="image" class="review-form__image">
+                        <div id="inputFile">
+                            <p id="dropArea">クリックして写真を追加<br>またはドラッグアンドドロップ</p>
+                            <div id="inputFileWrap">
+                                <input type="file" name="uploadFile" id="uploadFile" class="review-form__image">
+                                <div id="btnInputFile"><span>ファイルを選択する</span></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="error-message">
                         @error('image')
@@ -94,4 +96,17 @@
     <div class="review-form__button-area">
         <button class="review-form__button" type="button">口コミを投稿</button>
     </div>
+
+    <script>
+        const StarRating = window.VueStarRating.default;
+
+        Vue.component('star-rating', StarRating);
+        let app = new Vue({
+            el: '#app',
+            data: {
+                rating: 0,
+            }
+        });
+    </script>
+    <script src="{{ asset('js/drag-and-drop.js') }}"></script>
 @endsection
