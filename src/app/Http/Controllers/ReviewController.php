@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
+use App\Models\Shop;
 use App\Models\Review;
 use Carbon\Carbon;
 use App\Http\Requests\ReviewRequest;
@@ -13,12 +14,10 @@ class ReviewController extends Controller
 {
     public function showReviewForm($reservation_id)
     {
-        $reservation = Reservation::where('id', $reservation_id)->with('shop', 'course')->first();
-        if (!$reservation || $reservation->user_id !== Auth::id()) {
-            abort(403, 'このページにアクセスする権限がありません。');
-        }
-        $reservation->formatted_time = Carbon::parse($reservation->reservation_time)->format('H:i');
-        return view('review', compact('reservation'));
+        $shop_id = Reservation::where('id', $reservation_id)->first()->shop_id;
+        $shop = Shop::where('id', $shop_id)->with('shopArea', 'shopGenre')->first();
+
+        return view('review', compact('shop'));
     }
 
     public function createReview(ReviewRequest $request)

@@ -1,75 +1,99 @@
-.review__container {
-    height: 95vh;
-    padding-top: 30px;
+body {
     background-color: #eee;
 }
 
-.review__content {
-    width: 450px;
-    margin: 0 auto;
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px #959595;
+.review__container {
+    display: flex;
+    align-items: center;
+}
+
+.left__container {
+    width: 40%;
+}
+
+.right__container {
+    width: 60%;
+}
+
+.hr {
+    width: 3px;
+    height: 80vh;
+    background-color: #ccc;
+}
+
+.shop__card {
     background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 5px #959595;
+    overflow: hidden;
 }
 
-@media screen and (max-width: 768px) {
-    .review__content {
-        width: 300px;
-    }
+.shop__card-img {
+    overflow: hidden;
 }
 
-.review__header {
-    padding: 5px 20px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background-color: #3560f6;
-    color: #fff;
-    font-size: 8px;
-    font-weight: lighter;
-}
-
-.review-form__group {
+.shop__card-img img {
     width: 100%;
-    padding: 10px 30px 20px;
+    margin-top: -10%;
+    margin-bottom: -10%;
 }
 
-.review-form__label {
-    display: inline-block;
+
+.shop__card-text {
+    padding: 15px;
 }
 
-.review-form__text {
-    width: 390px;
+.shop__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.review-form__value {
-    margin-left: 20px;
+.shop__info {
+    font-size: 13px;
 }
 
-.review-form__value:nth-child(3) {
-    margin-left: 5px;
+.shop__unit {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
-@media screen and (max-width: 768px) {
-    .review-form__text {
-        width: 240px;
-    }
-
-    .review-form__value {
-        font-size: 15px;
-    }
-
-}
-
-.review-form__button-area {
-    padding: 10px 0;
-    text-align: right;
-}
-
-.review-form__button {
-    padding: 5px 15px;
-    border: none;
+.shop__detail {
+    height: 31px;
+    padding: 5px 12px;
     border-radius: 5px;
     background-color: #3560f6;
+    font-size: 12px;
     color: #fff;
+    text-decoration: none;
+}
+
+.shop__favorite {
+    border: none;
+    background-color: #fff;
+    font-size: 32px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .shop__info {
+        font-size: 12px;
+    }
+
+    .shop__detail {
+        padding: 5px 7px;
+    }
+
+    .shop__favorite {
+        font-size: 24px;
+    }
+}
+
+.shop__favorite--red {
+    color: red;
+}
+
+.shop__favorite--gray {
+    color: gray;
 }

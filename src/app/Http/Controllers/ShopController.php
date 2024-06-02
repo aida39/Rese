@@ -12,7 +12,7 @@ use App\Models\Course;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $shop_areas = ShopArea::all();
         $shop_genres = ShopGenre::all();
@@ -22,7 +22,15 @@ class ShopController extends Controller
                 $query->where('user_id', $user_id);
             }])
             ->get();
-        return view('index', compact('shop_areas', 'shop_genres', 'shops'));
+
+        // 並べ替えオプションを取得
+        $sort = $request->input('sort');
+
+        // ランダム並べ替えの場合
+        if ($sort == 'random') {
+            $shops = $shops->shuffle();
+        }
+        return view('index', compact('shop_areas', 'shop_genres', 'shops', 'sort'));
     }
 
     public function search(Request $request)
@@ -37,7 +45,16 @@ class ShopController extends Controller
             ->AreaSearch($selected_area)
             ->GenreSearch($selected_genre)
             ->KeywordSearch($keyword)->get();
-        return view('index', compact('selected_area', 'selected_genre', 'keyword', 'shop_areas', 'shop_genres', 'shops'));
+
+        // 並べ替えオプションを取得
+        $sort = $request->input('sort');
+
+        // ランダム並べ替えの場合
+        if ($sort == 'random') {
+            $shops = $shops->shuffle();
+        }
+
+        return view('index', compact('selected_area', 'selected_genre', 'keyword', 'shop_areas', 'shop_genres', 'shops', 'sort'));
     }
 
     public function detail(Request $request)

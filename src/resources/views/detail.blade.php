@@ -89,7 +89,7 @@
         </div>
     </div>
     <div class="review__content">
-        <h2>口コミ</h2>
+        <a href="/review/create" class="review__button">口コミを投稿する</a>
         @if($reviews->isEmpty())
         <p>口コミはまだありません</p>
         @else
