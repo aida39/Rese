@@ -12,6 +12,7 @@ class Review extends Model
         'reservation_id',
         'rating',
         'comment',
+        'image_path',
     ];
 
     public function reservation()

@@ -102,6 +102,9 @@
             </div>
             <p class="review__rating">評価(5段階):{{ $review->rating }}</p>
             <p class="review__text">{{ $review->comment }}</p>
+            <div class="review__image">
+                <img src="{{ asset($review->image_path) }}" alt="Review Image">
+            </div>
         </div>
         @endforeach
         @endif

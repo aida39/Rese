@@ -47,13 +47,15 @@
             <div class="review__header">
                 <h1></h1>
             </div>
-            <form class="review-form" action="/review" method="post">
+            <form class="review-form" action="/review" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="review-form__group">
                     <div>
                         <div id="app">
-                            <p class="review-form__label">体験を評価してください</p>
-                            <star-rating active-color="#3560f6" v-bind:star-size="45" :show-rating="false"></star-rating>
+                            <h2 class="review-form__label">体験を評価してください</h2>
+                            <star-rating active-color="#3560f6" v-bind:star-size="45" v-model="rating"
+                                :show-rating="false" @rating-selected="setRating"></star-rating>
+                            <input type="hidden" name="rating" :value="rating" />
                         </div>
                     </div>
                     <div class="error-message">
@@ -62,8 +64,8 @@
                         @enderror
                     </div>
                     <div>
-                        <p class="review-form__label">口コミを投稿</p>
-                        <textarea class="review-form__text" name="comment" cols="50" rows="5" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment') }}</textarea>
+                        <h2 class="review-form__label">口コミを投稿</h2>
+                        <textarea class="review-form__text" name="comment" cols="60" rows="10" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment') }}</textarea>
                     </div>
                     <div class="error-message">
                         @error('comment')
@@ -71,12 +73,14 @@
                         @enderror
                     </div>
                     <div id="upFileWrap">
-                        <p class="review-form__label">画像の追加</p>
+                        <h2 class="review-form__label">画像の追加</h2>
                         <div id="inputFile">
-                            <p id="dropArea">クリックして写真を追加<br>またはドラッグアンドドロップ</p>
+                            <button id="bt-file-01" type="button">クリックして写真を追加<br>またはドラッグアンドドロップ
+                                <div id="imagePreview" class="preview-image"></div>
+                                <span id="output-01" class="output"></span>
+                            </button>
                             <div id="inputFileWrap">
-                                <input type="file" name="uploadFile" id="uploadFile" class="review-form__image">
-                                <div id="btnInputFile"><span>ファイルを選択する</span></div>
+                                <input type="file" name="image" id="input-file-01" class="review-form__image">
                             </div>
                         </div>
                     </div>
@@ -89,6 +93,7 @@
                         <button class="review-form__button" type="submit">押さない</button>
                     </div>
                 </div>
+                <input type="hidden" name="reservation_id" value="{{ $reservation_id }}">
             </form>
         </div>
     </div>
@@ -103,10 +108,18 @@
         Vue.component('star-rating', StarRating);
         let app = new Vue({
             el: '#app',
-            data: {
-                rating: 0,
-            }
+            data: function() {
+                return {
+                    rating: 0,
+                };
+            },
+            methods: {
+                setRating: function(rating) {
+                    this.rating = rating;
+                },
+
+            },
         });
     </script>
-    <script src="{{ asset('js/drag-and-drop.js') }}"></script>
+    {{-- <script src="{{ asset('js/drag-and-drop.js') }}"></script> --}}
 @endsection

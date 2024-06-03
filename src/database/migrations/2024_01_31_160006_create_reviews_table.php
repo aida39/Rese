@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('reservation_id')->constrained()->cascadeOnDelete();
             $table->tinyInteger('rating');
             $table->string('comment', 255);
+            $table->string('image_path');
             $table->timestamps();
         });
     }

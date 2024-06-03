@@ -1,8 +1,16 @@
 // ドラッグ&ドロップエリアの取得
-let fileArea = document.getElementById("dropArea");
+let fileArea = document.getElementById("bt-file-01");
 
 // input[type=file]の取得
-let fileInput = document.getElementById("uploadFile");
+let fileInput = document.getElementById("input-file-01");
+
+// ボタンクリック時の処理
+const el_upload_file = document.getElementById("input-file-01");
+const bt_drop_area = document.getElementById("bt-file-01");
+
+bt_drop_area.addEventListener("click", function () {
+    el_upload_file.click();
+});
 
 // ドラッグオーバー時の処理
 fileArea.addEventListener("dragover", function (e) {
