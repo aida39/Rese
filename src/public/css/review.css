@@ -8,14 +8,66 @@ body {
 }
 
 .left__container {
-    width: 40%;
+    width: 45%;
     margin: 0 40px;
 }
 
 .right__container {
-    width: 60%;
+    width: 55%;
     margin: 0 40px;
 }
+
+.hr {
+    width: 3px;
+    height: 80vh;
+    background-color: #ccc;
+    margin: 0;
+}
+
+.review-form__button-area {
+    display: flex;
+    justify-content: center;
+}
+
+.review-form__button {
+    margin: 20px 0;
+    padding: 15px 140px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .review__container {
+        flex-direction: column;
+    }
+
+    .left__container {
+        width: 60%;
+    }
+
+    .hr {
+        display: none;
+    }
+
+    .review-form__text {
+        width: 100%;
+    }
+
+    .review-form__button {
+        margin: 20px 0;
+        padding: 15px 60px;
+        border: none;
+        border-radius: 5px;
+        background-color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+    }
+}
+
+
 
 .shop__card {
     background-color: #fff;
@@ -94,12 +146,7 @@ body {
     color: gray;
 }
 
-.hr {
-    width: 3px;
-    height: 80vh;
-    background-color: #ccc;
-    margin: 0;
-}
+
 
 /* #inputFile {
     position: relative;

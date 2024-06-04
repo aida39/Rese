@@ -159,7 +159,7 @@
                 }
             },
             data: {
-                rating: {{ $review->rating }}
+                rating: {{ $review->rating ?? 0 }}
             }
         });
     </script>
