@@ -172,6 +172,8 @@ body {
 
 .review__link {
     margin-right: 20px;
+    color: #000;
+
 }
 
 .review__image {
@@ -180,5 +182,13 @@ body {
 
 .hr {
     background-color: #ccc;
-    margin: 20px 0 ;
+    margin: 20px 0;
+}
+
+.review__delete-button {
+    border: none;
+    font-size: 16px;
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
 }

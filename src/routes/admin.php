@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\MailController;
+use App\Http\Controllers\Admin\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,12 @@ Route::prefix('admin')->controller(MailController::class)->middleware('auth.admi
         Route::get('/mail', 'showMailForm');
         Route::post('/mail', 'sendMail');
         Route::get('/done/mail', 'doneMail');
+    }
+);
+
+Route::prefix('admin')->controller(ReviewController::class)->middleware('auth.admins:admins')->group(
+    function () {
+        Route::get('/review', 'showReviewForm');
+        Route::post('/delete/review/{id}', 'deleteReview');
     }
 );

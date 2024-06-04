@@ -18,19 +18,22 @@
                 <ul>
                     <ul class="menu__nav__list">
                         @if (Auth::guard('admins')->check())
-                        <li class="menu__nav__item">
-                            <a class="menu__nav__link" href="/admin/index">Home</a>
-                        </li>
-                        <li class="menu__nav__item">
-                            <a class="menu__nav__link" href="/admin/mail">Mail</a>
-                        </li>
-                        <li class="menu__nav__item">
-                            <a class="menu__nav__link" href="/admin/logout">Logout</a>
-                        </li>
+                            <li class="menu__nav__item">
+                                <a class="menu__nav__link" href="/admin/index">Home</a>
+                            </li>
+                            <li class="menu__nav__item">
+                                <a class="menu__nav__link" href="/admin/mail">Mail</a>
+                            </li>
+                            <li class="menu__nav__item">
+                                <a class="menu__nav__link" href="/admin/review">Review</a>
+                            </li>
+                            <li class="menu__nav__item">
+                                <a class="menu__nav__link" href="/admin/logout">Logout</a>
+                            </li>
                         @else
-                        <li class="menu__nav__item">
-                            <a class="menu__nav__link" href="/admin/login">Login</a>
-                        </li>
+                            <li class="menu__nav__item">
+                                <a class="menu__nav__link" href="/admin/login">Login</a>
+                            </li>
                         @endif
                     </ul>
                 </ul>
