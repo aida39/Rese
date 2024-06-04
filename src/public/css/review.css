@@ -17,13 +17,6 @@ body {
     margin: 0 40px;
 }
 
-.hr {
-    width: 3px;
-    height: 80vh;
-    background-color: #ccc;
-    margin: 0;
-}
-
 .shop__card {
     background-color: #fff;
     border-radius: 8px;
@@ -99,6 +92,13 @@ body {
 
 .shop__favorite--gray {
     color: gray;
+}
+
+.hr {
+    width: 3px;
+    height: 80vh;
+    background-color: #ccc;
+    margin: 0;
 }
 
 /* #inputFile {

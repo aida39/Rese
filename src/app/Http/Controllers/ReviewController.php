@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Models\Shop;
 use App\Models\Review;
@@ -35,5 +36,12 @@ class ReviewController extends Controller
     public function doneReview()
     {
         return view('review_done');
+    }
+
+    public function deleteReview(Request $request)
+    {
+        Review::find($request->review_id)->delete();
+
+        return redirect()->back();
     }
 }

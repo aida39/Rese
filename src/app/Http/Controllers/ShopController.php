@@ -69,6 +69,11 @@ class ShopController extends Controller
                 $query->where('shop_id', $id);
             })
             ->get();
+
+        foreach($reviews as $review){
+            $review->is_user_review = $review->reservation->user_id === Auth::id();
+        }
+
         return view('detail', compact('shop', 'courses', 'reviews'));
     }
 }
