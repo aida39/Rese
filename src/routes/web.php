@@ -61,6 +61,7 @@ Route::controller(ReviewController::class)->middleware('auth')->group(function (
     Route::get('/review/{reservation_id}', 'showReviewForm');
     Route::post('/review', 'createReview');
     Route::get('/done/review', 'doneReview');
+    Route::get('/edit/review/{reservation_id}', 'editReview');
+    Route::post('/update/review', 'updateReview');
     Route::post('/delete/review/{id}', 'deleteReview');
-
 });

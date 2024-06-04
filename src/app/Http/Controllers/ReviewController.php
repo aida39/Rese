@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Models\Shop;
 use App\Models\Review;
@@ -24,12 +25,37 @@ class ReviewController extends Controller
         $review_data = $request->only(['reservation_id', 'rating', 'comment']);
 
         $directory = env('APP_ENV') === 'production'
-        ? env('PROD_IMAGE_DIRECTORY')
-        : env('DEV_IMAGE_DIRECTORY');
+            ? env('PROD_IMAGE_DIRECTORY')
+            : env('DEV_IMAGE_DIRECTORY');
         $file = Storage::disk('s3')->put($directory, $request->file('image'));
         $review_data['image_path'] = Storage::disk('s3')->url($file);
 
         Review::create($review_data);
+        return redirect('/done/review');
+    }
+
+    public function editReview($reservation_id)
+    {
+        $review = Review::where('reservation_id', $reservation_id)->first();
+        $shop_id = Reservation::where('id', $reservation_id)->first()->shop_id;
+        $shop = Shop::where('id', $shop_id)->with('shopArea', 'shopGenre')->first();
+
+        return view('review_edit', compact('review', 'shop', 'reservation_id'));
+    }
+
+    public function updateReview(ReviewRequest $request)
+    {
+        $review_data = $request->only(['rating', 'comment']);
+
+        $directory = env('APP_ENV') === 'production'
+            ? env('PROD_IMAGE_DIRECTORY')
+            : env('DEV_IMAGE_DIRECTORY');
+        $file = Storage::disk('s3')->put($directory, $request->file('image'));
+        $review_data['image_path'] = Storage::disk('s3')->url($file);
+
+        $review = Review::find($request->input('reservation_id'));
+        $review->update($review_data);
+
         return redirect('/done/review');
     }
 
