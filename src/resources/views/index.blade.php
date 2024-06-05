@@ -9,12 +9,11 @@
         <form class="search__content__form" action="/search" method="get">
             @csrf
             <div class="search__content__inner">
-                {{-- <input type="hidden" name="sort" value="{{ old('sort') }}"> --}}
                 <select class="search__sort-box" name="sort">
                     <option value="">並べ替え：評価高/低</option>
-                    <option value="random" {{ old('sort') === 'random' ? 'selected' : '' }}>ランダム</option>
-                    <option value="high_rating" {{ old('sort') === 'high_rating' ? 'selected' : '' }}>評価が高い順</option>
-                    <option value="low_rating" {{ old('sort') === 'low_rating' ? 'selected' : '' }}>評価は低い順</option>
+                    <option value="random">ランダム</option>
+                    <option value="high_rating">評価が高い順</option>
+                    <option value="low_rating">評価は低い順</option>
                 </select>
 
                 <select class="search__area-box" name="shop_area_id">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Shop;
 use App\Models\ShopArea;
 use App\Models\ShopGenre;
@@ -23,14 +24,7 @@ class ShopController extends Controller
             }])
             ->get();
 
-        // 並べ替えオプションを取得
-        $sort = $request->input('sort');
-
-        // ランダム並べ替えの場合
-        if ($sort == 'random') {
-            $shops = $shops->shuffle();
-        }
-        return view('index', compact('shop_areas', 'shop_genres', 'shops', 'sort'));
+        return view('index', compact('shop_areas', 'shop_genres', 'shops'));
     }
 
     public function search(Request $request)
@@ -46,12 +40,19 @@ class ShopController extends Controller
             ->GenreSearch($selected_genre)
             ->KeywordSearch($keyword)->get();
 
-        // 並べ替えオプションを取得
         $sort = $request->input('sort');
 
-        // ランダム並べ替えの場合
         if ($sort == 'random') {
             $shops = $shops->shuffle();
+        } elseif ($sort == "high_rating") {
+            $shops = $shops->sortByDesc(function ($shop) {
+                return $shop->reviews->avg('rating');
+            });
+        } elseif ($sort == "low_rating") {
+            $shops = $shops->sortBy(function ($shop) {
+                $averageRating = $shop->reviews->avg('rating');
+                return is_null($averageRating) ? PHP_INT_MAX : $averageRating;
+            });
         }
 
         return view('index', compact('selected_area', 'selected_genre', 'keyword', 'shop_areas', 'shop_genres', 'shops', 'sort'));

@@ -57,4 +57,14 @@ class Shop extends Model
             $query->where('shop_name', 'like', '%' . $keyword . '%');
         }
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasManyThrough(Review::class, Reservation::class);
+    }
 }
