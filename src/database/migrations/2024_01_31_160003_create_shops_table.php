@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignId('shop_area_id')->constrained()->cascadeOnDelete();
             $table->foreignId('shop_genre_id')->constrained()->cascadeOnDelete();
             $table->foreignId('manager_id')->constrained()->cascadeOnDelete();
-            $table->string('shop_name', 255);
+            $table->string('shop_name', 50);
             $table->string('image_path');
-            $table->text('shop_description');
+            $table->text('shop_description', 400);
             $table->timestamps();
         });
     }

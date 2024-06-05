@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,12 @@ Route::prefix('admin')->controller(ReviewController::class)->middleware('auth.ad
     function () {
         Route::get('/review', 'showReviewForm');
         Route::post('/delete/review/{id}', 'deleteReview');
+    }
+);
+
+Route::prefix('admin')->controller(ShopController::class)->middleware('auth.admins:admins')->group(
+    function () {
+        Route::get('/import', 'importPage');
+        Route::post('/import', 'csvImport');
     }
 );

@@ -28,6 +28,9 @@
                                 <a class="menu__nav__link" href="/admin/review">Review</a>
                             </li>
                             <li class="menu__nav__item">
+                                <a class="menu__nav__link" href="/admin/import">Import</a>
+                            </li>
+                            <li class="menu__nav__item">
                                 <a class="menu__nav__link" href="/admin/logout">Logout</a>
                             </li>
                         @else
