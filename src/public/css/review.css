@@ -24,6 +24,11 @@ body {
     margin: 0;
 }
 
+.review-form__text {
+    padding: 10px;
+    background-color: #eee;
+}
+
 .review-form__button-area {
     display: flex;
     justify-content: center;
@@ -37,7 +42,7 @@ body {
     margin: 20px 0;
     padding: 15px 140px;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     background-color: #fff;
     font-size: 16px;
     cursor: pointer;
@@ -155,10 +160,9 @@ body {
 }
 
 
-/* #inputFile {
+#inputFile {
     position: relative;
     padding: 180px 0 100px;
-    text-align: center;
 }
 
 #bt-file-01 {
@@ -230,4 +234,4 @@ body {
 
 #upFileWrap.selected #btnChangeFile {
     display: table;
-} */
+}

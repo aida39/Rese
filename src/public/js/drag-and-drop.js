@@ -37,8 +37,10 @@ fileArea.addEventListener("drop", function (e) {
 
     if (typeof files[0] !== "undefined") {
         //ファイルが正常に受け取れた際の処理
+        document.getElementById("output-01").textContent = files[0].name; // ファイル名を表示
     } else {
         //ファイルが受け取れなかった際の処理
+        document.getElementById("output-01").textContent = "ファイルが選択されていません。"; // エラーメッセージを表示
     }
 });
 
@@ -51,8 +53,10 @@ fileInput.addEventListener(
 
         if (typeof e.target.files[0] !== "undefined") {
             // ファイルが正常に受け取れた際の処理
+            document.getElementById("output-01").textContent = file.name; // ファイル名を表示
         } else {
             // ファイルが受け取れなかった際の処理
+            document.getElementById("output-01").textContent = "ファイルが選択されていません。"; // エラーメッセージを表示
         }
     },
     false

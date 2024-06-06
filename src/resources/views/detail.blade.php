@@ -104,14 +104,11 @@
             </div>
         </div>
         <div class="review__content">
-            <a href="/review/create" class="review__button">口コミを投稿する</a>
             @if ($reviews->isEmpty())
                 <p>口コミはまだありません</p>
             @else
                 <hr class="hr">
-
                 <div id="app">
-
                     @foreach ($reviews as $review)
                         <div class="review__card">
                             @if ($review->is_user_review)

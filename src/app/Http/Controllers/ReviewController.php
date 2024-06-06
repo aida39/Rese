@@ -36,7 +36,7 @@ class ReviewController extends Controller
 
     public function editReview($reservation_id)
     {
-        $review = Review::where('reservation_id', $reservation_id)->first();
+        $review = Review::where('id', $reservation_id)->first();
         $shop_id = Reservation::where('id', $reservation_id)->first()->shop_id;
         $shop = Shop::where('id', $shop_id)->with('shopArea', 'shopGenre')->first();
 
