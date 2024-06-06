@@ -109,34 +109,39 @@
                 <p>口コミはまだありません</p>
             @else
                 <hr class="hr">
-                @foreach ($reviews as $review)
-                    <div class="review__card">
-                        @if ($review->is_user_review)
-                            <div class="review__title">
-                                <a href="/edit/review/{{ $review->id }}" class="review__link">口コミを編集</a>
-                                <form class="review__delete-form" action="/delete/review/{{ $review['id'] }}"
-                                    method="post">
-                                    @csrf
-                                    <input type="hidden" name="review_id" value="{{ $review['id'] }}">
-                                    <button type="submit" class="review__delete-button"
-                                        onclick="confirmAction(event, 'この口コミを削除しますか？');">
-                                        口コミを削除
-                                    </button>
-                                </form>
+
+                <div id="app">
+
+                    @foreach ($reviews as $review)
+                        <div class="review__card">
+                            @if ($review->is_user_review)
+                                <div class="review__title">
+                                    <a href="/edit/review/{{ $review->id }}" class="review__link">口コミを編集</a>
+                                    <form class="review__delete-form" action="/delete/review/{{ $review['id'] }}"
+                                        method="post">
+                                        @csrf
+                                        <input type="hidden" name="review_id" value="{{ $review['id'] }}">
+                                        <button type="submit" class="review__delete-button"
+                                            onclick="confirmAction(event, 'この口コミを削除しますか？');">
+                                            口コミを削除
+                                        </button>
+                                    </form>
+                                </div>
+                            @endif
+                            <div id="">
+                                <star-rating active-color="#3560f6" v-bind:star-size="35" v-model="rating"
+                                    :show-rating="false" :read-only="true"
+                                    @rating-selected ="setRating"></star-rating>
+                                <p class="review__rating">{{ $review->rating }}</p>
                             </div>
-                        @endif
-                        <div id="app">
-                            <star-rating active-color="#3560f6" v-bind:star-size="35" v-model="rating"
-                                :show-rating="false" :read-only="true" @rating-selected ="setRating" ></star-rating>
-                            <p class="review__rating">{{ $review->rating }}</p>
+                            <p class="review__text">{{ $review->comment }}</p>
+                            <div>
+                                <img class="review__image" src="{{ asset($review->image_path) }}" alt="Review Image">
+                            </div>
                         </div>
-                        <p class="review__text">{{ $review->comment }}</p>
-                        <div>
-                            <img class="review__image" src="{{ asset($review->image_path) }}" alt="Review Image">
-                        </div>
-                    </div>
-                    <hr class="hr">
-                @endforeach
+                        <hr class="hr">
+                    @endforeach
+                    <div>
             @endif
         </div>
     </div>

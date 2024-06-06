@@ -8,7 +8,7 @@
     <div class="container">
         <div class="content">
             <div class="shop__header">
-                <h1>csvインポート</h1>
+                <h1>店舗情報の追加</h1>
             </div>
             <form action="/admin/import" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -28,7 +28,7 @@
                                 @endforeach
                         @endif
                     </div>
-                    <button class="form__button">インポート</button>
+                    <button class="form__button">csvインポート</button>
 
                 </div>
             </form>

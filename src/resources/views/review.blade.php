@@ -65,7 +65,10 @@
                     </div>
                     <div>
                         <h2 class="review-form__label">口コミを投稿</h2>
-                        <textarea class="review-form__text" name="comment" cols="60" rows="10" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment') }}</textarea>
+                        <div id="app-2">
+                        <textarea v-model.trim="message" class="review-form__text" name="comment" cols="60" rows="10" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment') }}</textarea>
+                            <span class="counter">@{{ message.length }}/400(最高文字数)</span>
+                        </div>
                     </div>
                     <div class="error-message">
                         @error('comment')
@@ -90,7 +93,7 @@
                         @enderror
                     </div>
                     <div class="review-form__button-area">
-                        <button class="review-form__button" type="submit">押さない</button>
+                        <button id="submit-button" class="review-form__button" type="submit">押さない</button>
                     </div>
                 </div>
                 <input type="hidden" name="reservation_id" value="{{ $reservation_id }}">
@@ -99,7 +102,7 @@
     </div>
 
     <div class="review-form__button-area">
-        <button class="review-form__button" type="button">口コミを投稿</button>
+        <button class="submit__button" type="button"  onclick="document.getElementById('submit-button').click();">口コミを投稿</button>
     </div>
 
     <script>
@@ -119,6 +122,13 @@
                 },
 
             },
+        });
+
+        new Vue({
+            el: "#app-2",
+            data: {
+                message: ""
+            }
         });
     </script>
     {{-- <script src="{{ asset('js/drag-and-drop.js') }}"></script> --}}

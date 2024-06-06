@@ -30,6 +30,10 @@ body {
 }
 
 .review-form__button {
+    display: none;
+}
+
+.submit__button {
     margin: 20px 0;
     padding: 15px 140px;
     border: none;
@@ -146,6 +150,9 @@ body {
     color: gray;
 }
 
+.counter {
+    font-size: 14px;
+}
 
 
 /* #inputFile {
