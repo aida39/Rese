@@ -21,11 +21,17 @@ class ShopController extends Controller
         $fp = fopen($path, 'r');
         fgetcsv($fp);
 
+        $csvDataArray = [];
         while (($csvData = fgetcsv($fp)) !== FALSE) {
             $this->validateCsvRow($csvData);
-            $this->insertCsvData($csvData);
+            $csvDataArray[] = $csvData;
         }
         fclose($fp);
+
+        foreach ($csvDataArray as $csvData) {
+            $this->insertCsvData($csvData);
+        }
+
         return redirect('admin/import')->with('flash-message', '店舗を作成しました');
     }
 
