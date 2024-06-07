@@ -96,7 +96,6 @@
                         <button id="submit-button" class="review-form__button" type="submit"></button>
                     </div>
                 </div>
-                <input type="hidden" name="reservation_id" value="{{ $reservation_id }}">
             </form>
         </div>
     </div>

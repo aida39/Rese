@@ -34,13 +34,13 @@ class ReviewController extends Controller
         return redirect('/done/review');
     }
 
-    public function editReview($reservation_id)
+    public function editReview($review_id)
     {
-        $review = Review::where('id', $reservation_id)->first();
-        $shop_id = Reservation::where('id', $reservation_id)->first()->shop_id;
+        $review = Review::where('id', $review_id)->first();
+        $shop_id = Review::where('id', $review_id)->with('reservation')->first()->reservation->shop_id;
         $shop = Shop::where('id', $shop_id)->with('shopArea', 'shopGenre')->first();
 
-        return view('review_edit', compact('review', 'shop', 'reservation_id'));
+        return view('review_edit', compact('review', 'shop'));
     }
 
     public function updateReview(ReviewRequest $request)
