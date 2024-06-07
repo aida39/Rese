@@ -109,7 +109,7 @@
             @else
                 <hr class="hr">
                 <div id="app">
-                    @foreach ($reviews as $review)
+                    @foreach ($reviews as $index => $review)
                         <div class="review__card">
                             @if ($review->is_user_review)
                                 <div class="review__title">
@@ -126,10 +126,7 @@
                                 </div>
                             @endif
                             <div id="">
-                                <star-rating active-color="#3560f6" v-bind:star-size="35" v-model="rating"
-                                    :show-rating="false" :read-only="true"
-                                    @rating-selected ="setRating"></star-rating>
-                                <p class="review__rating">{{ $review->rating }}</p>
+                                <star-rating :star-size="35" v-model="ratings[{{ $index }}]" :read-only="true" :show-rating="false" active-color="#3560f6"></star-rating>
                             </div>
                             <p class="review__text">{{ $review->comment }}</p>
                             <div>
@@ -150,18 +147,17 @@
     </script>
     <script src="{{ asset('js/stripe-payment.js') }}"></script>
     <script>
-        const StarRating = window.VueStarRating.default;
+        Vue.component('star-rating', window.VueStarRating.default);
 
-        Vue.component('star-rating', StarRating);
         let app = new Vue({
             el: '#app',
-            methods: {
-                setRating: function(rating) {
-                    this.rating = rating;
-                }
-            },
             data: {
-                rating: {{ $review->rating ?? 0 }}
+                ratings: @json($reviews->pluck('rating')->all())
+            },
+            methods: {
+                setRating: function(index, rating) {
+                    this.ratings[index] = rating;
+                }
             }
         });
     </script>

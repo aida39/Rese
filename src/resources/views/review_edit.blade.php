@@ -93,6 +93,7 @@
                         </div>
                     </div>
                     <div class="review-form__button-area">
+                        <input type="hidden" name="review_id" value="{{ $review['id'] }}">
                         <button id="submit-button" class="review-form__button" type="submit"></button>
                     </div>
                 </div>

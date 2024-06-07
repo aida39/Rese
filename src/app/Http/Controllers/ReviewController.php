@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Models\Shop;
 use App\Models\Review;
@@ -53,7 +52,7 @@ class ReviewController extends Controller
         $file = Storage::disk('s3')->put($directory, $request->file('image'));
         $review_data['image_path'] = Storage::disk('s3')->url($file);
 
-        $review = Review::find($request->input('reservation_id'));
+        $review = Review::find($request->input('review_id'));
         $review->update($review_data);
 
         return redirect('/done/review');
