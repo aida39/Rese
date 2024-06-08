@@ -80,7 +80,7 @@
                         <h2 class="review-form__label">画像の追加</h2>
                         <div id="inputFile">
                             <button id="bt-file-01" type="button">クリックして写真を追加<br>またはドラッグアンドドロップ<br>
-                                <span id="output-01" class="output"></span>
+                                <span id="output-01" class="output">{{ $review['image_path'] }}</span>
                             </button>
                             <div class="error-message">
                                 @error('image')
@@ -94,6 +94,7 @@
                     </div>
                     <div class="review-form__button-area">
                         <input type="hidden" name="review_id" value="{{ $review['id'] }}">
+                        <input type="hidden" name="image_path" value="{{ $review['image_path'] }}">
                         <button id="submit-button" class="review-form__button" type="submit"></button>
                     </div>
                 </div>

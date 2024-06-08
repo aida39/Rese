@@ -7,6 +7,7 @@ use App\Models\Reservation;
 use App\Models\Shop;
 use App\Models\Review;
 use App\Http\Requests\ReviewRequest;
+use App\Http\Requests\ReviewUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ReviewController extends Controller
@@ -42,15 +43,17 @@ class ReviewController extends Controller
         return view('review_edit', compact('review', 'shop'));
     }
 
-    public function updateReview(ReviewRequest $request)
+    public function updateReview(ReviewUpdateRequest $request)
     {
         $review_data = $request->only(['rating', 'comment']);
 
+        if ($request->hasFile('image')) {
         $directory = env('APP_ENV') === 'production'
             ? env('PROD_IMAGE_DIRECTORY')
             : env('DEV_IMAGE_DIRECTORY');
         $file = Storage::disk('s3')->put($directory, $request->file('image'));
         $review_data['image_path'] = Storage::disk('s3')->url($file);
+        }
 
         $review = Review::find($request->input('review_id'));
         $review->update($review_data);
