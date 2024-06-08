@@ -22,6 +22,10 @@
                     <span>#{{ $shop['shopGenre']['shop_genre'] }}</span>
                     <p class="">{{ $shop['shop_description'] }}</p>
                 </div>
+                @if ($reviews->isEmpty())
+                @else
+                    <button class="review-button" onclick="showAllReviews()">全ての口コミ情報</button>
+                @endif
             </div>
             <div class="right-wrapper reservation__content">
                 <h2 class="reservation__title">予約</h2>
@@ -103,6 +107,8 @@
                 @endif
             </div>
         </div>
+        <div>
+        </div>
         <div class="review__content">
             @if ($reviews->isEmpty())
                 <p>口コミはまだありません</p>
@@ -110,7 +116,8 @@
                 <hr class="hr">
                 <div id="app">
                     @foreach ($reviews as $index => $review)
-                        <div class="review__card">
+                        <div class="review__card" style="{{ $index > 0 ? 'display:none;' : '' }}"
+                            id="review_{{ $index }}">
                             @if ($review->is_user_review)
                                 <div class="review__title">
                                     <a href="/edit/review/{{ $review->id }}" class="review__link">口コミを編集</a>
@@ -126,16 +133,18 @@
                                 </div>
                             @endif
                             <div id="">
-                                <star-rating :star-size="35" v-model="ratings[{{ $index }}]" :read-only="true" :show-rating="false" active-color="#3560f6"></star-rating>
+                                <star-rating :star-size="35" v-model="ratings[{{ $index }}]"
+                                    :read-only="true" :show-rating="false" active-color="#3560f6"></star-rating>
                             </div>
                             <p class="review__text">{{ $review->comment }}</p>
                             <div>
                                 <img class="review__image" src="{{ asset($review->image_path) }}" alt="Review Image">
                             </div>
+                            <hr class="hr">
+
                         </div>
-                        <hr class="hr">
                     @endforeach
-                    <div>
+                </div>
             @endif
         </div>
     </div>
@@ -160,5 +169,13 @@
                 }
             }
         });
+    </script>
+    <script>
+        function showAllReviews() {
+            const reviews = document.querySelectorAll('.review__card');
+            reviews.forEach(review => {
+                review.style.display = 'block';
+            });
+        }
     </script>
 @endsection

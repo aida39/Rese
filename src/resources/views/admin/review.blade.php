@@ -9,6 +9,7 @@
 @section('content')
     <div class="container">
         <hr class="hr">
+        <h1 class="menu__title">口コミの削除</h1>
         <div id="app">
             @foreach ($reviews as $index => $review)
                 <div class="review__card">
